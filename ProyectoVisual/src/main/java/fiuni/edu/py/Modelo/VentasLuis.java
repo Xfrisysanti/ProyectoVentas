@@ -37,7 +37,7 @@ public class VentasLuis {
      * @param items Lista de productos vendidos
      * @param fecha Fecha en la que se realizó la venta
      */
-    public Venta(int cliente, List<ItemVenta> items, LocalDate fecha) {
+    public VentasLuis(int cliente, List<ItemVenta> items, LocalDate fecha) {
         this.idCliente = cliente;
         this.items = items;
         this.fechaVenta = fecha;
@@ -46,7 +46,7 @@ public class VentasLuis {
     /**
      * Constructor por defecto que inicializa la venta con valores predeterminados.
      */
-    public Venta() {
+    public VentasLuis() {
         this.idCliente = 0;
         this.items = null;
         this.fechaVenta = LocalDate.now();

@@ -20,7 +20,7 @@ public class RepositorioVentas {
     /**
      * Mapa que almacena las ventas registradas, usando su ID como clave
      */
-    private final Map<Integer, Ventas> ventas = new HashMap<>();
+    private static final Map<Integer, Ventas> ventas = new HashMap<>();
 
     /**
      * ID actual para asignar automáticamente a nuevas ventas

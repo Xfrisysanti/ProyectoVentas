@@ -9,7 +9,7 @@ public class Producto {
     private int unidades;
     //private int stock;
 
-    public Producto(int id, double precio, String nombre, int unidades) {
+    public Producto( double precio, String nombre, int unidades) {
         this.id = id;
         this.peso = -1;
         this.unidades = unidades;
@@ -17,7 +17,7 @@ public class Producto {
         this.precio = precio;
     }
 
-    public Producto(int id, double precio, String nombre, double peso) {
+    public Producto(double precio, String nombre, double peso) {
         this.id = id;
         this.peso = peso;
         this.unidades = -1;

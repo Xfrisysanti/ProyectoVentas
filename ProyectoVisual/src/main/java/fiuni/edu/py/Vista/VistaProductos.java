@@ -4,10 +4,19 @@
  */
 package fiuni.edu.py.Vista;
 
+import fiuni.edu.py.Controladores.ControladorProducto;
+import fiuni.edu.py.Repositorios.RepositorioProducto;
+
 /**
  *
  * @author santi
  */
 public class VistaProductos {
+    RepositorioProducto repositorioProducto=new RepositorioProducto();
+    ControladorProducto controladorProducto=new ControladorProducto();
+    Scanner scanner=new Scanner
+    public void agregarProducto(){
+        
+    }
     
 }

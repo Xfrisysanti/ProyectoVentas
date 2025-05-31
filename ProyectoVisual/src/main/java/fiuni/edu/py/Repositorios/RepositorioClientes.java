@@ -24,7 +24,7 @@ import java.util.Map;
 public class RepositorioClientes {
 
     /** Mapa que almacena los clientes con su identificación como clave */
-    private static Map<Integer, Clientes> clientes = new HashMap<>();
+    private static final Map<Integer, Clientes> clientes = new HashMap<>();
 
     /**
      * Guarda un nuevo cliente o actualiza uno existente si la identificación ya está registrada.

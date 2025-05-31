@@ -7,8 +7,9 @@ public class Producto {
     private String nombre;
     private double peso;
     private int unidades;
+    private int stock;
 
-    public Producto(int id, double precio, String nombre, int unidades) {
+    public Producto(int id, double precio, String nombre, int unidades, int stock) {
         this.id = id;
         this.peso = -1;
         this.unidades = unidades;
@@ -16,7 +17,7 @@ public class Producto {
         this.precio = precio;
     }
 
-    public Producto(int id, double precio, String nombre, double peso) {
+    public Producto(int id, double precio, String nombre, double peso, int stock) {
         this.id = id;
         this.peso = peso;
         this.unidades = -1;
@@ -39,6 +40,14 @@ public class Producto {
         } else {
             return false;
         }
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public int hashCode() {

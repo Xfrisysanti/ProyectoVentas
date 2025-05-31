@@ -2,19 +2,22 @@
 package fiuni.edu.py.Modelo;
 
 public class Producto {
+    private int id;
     private double precio;
     private String nombre;
     private double peso;
     private int unidades;
 
-    public Producto(double precio, String nombre, int unidades) {
+    public Producto(int id, double precio, String nombre, int unidades) {
+        this.id = id;
         this.peso = -1;
         this.unidades = unidades;
         this.nombre = nombre;
         this.precio = precio;
     }
 
-    public Producto(double precio, String nombre, double peso) {
+    public Producto(int id, double precio, String nombre, double peso) {
+        this.id = id;
         this.peso = peso;
         this.unidades = -1;
         this.nombre = nombre;
@@ -42,6 +45,10 @@ public class Producto {
         return this.nombre.toLowerCase().hashCode();
     }
 
+    public int getIdProducto(){
+        return id;
+    }
+    
     public double getPrecio() {
         return this.precio;
     }
@@ -56,6 +63,10 @@ public class Producto {
 
     public int getUnidades() {
         return this.unidades;
+    }
+    
+    public void setIdProducto(int id){
+        this.id = id;
     }
 
     public void setNombre(String nombre) {

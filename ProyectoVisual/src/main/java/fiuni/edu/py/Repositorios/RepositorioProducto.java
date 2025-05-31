@@ -23,7 +23,7 @@ import java.util.Map;
 public class RepositorioProducto {
 
     /** Mapa que almacena productos con su ID como clave */
-    private static Map<Integer, Producto> productos = new HashMap<>();
+    private static final Map<Integer, Producto> productos = new HashMap<>();
 
     /** Identificador actual para asignar automáticamente a nuevos productos */
     private int idActual = 1000;

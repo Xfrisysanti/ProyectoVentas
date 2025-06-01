@@ -3,6 +3,15 @@ package com.mycompany.proyectovisual.gProductos;
 
 
 
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+
+
+
+
+
 
 import com.mycompany.proyectovisual.gProductos.MenuGestionProductos;
 import fiuni.edu.py.Controladores.ControladorProducto;
@@ -302,10 +311,10 @@ public class EditarProducto extends javax.swing.JFrame {
         if (jRadioButton1.isSelected()) { // Por peso  true
             controlador.editarProducto(id, nombre, precio,stock,true);
 
-            JOptionPane.showMessageDialog(this, "Producto por peso editado exitosamente:"+(controlador.conseguirId()-1));
+            JOptionPane.showMessageDialog(this, "Producto por peso editado exitosamente:"+(controlador.conseguirId()));
         } else if (jRadioButton2.isSelected()) { // Por unidad false
             controlador.editarProducto(id, nombre, precio,stock,false);
-            JOptionPane.showMessageDialog(this, "Producto por unidad editado exitosamente con id:"+(controlador.conseguirId()-1));
+            JOptionPane.showMessageDialog(this, "Producto por unidad editado exitosamente con id:"+(controlador.conseguirId()));
             
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione el tipo de producto.");
@@ -320,8 +329,7 @@ public class EditarProducto extends javax.swing.JFrame {
     
     new MenuGestionProductos().setVisible(true);
     dispose();
-      
-    
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

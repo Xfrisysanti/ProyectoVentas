@@ -4,6 +4,8 @@
  */
 package com.mycompany.proyectovisual;
 
+import com.mycompany.proyectovisual.gProductos.MenuGestionProductos;
+
 /**
  *
  * @author luisf

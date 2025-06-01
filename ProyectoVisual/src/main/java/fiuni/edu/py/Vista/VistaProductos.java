@@ -14,7 +14,7 @@ import fiuni.edu.py.Repositorios.RepositorioProducto;
 public class VistaProductos {
     RepositorioProducto repositorioProducto=new RepositorioProducto();
     ControladorProducto controladorProducto=new ControladorProducto();
-    Scanner scanner=new Scanner
+    
     public void agregarProducto(){
         
     }

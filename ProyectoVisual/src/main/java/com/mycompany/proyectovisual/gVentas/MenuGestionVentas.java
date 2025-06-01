@@ -222,7 +222,7 @@ public class MenuGestionVentas extends javax.swing.JFrame {
         jButton9.setBackground(new java.awt.Color(204, 204, 204));
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton9.setForeground(new java.awt.Color(102, 102, 102));
-        jButton9.setText("LISTAR VENTAS ENTRE FECHAS");
+        jButton9.setText("LISTAR VENTAS ELIMINADAS");
         jButton9.setAlignmentX(0.5F);
         jButton9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);

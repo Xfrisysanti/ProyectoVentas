@@ -32,12 +32,21 @@ public class ListarCliente extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jSeparator10 = new javax.swing.JSeparator();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jSeparator7 = new javax.swing.JSeparator();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jButton2 = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jButton4 = new javax.swing.JButton();
+        jSeparator8 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        jButton3 = new javax.swing.JButton();
+        jSeparator6 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(220, 220, 180));
@@ -52,7 +61,7 @@ public class ListarCliente extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("LISTA DE PRODUCTOS");
+        jLabel2.setText("LISTA DE CLIENTES");
         jLabel2.setAlignmentX(0.5F);
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabel2);
@@ -60,43 +69,6 @@ public class ListarCliente extends javax.swing.JFrame {
         jSeparator3.setForeground(java.awt.Color.darkGray);
         jSeparator3.setMaximumSize(new java.awt.Dimension(32767, 20));
         jPanel1.add(jSeparator3);
-
-        jSeparator4.setBackground(new java.awt.Color(220, 220, 180));
-        jSeparator4.setForeground(new java.awt.Color(220, 220, 180));
-        jSeparator4.setMaximumSize(new java.awt.Dimension(32767, 25));
-        jPanel1.add(jSeparator4);
-
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Nombre", "Tipo", "Precio", "Stock"
-            }
-        ));
-        jTable1.setMaximumSize(new java.awt.Dimension(600, 70));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel1.add(jScrollPane1);
 
         jPanel4.setBackground(new java.awt.Color(220, 220, 180));
         jPanel4.setMaximumSize(new java.awt.Dimension(32767, 400));
@@ -108,17 +80,69 @@ public class ListarCliente extends javax.swing.JFrame {
         jSeparator10.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel4.add(jSeparator10);
 
-        jPanel1.add(jPanel4);
+        jScrollPane1.setMaximumSize(new java.awt.Dimension(450, 32767));
+
+        jTable1.setBackground(new java.awt.Color(255, 255, 255));
+        jTable1.setForeground(new java.awt.Color(0, 0, 0));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "CI", "Nombre", "Edad", "Email"
+            }
+        ));
+        jTable1.setAlignmentX(0.0F);
+        jTable1.setAlignmentY(0.0F);
+        jTable1.setMaximumSize(new java.awt.Dimension(600, 70));
+        jTable1.setShowGrid(true);
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel4.add(jScrollPane1);
+
+        jSeparator7.setBackground(new java.awt.Color(220, 220, 180));
+        jSeparator7.setForeground(new java.awt.Color(220, 220, 180));
+        jSeparator7.setMaximumSize(new java.awt.Dimension(20, 20));
+        jPanel4.add(jSeparator7);
+
+        jPanel2.setBackground(new java.awt.Color(220, 220, 180));
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.Y_AXIS));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("OPCIONES DE VISTA");
+        jLabel1.setAlignmentX(0.5F);
+        jPanel2.add(jLabel1);
+
+        jSeparator1.setMaximumSize(new java.awt.Dimension(32767, 20));
+        jSeparator1.setMinimumSize(new java.awt.Dimension(50, 20));
+        jPanel2.add(jSeparator1);
 
         jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(102, 102, 102));
-        jButton2.setText("ELIMINAR");
+        jButton2.setText("ORDENAR POR NOMBRE");
         jButton2.setAlignmentX(0.5F);
         jButton2.setAlignmentY(1.0F);
         jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setMaximumSize(new java.awt.Dimension(200, 50));
+        jButton2.setMaximumSize(new java.awt.Dimension(150, 50));
         jButton2.setMinimumSize(new java.awt.Dimension(100, 50));
         jButton2.setPreferredSize(new java.awt.Dimension(100, 50));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +150,64 @@ public class ListarCliente extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2);
+        jPanel2.add(jButton2);
+
+        jSeparator2.setMaximumSize(new java.awt.Dimension(32767, 20));
+        jSeparator2.setMinimumSize(new java.awt.Dimension(50, 20));
+        jPanel2.add(jSeparator2);
+
+        jButton4.setBackground(new java.awt.Color(204, 204, 204));
+        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(102, 102, 102));
+        jButton4.setText("ORDENAR POR EDAD");
+        jButton4.setAlignmentX(0.5F);
+        jButton4.setAlignmentY(1.0F);
+        jButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.setMaximumSize(new java.awt.Dimension(150, 50));
+        jButton4.setMinimumSize(new java.awt.Dimension(100, 50));
+        jButton4.setPreferredSize(new java.awt.Dimension(100, 50));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton4);
+
+        jPanel4.add(jPanel2);
+
+        jSeparator8.setBackground(new java.awt.Color(220, 220, 180));
+        jSeparator8.setForeground(new java.awt.Color(220, 220, 180));
+        jSeparator8.setMaximumSize(new java.awt.Dimension(20, 20));
+        jPanel4.add(jSeparator8);
+
+        jPanel1.add(jPanel4);
+
+        jSeparator5.setForeground(new java.awt.Color(220, 220, 180));
+        jSeparator5.setMaximumSize(new java.awt.Dimension(32767, 20));
+        jPanel1.add(jSeparator5);
+
+        jButton3.setBackground(new java.awt.Color(204, 204, 204));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(102, 102, 102));
+        jButton3.setText("VOLVER");
+        jButton3.setAlignmentX(0.5F);
+        jButton3.setAlignmentY(1.0F);
+        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setMaximumSize(new java.awt.Dimension(200, 50));
+        jButton3.setMinimumSize(new java.awt.Dimension(100, 50));
+        jButton3.setPreferredSize(new java.awt.Dimension(100, 50));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3);
+
+        jSeparator6.setForeground(new java.awt.Color(220, 220, 180));
+        jSeparator6.setMaximumSize(new java.awt.Dimension(32767, 20));
+        jPanel1.add(jSeparator6);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -136,6 +217,14 @@ public class ListarCliente extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,13 +326,22 @@ public class ListarCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

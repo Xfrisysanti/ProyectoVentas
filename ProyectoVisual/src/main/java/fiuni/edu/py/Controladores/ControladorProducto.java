@@ -36,7 +36,9 @@ public class ControladorProducto {
     public List<Producto> obtenerTodos() {
         return repo.listarTodos();  // Devuelve todos los productos del repositorio.
     }
-
+    public int conseguirId(){
+        return repo.conseguirID();
+    }
     /**
      * Obtiene el número total de productos en el repositorio.
      * @return El número total de productos.

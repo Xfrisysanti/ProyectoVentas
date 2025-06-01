@@ -4,12 +4,16 @@
  */
 package com.mycompany.proyectovisual.gProductos;
 
+import fiuni.edu.py.Controladores.ControladorProducto;
+import static java.lang.Integer.parseInt;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author luisf
  */
 public class VentanaIdProductos extends javax.swing.JFrame {
-
+    ControladorProducto controlador= new ControladorProducto();
     /**
      * Creates new form MenuPrincipal
      */
@@ -123,7 +127,20 @@ public class VentanaIdProductos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+    String idTexto = jTextField1.getText().trim();
+    
+    try {
+        int id = Integer.parseInt(idTexto); 
+
+        if (controlador.buscarProducto(id) == null) {
+            JOptionPane.showMessageDialog(this, "No se encontró el producto con ID: " + id);
+        } else {
+            new EditarProducto(id).setVisible(true); // pasa el ID al constructor
+            dispose();
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.");
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

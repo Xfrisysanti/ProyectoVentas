@@ -9,15 +9,20 @@ package com.mycompany.proyectovisual.gProductos;
  * @author luisf
  */
 public class EditarProducto extends javax.swing.JFrame {
-
+    private int id;
     /**
      * Creates new form MenuPrincipal
+     * @param id
      */
+    public EditarProducto(int id) {
+        this.id=id;
+        initComponents();
+        setLocationRelativeTo(null);
+    }
     public EditarProducto() {
         initComponents();
         setLocationRelativeTo(null);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

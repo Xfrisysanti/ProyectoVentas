@@ -4,12 +4,16 @@
  */
 package com.mycompany.proyectovisual.gProductos;
 
+import fiuni.edu.py.Controladores.ControladorProducto;
+import fiuni.edu.py.Modelo.Producto;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author luisf
  */
 public class AgregarProducto extends javax.swing.JFrame {
-
+    ControladorProducto controlador=new ControladorProducto();
     /**
      * Creates new form MenuPrincipal
      */
@@ -91,7 +95,6 @@ public class AgregarProducto extends javax.swing.JFrame {
         jPanel3.add(jSeparator9);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Ingrese el Nombre del Producto");
         jPanel3.add(jLabel2);
 
@@ -111,12 +114,15 @@ public class AgregarProducto extends javax.swing.JFrame {
         jSeparator10.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel4.add(jSeparator10);
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField1.setText("Ingrese el texto aquí");
+        jTextField1.setText("Ingrese el nombre ");
         jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField1.setMaximumSize(new java.awt.Dimension(500, 40));
         jTextField1.setPreferredSize(new java.awt.Dimension(50, 26));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         jPanel4.add(jTextField1);
 
         jPanel1.add(jPanel4);
@@ -136,7 +142,6 @@ public class AgregarProducto extends javax.swing.JFrame {
         jPanel5.add(jSeparator11);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Ingrese el Precio del Producto");
         jPanel5.add(jLabel3);
 
@@ -156,9 +161,7 @@ public class AgregarProducto extends javax.swing.JFrame {
         jSeparator14.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel6.add(jSeparator14);
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField2.setText("Ingrese el texto aquí");
+        jTextField2.setText("Ingrese el precio");
         jTextField2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField2.setMaximumSize(new java.awt.Dimension(500, 40));
         jTextField2.setPreferredSize(new java.awt.Dimension(50, 26));
@@ -181,7 +184,6 @@ public class AgregarProducto extends javax.swing.JFrame {
         jPanel7.add(jSeparator15);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Ingrese el Stock del Producto");
         jPanel7.add(jLabel4);
 
@@ -201,9 +203,7 @@ public class AgregarProducto extends javax.swing.JFrame {
         jSeparator17.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel8.add(jSeparator17);
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField3.setText("Ingrese el texto aquí");
+        jTextField3.setText("ingrese el stock");
         jTextField3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField3.setMaximumSize(new java.awt.Dimension(500, 40));
         jTextField3.setPreferredSize(new java.awt.Dimension(50, 26));
@@ -226,7 +226,6 @@ public class AgregarProducto extends javax.swing.JFrame {
         jPanel10.add(jSeparator19);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Seleccione el tipo de producto");
         jPanel10.add(jLabel5);
 
@@ -247,7 +246,6 @@ public class AgregarProducto extends javax.swing.JFrame {
         jPanel9.add(jSeparator18);
 
         buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton1.setText("Por Peso");
         jRadioButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -259,10 +257,14 @@ public class AgregarProducto extends javax.swing.JFrame {
         jPanel9.add(jSeparator21);
 
         buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton2.setText("Por Unidad");
         jRadioButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
         jPanel9.add(jRadioButton2);
 
         jPanel1.add(jPanel9);
@@ -296,57 +298,55 @@ public class AgregarProducto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+           try {
+        String nombre = jTextField1.getText().trim();
+        double precio = Double.parseDouble(jTextField2.getText().trim());
+
+        if (jRadioButton1.isSelected()) { // Por peso
+            double stock = Double.parseDouble(jTextField3.getText().trim());
+            Producto p = new Producto(precio, nombre, stock);
+            controlador.agregarProducto(p);
+            JOptionPane.showMessageDialog(this, "Producto por peso agregado exitosamente.");
+        } else if (jRadioButton2.isSelected()) { // Por unidad
+            int stock = Integer.parseInt(jTextField3.getText().trim());
+            Producto p = new Producto(precio,nombre, stock);
+            controlador.agregarProducto(p);
+            JOptionPane.showMessageDialog(this, "Producto por unidad agregado exitosamente con id:"+(controlador.conseguirId()-1));
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione el tipo de producto.");
+        }
+
+        
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Error al ingresar precio o stock. Verifique que sean números válidos.");
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
+    }
+    
+    new MenuGestionProductos().setVisible(true);
+    dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AgregarProducto().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

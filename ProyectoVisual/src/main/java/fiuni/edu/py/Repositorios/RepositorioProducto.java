@@ -39,7 +39,9 @@ public class RepositorioProducto {
         productos.put(producto.getIdProducto(), producto);
         return producto;
     }
-
+    public int conseguirID(){
+        return idActual;
+    }
     /**
      * Busca un producto por su ID.
      * 

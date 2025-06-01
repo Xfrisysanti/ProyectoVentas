@@ -317,7 +317,7 @@ public class AgregarCliente extends javax.swing.JFrame {
             controlador.agregarCliente(ci, nombre, edad, email);
             JOptionPane.showMessageDialog(this, "Cliente agregado exitosamente");
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(this, "Error al ingresar precio o stock. Verifique que sean números válidos.");
+            JOptionPane.showMessageDialog(this, "Error al ingresar número de CI o edad. Verifique que sean números válidos.");
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
         }

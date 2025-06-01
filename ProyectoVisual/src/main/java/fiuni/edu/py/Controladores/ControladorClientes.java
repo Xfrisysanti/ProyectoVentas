@@ -38,10 +38,11 @@ public class ControladorClientes {
      * @param identificacion Identificación única del cliente.
      * @param nombre Nombre del cliente.
      * @param edad Edad del cliente.
+     * @param email Email del cliente
      * @return El cliente que fue agregado al repositorio.
      */
-    public Clientes agregarCliente(int identificacion, String nombre, int edad) {
-        Clientes cliente = new Clientes(identificacion, nombre, edad);
+    public Clientes agregarCliente(int identificacion, String nombre, int edad, String email) {
+        Clientes cliente = new Clientes(identificacion, nombre, edad, email);
         return repo.guardar(cliente);
     }
 
@@ -51,10 +52,11 @@ public class ControladorClientes {
      * @param identificacion Identificación del cliente a editar.
      * @param nuevoNombre Nuevo nombre que se asignará al cliente.
      * @param nuevaEdad Nueva edad que se asignará al cliente.
+     * @param nuevoEmail Nuevo email del cliente
      * @return {@code true} si la edición fue exitosa; {@code false} si el
      * cliente no fue encontrado.
      */
-    public boolean editarCliente(int identificacion, String nuevoNombre, int nuevaEdad) {
+    public boolean editarCliente(int identificacion, String nuevoNombre, int nuevaEdad, String nuevoEmail) {
         Clientes cliente = repo.buscarPorIdentificacion(identificacion);
         if (cliente != null) {
             cliente.setNombre(nuevoNombre);

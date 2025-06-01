@@ -21,6 +21,9 @@ public class Clientes {
 
     /** Edad del cliente */
     private int edad;
+    
+    /** Email del cliente*/
+    private String email;
 
     /**
      * Crea un nuevo cliente con los datos especificados.
@@ -28,13 +31,29 @@ public class Clientes {
      * @param identificacion Identificación única del cliente
      * @param nombre Nombre del cliente
      * @param edad Edad del cliente
+     * @param email Email del cliente
      */
-    public Clientes(int identificacion, String nombre, int edad) {
+    public Clientes(int identificacion, String nombre, int edad, String email) {
         this.identificacion = identificacion;
         this.nombre = nombre;
         this.edad = edad;
+        this.email = email;
+    }
+    
+    /**
+     * Obtiene el email del cliente.
+     * 
+     * @return email del cliente
+     */
+    public String getEmail() {
+        return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    
     /**
      * Obtiene la identificación del cliente.
      * 

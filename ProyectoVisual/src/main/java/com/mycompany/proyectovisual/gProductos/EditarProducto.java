@@ -1,8 +1,18 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.proyectovisual.gProductos;
+
+
+
+
+
+import com.mycompany.proyectovisual.gProductos.MenuGestionProductos;
+import fiuni.edu.py.Controladores.ControladorProducto;
+import fiuni.edu.py.Modelo.Producto;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,6 +20,7 @@ package com.mycompany.proyectovisual.gProductos;
  */
 public class EditarProducto extends javax.swing.JFrame {
     private int id;
+    ControladorProducto controlador=new ControladorProducto();
     /**
      * Creates new form MenuPrincipal
      * @param id
@@ -96,7 +107,6 @@ public class EditarProducto extends javax.swing.JFrame {
         jPanel3.add(jSeparator9);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Ingrese el Nombre del Producto Editado");
         jPanel3.add(jLabel2);
 
@@ -116,8 +126,6 @@ public class EditarProducto extends javax.swing.JFrame {
         jSeparator10.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel4.add(jSeparator10);
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
         jTextField1.setText("Ingrese el texto aquí");
         jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField1.setMaximumSize(new java.awt.Dimension(500, 40));
@@ -141,7 +149,6 @@ public class EditarProducto extends javax.swing.JFrame {
         jPanel5.add(jSeparator11);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Ingrese el Precio del Producto Editado");
         jPanel5.add(jLabel3);
 
@@ -161,8 +168,6 @@ public class EditarProducto extends javax.swing.JFrame {
         jSeparator14.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel6.add(jSeparator14);
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
         jTextField2.setText("Ingrese el texto aquí");
         jTextField2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField2.setMaximumSize(new java.awt.Dimension(500, 40));
@@ -186,7 +191,6 @@ public class EditarProducto extends javax.swing.JFrame {
         jPanel7.add(jSeparator15);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Ingrese el Stock del Producto Editado");
         jPanel7.add(jLabel4);
 
@@ -206,8 +210,6 @@ public class EditarProducto extends javax.swing.JFrame {
         jSeparator17.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel8.add(jSeparator17);
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
         jTextField3.setText("Ingrese el texto aquí");
         jTextField3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField3.setMaximumSize(new java.awt.Dimension(500, 40));
@@ -231,7 +233,6 @@ public class EditarProducto extends javax.swing.JFrame {
         jPanel10.add(jSeparator19);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Seleccione el tipo de producto");
         jPanel10.add(jLabel5);
 
@@ -252,7 +253,6 @@ public class EditarProducto extends javax.swing.JFrame {
         jPanel9.add(jSeparator18);
 
         buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton1.setText("Por Peso");
         jRadioButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -264,7 +264,6 @@ public class EditarProducto extends javax.swing.JFrame {
         jPanel9.add(jSeparator21);
 
         buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton2.setText("Por Unidad");
         jRadioButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -301,7 +300,32 @@ public class EditarProducto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+          try {
+        String nombre = jTextField1.getText().trim();
+        double precio = Double.parseDouble(jTextField2.getText().trim());
+        String stock= jTextField3.getText().trim();
+        if (jRadioButton1.isSelected()) { // Por peso  true
+            controlador.editarProducto(id, nombre, precio,stock,true);
+
+            JOptionPane.showMessageDialog(this, "Producto por peso editado exitosamente:"+(controlador.conseguirId()-1));
+        } else if (jRadioButton2.isSelected()) { // Por unidad false
+            controlador.editarProducto(id, nombre, precio,stock,false);
+            JOptionPane.showMessageDialog(this, "Producto por unidad editado exitosamente con id:"+(controlador.conseguirId()-1));
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione el tipo de producto.");
+        }
+
+        
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Error al ingresar precio o stock. Verifique que sean números válidos.");
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
+    }
+    
+    new MenuGestionProductos().setVisible(true);
+    dispose();
+    }    
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -330,38 +354,7 @@ public class EditarProducto extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(EditarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
+   
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

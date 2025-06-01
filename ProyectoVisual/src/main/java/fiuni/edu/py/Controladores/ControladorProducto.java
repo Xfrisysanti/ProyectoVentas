@@ -2,6 +2,8 @@ package fiuni.edu.py.Controladores;
 
 import fiuni.edu.py.Modelo.Producto;
 import fiuni.edu.py.Repositorios.RepositorioProducto;
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
 import java.util.List;
 
 /**
@@ -53,17 +55,18 @@ public class ControladorProducto {
     public Producto buscarProducto(int id) {
         return repo.buscarPorId(id);
     }
-    public boolean editarProducto(int id, String nuevoNombre, double nuevoPrecio, int unidades,double peso) {
+    public boolean editarProducto(int id, String nuevoNombre, double nuevoPrecio, String stock, boolean pesoOunidad) {
         Producto producto = repo.buscarPorId(id);
         if (producto != null) {
             producto.setNombre(nuevoNombre);
             producto.setPrecio(nuevoPrecio);
             // permite editar peso o unidades
-            if(repo.buscarPorId(id).getPeso()!=-1){
-                producto.setPeso(peso);
+            //SI ES TRUE SE EDITA POR PESO, SI ES FALSE POR UNIDAD
+            if(pesoOunidad){
+                producto.setPeso(parseDouble(stock));
             }
             else{
-                producto.setUnidades(unidades);
+                producto.setUnidades(parseInt(stock));
             }
             return repo.editar(producto);
         }

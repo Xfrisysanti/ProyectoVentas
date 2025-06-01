@@ -306,7 +306,7 @@ public class AgregarProducto extends javax.swing.JFrame {
             double stock = Double.parseDouble(jTextField3.getText().trim());
             Producto p = new Producto(precio, nombre, stock);
             controlador.agregarProducto(p);
-            JOptionPane.showMessageDialog(this, "Producto por peso agregado exitosamente.");
+            JOptionPane.showMessageDialog(this, "Producto por peso agregado exitosamente:"+(controlador.conseguirId()-1));
         } else if (jRadioButton2.isSelected()) { // Por unidad
             int stock = Integer.parseInt(jTextField3.getText().trim());
             Producto p = new Producto(precio,nombre, stock);

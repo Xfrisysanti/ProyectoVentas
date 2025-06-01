@@ -15,6 +15,7 @@ public class EliminarProducto extends javax.swing.JFrame {
      */
     public EliminarProducto() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

@@ -15,6 +15,7 @@ public class VentanaIdProductos extends javax.swing.JFrame {
      */
     public VentanaIdProductos() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

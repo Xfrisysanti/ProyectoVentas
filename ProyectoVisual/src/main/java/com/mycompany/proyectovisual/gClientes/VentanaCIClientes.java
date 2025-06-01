@@ -15,6 +15,7 @@ public class VentanaCIClientes extends javax.swing.JFrame {
      */
     public VentanaCIClientes() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

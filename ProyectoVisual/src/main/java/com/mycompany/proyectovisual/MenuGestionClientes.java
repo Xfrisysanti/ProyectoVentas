@@ -15,6 +15,7 @@ public class MenuGestionClientes extends javax.swing.JFrame {
      */
     public MenuGestionClientes() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

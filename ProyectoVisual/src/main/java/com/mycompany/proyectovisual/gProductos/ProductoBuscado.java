@@ -23,7 +23,7 @@ public class ProductoBuscado extends javax.swing.JFrame {
         cargarDatos();
     }
     public ProductoBuscado() {
-        initComponents();
+        
         setLocationRelativeTo(null);
     }
 

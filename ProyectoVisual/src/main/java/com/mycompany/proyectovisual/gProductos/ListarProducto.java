@@ -4,20 +4,56 @@
  */
 package com.mycompany.proyectovisual.gProductos;
 
+import fiuni.edu.py.Controladores.ControladorProducto;
+import fiuni.edu.py.Modelo.Producto;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author luisf
  */
 public class ListarProducto extends javax.swing.JFrame {
-
+    ControladorProducto controlador=new ControladorProducto();
     /**
      * Creates new form MenuPrincipal
      */
     public ListarProducto() {
         initComponents();
-        setLocationRelativeTo(null);
-    }
+    setLocationRelativeTo(null);
+    listar();
 
+    
+    }
+    public void listar(){
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+    modelo.setRowCount(0); 
+    String peso="Por Kgs";
+    String unidad="Por unidades";
+    List<Producto> productos = controlador.obtenerTodos();
+    for (Producto p : productos) {
+        if(p.getPeso()!=-1){
+        modelo.addRow(new Object[]{
+            p.getIdProducto(),
+            p.getNombre(),
+            peso,
+            p.getPrecio(),
+            p.getPeso(),
+        
+        });
+    }
+        else{
+        modelo.addRow(new Object[]{
+            p.getIdProducto(),
+            p.getNombre(),
+            unidad,
+            p.getPrecio(),
+            p.getUnidades(),
+        
+        });
+    }
+    }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,7 +85,6 @@ public class ListarProducto extends javax.swing.JFrame {
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("LISTA DE PRODUCTOS");
         jLabel2.setAlignmentX(0.5F);
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -64,8 +99,6 @@ public class ListarProducto extends javax.swing.JFrame {
         jSeparator4.setMaximumSize(new java.awt.Dimension(32767, 25));
         jPanel1.add(jSeparator4);
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -92,7 +125,6 @@ public class ListarProducto extends javax.swing.JFrame {
         ));
         jTable1.setMaximumSize(new java.awt.Dimension(600, 70));
         jTable1.setShowGrid(true);
-        jTable1.setShowHorizontalLines(true);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1);
@@ -133,67 +165,15 @@ public class ListarProducto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        new MenuGestionProductos().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
+      
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

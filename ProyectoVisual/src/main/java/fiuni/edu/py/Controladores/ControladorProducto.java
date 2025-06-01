@@ -72,6 +72,18 @@ public class ControladorProducto {
         }
         return false;
     }
+    public String getNombre(int id){
+        return repo.buscarPorId(id).getNombre();
+    }
+    public double getPrecio(int id){
+        return repo.buscarPorId(id).getPrecio();
+    }
+    public double getPeso(int id){
+        return repo.buscarPorId(id).getPeso();
+    }
+    public int getUnidades(int id){
+        return repo.buscarPorId(id).getUnidades();
+    }
 
    
     

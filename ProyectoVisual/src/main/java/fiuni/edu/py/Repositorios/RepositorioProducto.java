@@ -26,7 +26,7 @@ public class RepositorioProducto {
     private static final Map<Integer, Producto> productos = new HashMap<>();
 
     /** Identificador actual para asignar automáticamente a nuevos productos */
-    private int idActual = 1000;
+    private static int idActual = 1000;
 
     /**
      * Guarda un nuevo producto, asignándole un ID único automáticamente.

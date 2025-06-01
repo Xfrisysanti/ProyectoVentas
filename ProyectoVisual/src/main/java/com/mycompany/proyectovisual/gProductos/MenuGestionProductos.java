@@ -288,7 +288,7 @@ public class MenuGestionProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       new VentanaIdProductos().setVisible(true);
+       new VentanaIdProductos(true).setVisible(true);
        dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -298,7 +298,7 @@ public class MenuGestionProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        new VentanaIdProductos().setVisible(true);
+        new VentanaIdProductos(false).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 

@@ -5,7 +5,6 @@
 package com.mycompany.proyectovisual.gProductos;
 
 import fiuni.edu.py.Controladores.ControladorProducto;
-import static java.lang.Integer.parseInt;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,9 +13,15 @@ import javax.swing.JOptionPane;
  */
 public class VentanaIdProductos extends javax.swing.JFrame {
     ControladorProducto controlador= new ControladorProducto();
+    boolean editarObuscar;
     /**
      * Creates new form MenuPrincipal
      */
+    public VentanaIdProductos(boolean editarObuscar) {
+        this.editarObuscar=editarObuscar;
+        initComponents();
+        setLocationRelativeTo(null);
+    }
     public VentanaIdProductos() {
         initComponents();
         setLocationRelativeTo(null);
@@ -134,8 +139,12 @@ public class VentanaIdProductos extends javax.swing.JFrame {
 
         if (controlador.buscarProducto(id) == null) {
             JOptionPane.showMessageDialog(this, "No se encontró el producto con ID: " + id);
-        } else {
-            new EditarProducto(id).setVisible(true); // pasa el ID al constructor
+        } else if(editarObuscar) {
+            new EditarProducto(id).setVisible(true); // pasa el ID al constructor de edicion
+            dispose();
+        }
+        else{
+            new ProductoBuscado(id).setVisible(true); // pasa el ID al constructor de buscador
             dispose();
         }
     } catch (NumberFormatException e) {

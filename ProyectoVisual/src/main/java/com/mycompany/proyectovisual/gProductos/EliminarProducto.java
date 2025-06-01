@@ -4,12 +4,15 @@
  */
 package com.mycompany.proyectovisual.gProductos;
 
+import fiuni.edu.py.Controladores.ControladorProducto;
+import static java.lang.Integer.parseInt;
+
 /**
  *
  * @author luisf
  */
 public class EliminarProducto extends javax.swing.JFrame {
-
+    ControladorProducto controlador= new ControladorProducto();
     /**
      * Creates new form MenuPrincipal
      */
@@ -123,7 +126,10 @@ public class EliminarProducto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        int id=parseInt(jTextField1.getText());
+        controlador.eliminarProducto(id);
+        new MenuGestionProductos().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

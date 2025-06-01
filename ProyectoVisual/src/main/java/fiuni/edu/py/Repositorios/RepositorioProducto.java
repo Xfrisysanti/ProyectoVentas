@@ -5,6 +5,11 @@
 package fiuni.edu.py.Repositorios;
 
 import fiuni.edu.py.Modelo.Producto;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,13 +26,36 @@ import java.util.Map;
  * @author luisf
  */
 public class RepositorioProducto {
-
+    //GUARDACIOND DE DATOS
+    private static final String ARCHIVO = "productos.dat";
     /** Mapa que almacena productos con su ID como clave */
     private static final Map<Integer, Producto> productos = new HashMap<>();
 
     /** Identificador actual para asignar automáticamente a nuevos productos */
     private static int idActual = 1000;
+    public RepositorioProducto() {
+        cargarDatos();
+    }
+    // Método para guardar datos en un archivo binario
+    private void guardarDatos() {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ARCHIVO))) {
+            out.writeObject(productos);
+            out.writeInt(idActual);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    // Método para cargar datos desde el archivo binario al iniciar el repositorio
+    private void cargarDatos() {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(ARCHIVO))) {
+            Map<Integer, Producto> datosCargados = (Map<Integer, Producto>) in.readObject();
+            productos.putAll(datosCargados);
+            idActual = in.readInt(); // Recuperar el último ID usado
+        } catch (IOException | ClassNotFoundException e) {
+            // Si hay error, el archivo puede no existir aún, entonces mantenemos el mapa vacío
+        }
+    }
     /**
      * Guarda un nuevo producto, asignándole un ID único automáticamente.
      * 
@@ -37,6 +65,7 @@ public class RepositorioProducto {
     public Producto guardar(Producto producto) {
         producto.setIdProducto(idActual++);
         productos.put(producto.getIdProducto(), producto);
+         guardarDatos(); 
         return producto;
     }
     public int conseguirID(){
@@ -58,8 +87,9 @@ public class RepositorioProducto {
      * @param id Identificador del producto a eliminar
      * @return {@code true} si el producto fue eliminado, {@code false} si no existía
      */
-    public boolean eliminar(int id) {
-        return productos.remove(id) != null;
+    public void eliminar(int id) {
+        productos.remove(id);
+        guardarDatos(); 
     }
 
     /**
@@ -82,6 +112,7 @@ public class RepositorioProducto {
             productos.put(productoEditado.getIdProducto(), productoEditado);
             return true;
         }
+        guardarDatos(); 
         return false;
     }
 }

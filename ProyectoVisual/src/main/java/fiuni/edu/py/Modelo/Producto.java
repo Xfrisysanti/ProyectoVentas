@@ -1,14 +1,16 @@
 
 package fiuni.edu.py.Modelo;
 
-public class Producto {
+import java.io.Serializable;
+
+public class Producto implements Serializable {
     private int id;
     private double precio;
     private String nombre;
     private double peso;
     private int unidades;
     //private int stock;
-
+     private static final long serialVersionUID = 1L; // Recomendado para garantizar compatibilidad en versiones futuras
     public Producto( double precio, String nombre, int unidades) {
         this.id = id;
         this.peso = -1;

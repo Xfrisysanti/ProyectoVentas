@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -41,22 +42,18 @@ public class ControladorVentas {
         this.productoRepo = productoRepo;
     }
 
-    /**
-     * Registra una nueva venta si el cliente existe, los productos están
-     * disponibles y hay suficiente stock.
-     *
-     * @param clienteId Identificador del cliente que realiza la compra.
-     * @param items Lista de ítems incluidos en la venta.
-     * @param fecha Fecha en que se realiza la venta.
-     * @return La venta registrada, o {@code null} si ocurre algún error
-     * (cliente inexistente, producto no encontrado o stock insuficiente).
-     */
-    public Ventas registrarVenta(int clienteId, List<ItemVenta> items, LocalDate fecha) {
+    
+    
+    public void registrarVenta(Ventas venta){
+        ventaRepo.guardar(venta);
+    }
+    
+    /*public Ventas registrarVenta(int clienteId, List<ItemVenta> items, LocalDate fecha) {
         if (clienteRepo.buscarPorIdentificacion(clienteId) == null) {
             System.out.println("Cliente no encontrado.");
             return null;
         }
-
+           /*
         for (ItemVenta item : items) {
             Producto producto = productoRepo.buscarPorId(item.getProductoId());
             if (producto == null) {
@@ -74,13 +71,14 @@ public class ControladorVentas {
             producto.setStock(producto.getStock() - item.getCantidad());
             productoRepo.editar(producto);
         }
-
+        
+           
         Ventas venta = new Ventas(clienteId, items, fecha);
         ventaRepo.guardar(venta);
         System.out.println("Venta registrada con exito.");
         System.out.println("ID de Venta: " + venta.getIdVenta());
         return venta;
-    }
+    }*/
 
     /**
      * Devuelve una lista con todas las ventas registradas.
@@ -90,14 +88,17 @@ public class ControladorVentas {
     public List<Ventas> listarVentas() {
         return ventaRepo.listarTodos();
     }
-
+    
+    public void eliminarVenta(int id){
+        ventaRepo.eliminar(id);
+    }
     /**
      * Elimina una venta por su identificador. Muestra un mensaje indicando el
      * resultado.
      *
      * @param ventaId Identificador de la venta a eliminar.
      */
-    public void eliminarVenta(int ventaId) {
+    /*public void eliminarVenta(int ventaId) {
         Ventas ventaEliminada = ventaRepo.eliminar(ventaId);
         if (ventaEliminada != null) {
             System.out.println("Venta eliminada.");
@@ -105,7 +106,9 @@ public class ControladorVentas {
             System.out.println("No se encontró la venta.");
         }
     }
-
+    */
+    
+    
     /**
      * Calcula el total de una venta dada la lista de ítems. Omite productos no
      * encontrados.
@@ -123,9 +126,7 @@ public class ControladorVentas {
                 double precioUnitario = producto.getPrecio();
                 int cantidad = item.getCantidad();
                 total += precioUnitario * cantidad;
-            } else {
-                System.out.printf("Producto con ID %d no encontrado. Se omitirá en el total.\n", item.getProductoId());
-            }
+            } 
         }
 
         return total;
@@ -163,3 +164,4 @@ public class ControladorVentas {
         return ventaRepo.buscarPorId(id);
     }
 }
+

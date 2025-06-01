@@ -15,6 +15,7 @@ public class EditarProducto extends javax.swing.JFrame {
      */
     public EditarProducto() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

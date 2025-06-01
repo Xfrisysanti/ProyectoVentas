@@ -15,6 +15,7 @@ public class AgregarProducto extends javax.swing.JFrame {
      */
     public AgregarProducto() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

@@ -15,6 +15,7 @@ public class CantidadProductos extends javax.swing.JFrame {
      */
     public CantidadProductos() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

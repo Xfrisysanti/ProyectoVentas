@@ -15,6 +15,7 @@ public class ProductoBuscado extends javax.swing.JFrame {
      */
     public ProductoBuscado() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

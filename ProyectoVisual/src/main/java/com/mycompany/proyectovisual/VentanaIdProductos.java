@@ -64,7 +64,6 @@ public class VentanaIdProductos extends javax.swing.JFrame {
         jPanel3.add(jSeparator9);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Ingrese el ID del Producto");
         jPanel3.add(jLabel2);
 
@@ -84,8 +83,6 @@ public class VentanaIdProductos extends javax.swing.JFrame {
         jSeparator10.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel4.add(jSeparator10);
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
         jTextField1.setText("Ingrese el texto aquí");
         jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField1.setMaximumSize(new java.awt.Dimension(500, 40));
@@ -103,7 +100,6 @@ public class VentanaIdProductos extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(102, 102, 102));
         jButton2.setText("CONFIRMAR");
-        jButton2.setActionCommand("CONFIRMAR");
         jButton2.setAlignmentX(0.5F);
         jButton2.setAlignmentY(1.0F);
         jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));

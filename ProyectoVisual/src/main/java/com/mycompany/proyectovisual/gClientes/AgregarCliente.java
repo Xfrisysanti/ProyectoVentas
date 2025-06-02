@@ -4,18 +4,15 @@
  */
 package com.mycompany.proyectovisual.gClientes;
 
-import com.mycompany.proyectovisual.gProductos.*;
 import javax.swing.JOptionPane;
 import fiuni.edu.py.Controladores.ControladorClientes;
-import fiuni.edu.py.Modelo.Clientes;
-import fiuni.edu.py.Repositorios.RepositorioClientes;
 /**
  *
  * @author luisf
  */
 public class AgregarCliente extends javax.swing.JFrame {
-    RepositorioClientes repo = new RepositorioClientes();
-    ControladorClientes controlador = new ControladorClientes(repo);
+
+    ControladorClientes controlador = new ControladorClientes();
     /**
      * Creates new form MenuPrincipal
      */
@@ -313,7 +310,7 @@ public class AgregarCliente extends javax.swing.JFrame {
             String nombre = jTextField2.getText().trim();
             int edad = Integer.parseInt(jTextField1.getText().trim());
             String email = jTextField2.getText().trim();
-                        
+               
             controlador.agregarCliente(ci, nombre, edad, email);
             JOptionPane.showMessageDialog(this, "Cliente agregado exitosamente");
         }catch(NumberFormatException e){

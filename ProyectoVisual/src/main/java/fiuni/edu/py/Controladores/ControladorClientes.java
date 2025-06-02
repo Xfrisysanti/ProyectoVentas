@@ -19,18 +19,7 @@ import java.util.List;
  */
 public class ControladorClientes {
 
-    private final RepositorioClientes repo;
-
-    /**
-     * Constructor del controlador que recibe una instancia del repositorio de
-     * clientes.
-     *
-     * @param repo Repositorio que se utilizará para acceder a los datos de los
-     * clientes.
-     */
-    public ControladorClientes(RepositorioClientes repo) {
-        this.repo = repo;
-    }
+    private final RepositorioClientes repo= new RepositorioClientes();
 
     /**
      * Agrega un nuevo cliente al repositorio.
@@ -94,5 +83,17 @@ public class ControladorClientes {
      */
     public List<Clientes> listarClientes() {
         return repo.listarTodos();
+    }
+
+    public String getGmail(int id) {
+        return repo.buscarPorIdentificacion(id).getEmail();
+    }
+
+    public int getEdad(int id) {
+       return repo.buscarPorIdentificacion(id).getEdad();
+    }
+
+    public String getNombre(int id) {
+        return repo.buscarPorIdentificacion(id).getNombre();
     }
 }

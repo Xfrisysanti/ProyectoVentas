@@ -4,15 +4,27 @@
  */
 package com.mycompany.proyectovisual.gClientes;
 
+import com.mycompany.proyectovisual.gProductos.EditarProducto;
+import com.mycompany.proyectovisual.gProductos.ProductoBuscado;
+import fiuni.edu.py.Controladores.ControladorClientes;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author luisf
  */
 public class VentanaCIClientes extends javax.swing.JFrame {
-
+    boolean editarObuscar;
+    ControladorClientes controlador=new ControladorClientes();
     /**
      * Creates new form MenuPrincipal
+     * @param editarObuscar
      */
+    public VentanaCIClientes(boolean editarObuscar) {
+        this.editarObuscar=editarObuscar;
+        initComponents();
+        setLocationRelativeTo(null);
+    }
     public VentanaCIClientes() {
         initComponents();
         setLocationRelativeTo(null);
@@ -120,7 +132,24 @@ public class VentanaCIClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+      String idTexto = jTextField1.getText().trim();
+    
+    try {
+        int cI = Integer.parseInt(idTexto); 
+
+        if (controlador.buscarCliente(cI) == null) {
+            JOptionPane.showMessageDialog(this, "No se encontró el cliente con el CI: " + id);
+        } else if(editarObuscar) {
+            new EditarCliente(cI).setVisible(true); // pasa el ID al constructor de edicion
+            dispose();
+        }
+        else{
+            new ClienteBuscado(cI).setVisible(true); // pasa el ID al constructor de buscador
+            dispose();
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.");
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

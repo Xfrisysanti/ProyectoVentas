@@ -4,17 +4,20 @@
  */
 package com.mycompany.proyectovisual.gClientes;
 
-import com.mycompany.proyectovisual.gProductos.*;
-
 /**
  *
  * @author luisf
  */
 public class EditarCliente extends javax.swing.JFrame {
-
+    int id;
     /**
      * Creates new form MenuPrincipal
      */
+    public EditarCliente(int id) {
+        this.id=id;
+        initComponents();
+        setLocationRelativeTo(null);
+    }
     public EditarCliente() {
         initComponents();
         setLocationRelativeTo(null);

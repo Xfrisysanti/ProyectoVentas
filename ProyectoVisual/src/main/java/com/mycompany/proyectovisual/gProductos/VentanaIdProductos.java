@@ -4,6 +4,8 @@
  */
 package com.mycompany.proyectovisual.gProductos;
 
+import com.mycompany.proyectovisual.gClientes.ClienteBuscado;
+import com.mycompany.proyectovisual.gClientes.EditarCliente;
 import fiuni.edu.py.Controladores.ControladorProducto;
 import javax.swing.JOptionPane;
 
@@ -140,11 +142,11 @@ public class VentanaIdProductos extends javax.swing.JFrame {
         if (controlador.buscarProducto(id) == null) {
             JOptionPane.showMessageDialog(this, "No se encontró el producto con ID: " + id);
         } else if(editarObuscar) {
-            new EditarProducto(id).setVisible(true); // pasa el ID al constructor de edicion
+            new EditarCliente(id).setVisible(true); // pasa el ID al constructor de edicion
             dispose();
         }
         else{
-            new ProductoBuscado(id).setVisible(true); // pasa el ID al constructor de buscador
+            new ClienteBuscado(id).setVisible(true); // pasa el ID al constructor de buscador
             dispose();
         }
     } catch (NumberFormatException e) {

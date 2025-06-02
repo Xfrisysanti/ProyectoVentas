@@ -18,7 +18,7 @@ import java.util.List;
  * @author luisf
  */
 public class ControladorClientes {
-    //hola miori y andrea
+
     private final RepositorioClientes repo;
 
     /**

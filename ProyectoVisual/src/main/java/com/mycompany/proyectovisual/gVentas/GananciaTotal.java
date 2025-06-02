@@ -4,14 +4,14 @@
  */
 package com.mycompany.proyectovisual.gVentas;
 
-import com.mycompany.proyectovisual.gProductos.*;
+import fiuni.edu.py.Controladores.ControladorVentas;
 
 /**
  *
  * @author luisf
  */
 public class GananciaTotal extends javax.swing.JFrame {
-
+    ControladorVentas controlador= new ControladorVentas();
     /**
      * Creates new form MenuPrincipal
      */
@@ -19,7 +19,10 @@ public class GananciaTotal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-
+    public void mostrarGananciaTotal(){
+        int id=parseInt(jLabel1.getText());
+        controlador.calcularTotalVenta(items)
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -142,7 +145,8 @@ public class GananciaTotal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        new MenuGestionVentas().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

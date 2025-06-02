@@ -4,6 +4,8 @@
  */
 package com.mycompany.proyectovisual.gVentas;
 
+import com.mycompany.proyectovisual.MenuPrincipal;
+
 /**
  *
  * @author luisf
@@ -281,7 +283,8 @@ public class MenuGestionVentas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        new MenuPrincipal().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

@@ -6,13 +6,16 @@ package com.mycompany.proyectovisual.gVentas;
 
 import com.mycompany.proyectovisual.gClientes.*;
 import com.mycompany.proyectovisual.gProductos.*;
+import fiuni.edu.py.Controladores.ControladorVentas;
+import static java.lang.Integer.parseInt;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author luisf
  */
 public class EliminarVenta extends javax.swing.JFrame {
-
+    ControladorVentas controlador= new ControladorVentas();
     /**
      * Creates new form MenuPrincipal
      */
@@ -126,7 +129,17 @@ public class EliminarVenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        int id=parseInt(jTextField1.getText());
+        if(controlador.getVentaPorId(id)==null){
+            JOptionPane.showMessageDialog(this, "Venta no encontrada.");
+            new MenuGestionProductos().setVisible(true);
+            dispose();
+        }
+        else{
+        controlador.eliminarVenta(id);
+        new MenuGestionProductos().setVisible(true);
+        dispose();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

@@ -55,10 +55,8 @@ public class RepositorioVentas {
      * @param id Identificador de la venta a eliminar
      * @return {@code true} si se eliminó la venta, {@code false} si no existía
      */
-    public Ventas eliminar(int id) {
-        Ventas Venta = ventas.get(id);
+    public void eliminar(int id) {
         ventas.remove(id);
-        return Venta;
     }
 
     /**

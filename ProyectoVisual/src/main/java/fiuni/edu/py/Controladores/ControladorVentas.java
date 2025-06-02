@@ -24,24 +24,15 @@ import java.util.List;
  */
 public class ControladorVentas {
 
-    private final RepositorioVentas ventaRepo;
-    private final RepositorioClientes clienteRepo;
-    private final RepositorioProducto productoRepo;
-
-    /**
-     * Constructor del controlador de ventas.
-     *
-     * @param ventaRepo Repositorio para gestionar las ventas.
-     * @param clienteRepo Repositorio para verificar existencia de clientes.
-     * @param productoRepo Repositorio para verificar existencia y stock de
-     * productos.
-     */
-    public ControladorVentas(RepositorioVentas ventaRepo, RepositorioClientes clienteRepo, RepositorioProducto productoRepo) {
-        this.ventaRepo = ventaRepo;
-        this.clienteRepo = clienteRepo;
-        this.productoRepo = productoRepo;
+    public ControladorVentas() {
     }
 
+    private final RepositorioVentas ventaRepo= new RepositorioVentas();
+    private final RepositorioClientes clienteRepo= new RepositorioClientes();
+    private final RepositorioProducto productoRepo=new RepositorioProducto();
+
+    
+    
     
     
     public void registrarVenta(Ventas venta){

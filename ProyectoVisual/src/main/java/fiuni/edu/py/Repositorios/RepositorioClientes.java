@@ -5,6 +5,12 @@
 package fiuni.edu.py.Repositorios;
 
 import fiuni.edu.py.Modelo.Clientes;
+import fiuni.edu.py.Modelo.Producto;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,21 +28,41 @@ import java.util.Map;
  * @author luisf
  */
 public class RepositorioClientes {
-
+    private static final String ARCHIVO = "clientes.dat";
     /** Mapa que almacena los clientes con su identificación como clave */
     private static final Map<Integer, Clientes> clientes = new HashMap<>();
+    public RepositorioClientes() {
+        cargarDatos();
+    }
+    // Método para guardar datos en un archivo binario
+    private void guardarDatos() {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ARCHIVO))) {
+            out.writeObject(clientes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    // Método para cargar datos desde el archivo binario al iniciar el repositorio
+    private void cargarDatos() {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(ARCHIVO))) {
+            Map<Integer, Clientes> datosCargados = (Map<Integer, Clientes>) in.readObject();
+            clientes.putAll(datosCargados);
+        } catch (IOException | ClassNotFoundException e) {
+            // Si hay error, el archivo puede no existir aún, entonces mantenemos el mapa vacío
+        }
+    }
     /**
      * Guarda un nuevo cliente o actualiza uno existente si la identificación ya está registrada.
      * 
      * @param cliente Cliente a guardar
-     * @return El cliente guardado
-     */
-    public Clientes guardar(Clientes cliente) {
-        clientes.put(cliente.getIdentificacion(), cliente);
-        return cliente;
-    }
 
+     */
+    public void guardar(Clientes cliente) {
+        clientes.put(cliente.getIdentificacion(), cliente);
+        guardarDatos();
+    }
+    
     /**
      * Busca un cliente por su identificación.
      * 
@@ -51,10 +77,10 @@ public class RepositorioClientes {
      * Elimina un cliente según su identificación.
      * 
      * @param identificacion Identificación del cliente a eliminar
-     * @return {@code true} si el cliente fue eliminado, {@code false} si no existía
      */
-    public boolean eliminar(int identificacion) {
-        return clientes.remove(identificacion) != null;
+    public void eliminar(int identificacion) {
+         clientes.remove(identificacion);
+         guardarDatos();
     }
 
     /**
@@ -75,6 +101,7 @@ public class RepositorioClientes {
     public boolean editar(Clientes clienteEditado) {
         if (clientes.containsKey(clienteEditado.getIdentificacion())) {
             clientes.put(clienteEditado.getIdentificacion(), clienteEditado);
+            guardarDatos();
             return true;
         }
         return false;

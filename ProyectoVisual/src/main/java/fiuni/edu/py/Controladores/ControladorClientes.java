@@ -28,11 +28,10 @@ public class ControladorClientes {
      * @param nombre Nombre del cliente.
      * @param edad Edad del cliente.
      * @param email Email del cliente
-     * @return El cliente que fue agregado al repositorio.
      */
-    public Clientes agregarCliente(int identificacion, String nombre, int edad, String email) {
+    public void agregarCliente(int identificacion, String nombre, int edad, String email) {
         Clientes cliente = new Clientes(identificacion, nombre, edad, email);
-        return repo.guardar(cliente);
+         repo.guardar(cliente);
     }
 
     /**
@@ -59,11 +58,10 @@ public class ControladorClientes {
      * Elimina un cliente del repositorio por su identificación.
      *
      * @param identificacion Identificación del cliente a eliminar.
-     * @return {@code true} si el cliente fue eliminado exitosamente;
-     * {@code false} en caso contrario.
+ 
      */
-    public boolean eliminarCliente(int identificacion) {
-        return repo.eliminar(identificacion);
+    public void eliminarCliente(int identificacion) {
+         repo.eliminar(identificacion);
     }
 
     /**

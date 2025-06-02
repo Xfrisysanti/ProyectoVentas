@@ -110,9 +110,10 @@ public class RepositorioProducto {
     public boolean editar(Producto productoEditado) {
         if (productos.containsKey(productoEditado.getIdProducto())) {
             productos.put(productoEditado.getIdProducto(), productoEditado);
+            guardarDatos();
             return true;
         }
-        guardarDatos(); 
+       
         return false;
     }
 }

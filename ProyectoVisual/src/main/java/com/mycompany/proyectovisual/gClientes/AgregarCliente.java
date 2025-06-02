@@ -308,8 +308,8 @@ public class AgregarCliente extends javax.swing.JFrame {
         try{
             int ci = Integer.parseInt(jTextField1.getText().trim());
             String nombre = jTextField2.getText().trim();
-            int edad = Integer.parseInt(jTextField1.getText().trim());
-            String email = jTextField2.getText().trim();
+            int edad = Integer.parseInt(jTextField3.getText().trim());
+            String email = jTextField4.getText().trim();
                
             controlador.agregarCliente(ci, nombre, edad, email);
             JOptionPane.showMessageDialog(this, "Cliente agregado exitosamente");
@@ -318,7 +318,8 @@ public class AgregarCliente extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
         }
-        
+        dispose();
+        new MenuGestionClientes().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

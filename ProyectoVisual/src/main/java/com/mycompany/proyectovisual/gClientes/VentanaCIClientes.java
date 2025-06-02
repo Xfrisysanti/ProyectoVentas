@@ -95,7 +95,7 @@ public class VentanaCIClientes extends javax.swing.JFrame {
         jSeparator10.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel4.add(jSeparator10);
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText("Ingrese el CI del Cliente");
         jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField1.setMaximumSize(new java.awt.Dimension(500, 40));
         jTextField1.setPreferredSize(new java.awt.Dimension(50, 26));

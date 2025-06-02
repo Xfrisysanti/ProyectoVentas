@@ -4,6 +4,8 @@
  */
 package fiuni.edu.py.Modelo;
 
+import java.io.Serializable;
+
 /**
  * Representa a un cliente con su identificación, nombre y edad
  * Usado para registrar y gestionar los datos de los clientes en el sistema
@@ -11,7 +13,7 @@ package fiuni.edu.py.Modelo;
  * 
  * @author luisf
  */
-public class Clientes {
+public class Clientes implements Serializable{
 
     /** Identificación única del cliente */
     private int identificacion;

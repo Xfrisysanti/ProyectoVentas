@@ -7,12 +7,15 @@ package com.mycompany.proyectovisual.gVentas;
 import com.mycompany.proyectovisual.gClientes.*;
 import javax.swing.JOptionPane;
 import fiuni.edu.py.Controladores.ControladorClientes;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 /**
  *
  * @author luisf
  */
 public class FechasVenta extends javax.swing.JFrame {
-
+     private LocalDate fecha1;
+    private LocalDate fecha2;
     /**
      * Creates new form MenuPrincipal
      */
@@ -243,8 +246,24 @@ public class FechasVenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        
+        // Validar campo Fecha1
+    String fechaTexto1 = jTextField6.getText().trim();
+    try {
+        fecha1 = LocalDate.parse(fechaTexto1); // formato esperado: yyyy-MM-dd
+    } catch (DateTimeParseException e) {
+        JOptionPane.showMessageDialog(null, "Formato de fecha inválido. Use yyyy-MM-dd (por ejemplo: 2006-02-04).");
+    }
+    
+    // Validar campo Fecha2
+    String fechaTexto2 = jTextField3.getText().trim();
+    try {
+        fecha2 = LocalDate.parse(fechaTexto2); // formato esperado: yyyy-MM-dd
+    } catch (DateTimeParseException e) {
+        JOptionPane.showMessageDialog(null, "Formato de fecha inválido. Use yyyy-MM-dd (por ejemplo: 2006-02-04).");
+    }
+    
+    new VentasEntreFechas(fecha1,fecha2).setVisible(true);
+    dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

@@ -4,9 +4,7 @@
  */
 package com.mycompany.proyectovisual.gVentas;
 
-import com.mycompany.proyectovisual.gClientes.*;
 import javax.swing.JOptionPane;
-import fiuni.edu.py.Controladores.ControladorClientes;
 import fiuni.edu.py.Controladores.ControladorProducto;
 import fiuni.edu.py.Controladores.ControladorVentas;
 import fiuni.edu.py.Modelo.ItemVenta;
@@ -65,13 +63,10 @@ public class AgregarVenta extends javax.swing.JFrame {
         itemVenta=new ItemVenta(controladorProductos.buscarProductoPorNombre(nombre),cantidad);
         
     }
-    private void resetearVentana() {
-    jTextField4.setText("Ingrese el texto");  // Limpia el campo de texto
-    jTextField5.setText("Ingrese el texto");
-    dispose();  // Cierra la ventana actual
-    jPanel2.setVisible(true);
-    // Vuelve al primer valor del ComboBox
-     // Desmarca checkbox
+    private void resetearPanelProductos() {
+    jTextField4.setText("Ingrese el texto"); // Nombre del producto
+    jTextField5.setText("Ingrese el texto"); // Cantidad
+    jPanel2.setVisible(true);  // Asegura que se muestra el panel
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -515,17 +510,19 @@ public class AgregarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+                  
         cargarDatos2();
         crearItemVenta();
         listaDeVentas.add(itemVenta); 
-        resetearVentana();
-       
+        resetearPanelProductos(); 
+  
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         Ventas nuevaVenta=new Ventas(ci,listaDeVentas,fecha);
         controladorVentas.registrarVenta(nuevaVenta);
         new MenuGestionVentas().setVisible(true);
+        JOptionPane.showMessageDialog(this, "Venta agregada exitosamente con id:"+nuevaVenta.getIdVenta());
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 

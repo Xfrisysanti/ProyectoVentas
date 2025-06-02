@@ -4,22 +4,46 @@
  */
 package com.mycompany.proyectovisual.gVentas;
 
-import com.mycompany.proyectovisual.gProductos.*;
+
+import fiuni.edu.py.Modelo.Clientes;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import fiuni.edu.py.Controladores.ControladorVentas;
+import fiuni.edu.py.Modelo.Ventas;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author luisf
  */
 public class ListarVentas extends javax.swing.JFrame {
-
+    ControladorVentas controlador= new ControladorVentas();
     /**
      * Creates new form MenuPrincipal
      */
     public ListarVentas() {
         initComponents();
         setLocationRelativeTo(null);
+        listar();
     }
+    public void listar(){
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+    modelo.setRowCount(0); 
+    List<Ventas> ventas = controlador.listarVentas();
 
+    for (Ventas v : ventas) {
+       
+        modelo.addRow(new Object[]{
+            v.getIdVenta(),
+            v.getFechaVenta(),
+            v.getIdCliente(),
+            v.getItems().size(),
+            v.getTotal(),
+        });
+    
+       
+    }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -197,11 +221,13 @@ public class ListarVentas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        new MenuGestionVentas().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        new FechasVenta()    .setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

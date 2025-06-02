@@ -14,6 +14,7 @@ import fiuni.edu.py.Modelo.Ventas;
 import static java.lang.Integer.parseInt;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.List;
 /**
  *
@@ -25,9 +26,10 @@ public class AgregarVenta extends javax.swing.JFrame {
     private LocalDate fecha;
     private int cantidad;
     private ItemVenta itemVenta;
-    List<ItemVenta> listaDeVentas = null;
+    List<ItemVenta> listaDeVentas = new ArrayList<>();
     ControladorProducto controladorProductos = new ControladorProducto();
     ControladorVentas controladorVentas= new ControladorVentas();
+    
     /**
     * Creates new form MenuPrincipal
      */
@@ -35,24 +37,42 @@ public class AgregarVenta extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-    public void cargarDatos1(){
-    ci = Integer.parseInt(jTextField3.getText().trim());
-    String fechaTexto = jTextField4.getText().trim();
+    public void cargarDatos1() {
+    // Validar campo CI
+    String ciTexto = jTextField6.getText().trim();
     try {
-        fecha = LocalDate.parse(fechaTexto); // Debe estar en formato yyyy-MM-dd
-    } catch (DateTimeParseException e) {
-        JOptionPane.showMessageDialog(null, "Formato de fecha inválido. Use yyyy-MM-dd");
+        ci = Integer.parseInt(ciTexto);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "CI inválido. Ingrese solo números.");
+        return;
     }
-}
+
+    // Validar campo Fecha
+    String fechaTexto = jTextField3.getText().trim();
+    try {
+        fecha = LocalDate.parse(fechaTexto); // formato esperado: yyyy-MM-dd
+    } catch (DateTimeParseException e) {
+        JOptionPane.showMessageDialog(null, "Formato de fecha inválido. Use yyyy-MM-dd (por ejemplo: 2006-02-04).");
+    }
+    }
+   
     public void cargarDatos2(){
-        nombre=jTextField5.getText();
-        cantidad=parseInt(jTextField6.getText());
+        nombre=jTextField4.getText();
+        cantidad=parseInt(jTextField5.getText());
         
     }
     public void crearItemVenta(){
         itemVenta=new ItemVenta(controladorProductos.buscarProductoPorNombre(nombre),cantidad);
         
     }
+    private void resetearVentana() {
+    jTextField4.setText("Ingrese el texto");  // Limpia el campo de texto
+    jTextField5.setText("Ingrese el texto");
+    dispose();  // Cierra la ventana actual
+    jPanel2.setVisible(true);
+    // Vuelve al primer valor del ComboBox
+     // Desmarca checkbox
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -357,6 +377,11 @@ public class AgregarVenta extends javax.swing.JFrame {
         jTextField4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField4.setMaximumSize(new java.awt.Dimension(500, 40));
         jTextField4.setPreferredSize(new java.awt.Dimension(50, 26));
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
         jPanel13.add(jTextField4);
 
         jPanel2.add(jPanel13);
@@ -399,6 +424,11 @@ public class AgregarVenta extends javax.swing.JFrame {
         jTextField5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField5.setMaximumSize(new java.awt.Dimension(500, 40));
         jTextField5.setPreferredSize(new java.awt.Dimension(50, 26));
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
         jPanel15.add(jTextField5);
 
         jPanel2.add(jPanel15);
@@ -479,16 +509,17 @@ public class AgregarVenta extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         cargarDatos1();
+        jPanel1.setVisible(false);
         jPanel2.setVisible(true);
-        dispose();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         cargarDatos2();
         crearItemVenta();
-        listaDeVentas.add(itemVenta);
-        jPanel1.setVisible(true);
-        dispose();
+        listaDeVentas.add(itemVenta); 
+        resetearVentana();
+       
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -501,6 +532,14 @@ public class AgregarVenta extends javax.swing.JFrame {
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments

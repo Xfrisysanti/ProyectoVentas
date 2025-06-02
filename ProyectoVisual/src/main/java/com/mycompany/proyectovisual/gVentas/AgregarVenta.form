@@ -611,6 +611,9 @@
                   <Dimension value="[50, 26]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField4ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -715,6 +718,9 @@
                   <Dimension value="[50, 26]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField5ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

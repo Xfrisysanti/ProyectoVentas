@@ -144,7 +144,7 @@ public class ListarProducto extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(102, 102, 102));
-        jButton2.setText("ELIMINAR");
+        jButton2.setText("VOLVER");
         jButton2.setAlignmentX(0.5F);
         jButton2.setAlignmentY(1.0F);
         jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));

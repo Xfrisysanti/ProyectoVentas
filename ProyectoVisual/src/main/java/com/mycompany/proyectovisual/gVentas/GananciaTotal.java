@@ -74,12 +74,12 @@ public class GananciaTotal extends javax.swing.JFrame {
 
         jSeparator9.setBackground(new java.awt.Color(220, 220, 180));
         jSeparator9.setForeground(new java.awt.Color(220, 220, 180));
-        jSeparator9.setMaximumSize(new java.awt.Dimension(175, 25));
+        jSeparator9.setMaximumSize(new java.awt.Dimension(150, 25));
         jPanel3.add(jSeparator9);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("La ganancia total es de");
+        jLabel2.setText("El monto de la última venta es de ");
         jPanel3.add(jLabel2);
 
         jSeparator12.setBackground(new java.awt.Color(220, 220, 180));

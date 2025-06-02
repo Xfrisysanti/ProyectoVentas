@@ -6,6 +6,7 @@ package com.mycompany.proyectovisual.gProductos;
 
 import fiuni.edu.py.Controladores.ControladorProducto;
 import static java.lang.Integer.parseInt;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -127,9 +128,16 @@ public class EliminarProducto extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int id=parseInt(jTextField1.getText());
+        if(controlador.buscarProducto(id)==null){
+            JOptionPane.showMessageDialog(this, "Producto no encontrado.");
+            new MenuGestionProductos().setVisible(true);
+            dispose();
+        }
+        else{
         controlador.eliminarProducto(id);
         new MenuGestionProductos().setVisible(true);
         dispose();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

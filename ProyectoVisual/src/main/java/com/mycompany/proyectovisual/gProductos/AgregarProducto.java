@@ -301,6 +301,23 @@ public class AgregarProducto extends javax.swing.JFrame {
            try {
         String nombre = jTextField1.getText().trim();
         double precio = Double.parseDouble(jTextField2.getText().trim());
+        if (nombre.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El nombre no puede estar vacío.");
+            return;
+        }
+        if(controlador.existeProductosConEsteNombre(nombre.toLowerCase().replaceAll(" ", ""))){
+            JOptionPane.showMessageDialog(this, "Ya existe un producto con ese nombre.");
+            return;
+        }
+        if (precio < 0) {
+            JOptionPane.showMessageDialog(this, "El precio no puede ser negativo.");
+            
+            return;
+        }
+        if ( 0>Double.parseDouble(jTextField3.getText().trim())) {
+                JOptionPane.showMessageDialog(this, "El stock  no puede ser negativo o 0.");
+                return;
+            }
 
         if (jRadioButton1.isSelected()) { // Por peso
             double stock = Double.parseDouble(jTextField3.getText().trim());

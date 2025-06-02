@@ -55,6 +55,14 @@
         public Producto buscarProducto(int id) {
             return repo.buscarPorId(id);
         }
+        public boolean existeProductosConEsteNombre(String nombre){
+            for(Producto p :repo.listarTodos()){
+                if(p.getNombre().trim().toLowerCase().replaceAll(" ", "").equalsIgnoreCase(nombre)){
+                    return true;
+                }
+            }
+            return false;
+        }
         public boolean editarProducto(int id, String nuevoNombre, double nuevoPrecio, String stock, boolean pesoOunidad) {
             Producto producto = repo.buscarPorId(id);
             if (producto != null) {

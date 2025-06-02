@@ -326,11 +326,11 @@ public class EditarProducto extends javax.swing.JFrame {
             }
         if (jRadioButton1.isSelected()) { // Por peso  true
             controlador.editarProducto(id, nombre, precio,stock,true);
-            JOptionPane.showMessageDialog(this, "Producto por peso editado exitosamente:"+(controlador.conseguirId()));
+            JOptionPane.showMessageDialog(this, "Producto por peso editado exitosamente");
             
         } else if (jRadioButton2.isSelected()) { // Por unidad false
             controlador.editarProducto(id, nombre, precio,stock,false);
-            JOptionPane.showMessageDialog(this, "Producto por unidad editado exitosamente con id:"+(controlador.conseguirId()));
+            JOptionPane.showMessageDialog(this, "Producto por unidad editado exitosamente con id");
             
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione el tipo de producto.");

@@ -5,6 +5,7 @@
 package com.mycompany.proyectovisual;
 
 import com.mycompany.proyectovisual.gProductos.MenuGestionProductos;
+import com.mycompany.proyectovisual.gVentas.MenuGestionVentas;
 
 /**
  *

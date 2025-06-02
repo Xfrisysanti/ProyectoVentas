@@ -4,8 +4,13 @@
  */
 package com.mycompany.proyectovisual.gVentas;
 
-import com.mycompany.proyectovisual.gClientes.*;
+
 import fiuni.edu.py.Controladores.ControladorClientes;
+import fiuni.edu.py.Controladores.ControladorProducto;
+import fiuni.edu.py.Controladores.ControladorVentas;
+import fiuni.edu.py.Modelo.ItemVenta;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,7 +18,9 @@ import fiuni.edu.py.Controladores.ControladorClientes;
  */
 public class VentaBuscada extends javax.swing.JFrame {
     int id;
-    ControladorClientes controlador=new ControladorClientes();
+    ControladorVentas controlador=new ControladorVentas();
+    ControladorProducto controladorProducto=new ControladorProducto();
+    ControladorClientes controladorClientes=new ControladorClientes();
     /**
      * Creates new form MenuPrincipal
      */
@@ -21,18 +28,28 @@ public class VentaBuscada extends javax.swing.JFrame {
         this.id=id;
         initComponents();
         setLocationRelativeTo(null);
+        cargarDatos();
     }
     public VentaBuscada() {
     initComponents();
         setLocationRelativeTo(null);
     }
     public void cargarDatos(){
-        jLabel1.setText(String.valueOf(controlador.getNombre(id)));
-        jLabel6.setText(String.valueOf(controlador.getEdad(id)));
-        jLabel7.setText(String.valueOf(controlador.getGmail(id)));
-        
-        
+        jLabel1.setText(controladorClientes.buscarCliente(controlador.getVentaPorId(id).getIdCliente()).getNombre());
+        jLabel5.setText(String.valueOf(controlador.getVentaPorId(id).getFechaVenta()));
+        jLabel7.setText(String.valueOf(controlador.calcularTotalVenta(controlador.getVentaPorId(id))));
+       DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+    modelo.setRowCount(0); 
+    List<ItemVenta> ventas = controlador.getVentaPorId(id).getItems();
+    for (ItemVenta v : ventas) {
+        modelo.addRow(new Object[]{
+            controladorProducto.buscarProducto(v.getProductoId()).getNombre(),
+        });
     }
+    }
+    
+        
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -336,133 +353,7 @@ public class VentaBuscada extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VentaBuscada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

@@ -4,6 +4,8 @@
  */
 package com.mycompany.proyectovisual.gVentas;
 
+import static java.lang.Integer.parseInt;
+
 /**
  *
  * @author luisf
@@ -123,7 +125,9 @@ public class VentanaIdVentas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        int id=parseInt(jTextField1.getText());
+        new VentaBuscada(id).setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

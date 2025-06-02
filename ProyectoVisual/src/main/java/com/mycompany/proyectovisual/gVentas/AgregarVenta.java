@@ -519,6 +519,7 @@ public class AgregarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        listaDeVentas.add(itemVenta);
         Ventas nuevaVenta=new Ventas(ci,listaDeVentas,fecha);
         controladorVentas.registrarVenta(nuevaVenta);
         new MenuGestionVentas().setVisible(true);

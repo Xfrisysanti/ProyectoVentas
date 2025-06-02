@@ -122,6 +122,7 @@ public class Ventas {
      * @return Total de la venta
      */
     public int getTotal() {
+        
         return total;
     }
 

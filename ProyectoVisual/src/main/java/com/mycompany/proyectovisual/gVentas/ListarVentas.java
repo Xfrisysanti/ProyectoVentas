@@ -38,7 +38,7 @@ public class ListarVentas extends javax.swing.JFrame {
             v.getFechaVenta(),
             v.getIdCliente(),
             v.getItems().size(),
-            v.getTotal(),
+            v.getTotal(),//METODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
         });
     
        

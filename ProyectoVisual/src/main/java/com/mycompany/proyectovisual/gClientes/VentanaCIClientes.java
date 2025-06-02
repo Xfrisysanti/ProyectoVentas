@@ -132,24 +132,27 @@ public class VentanaCIClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      String idTexto = jTextField1.getText().trim();
-    
-    try {
-        int cI = Integer.parseInt(idTexto); 
+        try {
+            String idTexto = jTextField1.getText().trim();
 
-        if (controlador.buscarCliente(cI) == null) {
-            JOptionPane.showMessageDialog(this, "No se encontró el cliente con el CI: " + cI);
-        } else if(editarObuscar) {
-            new EditarCliente(cI).setVisible(true); // pasa el ID al constructor de edicion
-            dispose();
+            try {
+                int cI = Integer.parseInt(idTexto);
+
+                if (controlador.buscarCliente(cI) == null) {
+                    JOptionPane.showMessageDialog(this, "No se encontró el cliente con el CI: " + cI);
+                } else if (editarObuscar) {
+                    new EditarCliente(cI).setVisible(true); // pasa el ID al constructor de edicion
+                    dispose();
+                } else {
+                    new ClienteBuscado(cI).setVisible(true); // pasa el ID al constructor de buscador
+                    dispose();
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "El CI debe ser un número válido.");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
         }
-        else{
-            new ClienteBuscado(cI).setVisible(true); // pasa el ID al constructor de buscador
-            dispose();
-        }
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.");
-    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

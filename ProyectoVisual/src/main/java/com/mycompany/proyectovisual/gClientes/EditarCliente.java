@@ -6,6 +6,7 @@ package com.mycompany.proyectovisual.gClientes;
 
 import fiuni.edu.py.Controladores.ControladorClientes;
 import static java.lang.Integer.parseInt;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,6 +14,10 @@ import static java.lang.Integer.parseInt;
  */
 public class EditarCliente extends javax.swing.JFrame {
     int id;
+    private String nombre;
+    private String gmail;
+    private int edad;
+    
     ControladorClientes controlador=new ControladorClientes();
     /**
      * Creates new form MenuPrincipal
@@ -277,12 +282,21 @@ public class EditarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String nombre=jTextField2.getText();
-        String gmail=jTextField4.getText();
-        int edad=parseInt(jTextField2.getText());
-        controlador.buscarCliente(id).setEdad(edad);
-        controlador.buscarCliente(id).setEmail(gmail);
-        controlador.buscarCliente(id).setNombre(nombre);
+        try{
+            nombre=jTextField2.getText();
+            gmail=jTextField4.getText();
+            try{
+                edad = parseInt(jTextField2.getText());
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(this, "Error al ingresar edad. Verifique que sea un número válido.");
+            }
+            controlador.buscarCliente(id).setEdad(edad);
+            controlador.buscarCliente(id).setEmail(gmail);
+            controlador.buscarCliente(id).setNombre(nombre);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

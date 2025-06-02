@@ -7,6 +7,7 @@ package com.mycompany.proyectovisual.gClientes;
 import com.mycompany.proyectovisual.gProductos.*;
 import fiuni.edu.py.Controladores.ControladorClientes;
 import static java.lang.Integer.parseInt;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -127,7 +128,14 @@ public class EliminarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        controlador.eliminarCliente(parseInt(jTextField1.getText()));
+        try{
+            controlador.eliminarCliente(parseInt(jTextField1.getText()));
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Error al ingresar ID. Verifique que sean números válidos.");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

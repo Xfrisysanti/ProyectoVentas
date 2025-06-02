@@ -51,7 +51,7 @@ public class VentasEntreFechas extends javax.swing.JFrame {
             v.getFechaVenta(),
             v.getIdCliente(),
             v.getItems().size(),
-            v.getTotal(),
+            controlador.calcularTotalVenta(v),
         });
     
        }

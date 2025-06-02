@@ -101,15 +101,15 @@ public class ControladorVentas {
     
     
     /**
-     * Calcula el total de una venta dada la lista de ítems. Omite productos no
-     * encontrados.
+     * Calcula el total de una venta dada la lista de ítems.Omite productos no
+ encontrados.
      *
-     * @param items Lista de ítems de la venta.
+     * @param venta
      * @return Total calculado de la venta.
      */
-    public double calcularTotalVenta(List<ItemVenta> items) {
+    public double calcularTotalVenta(Ventas venta) {
         double total = 0.0;
-
+        List<ItemVenta> items = venta.getItems();
         for (ItemVenta item : items) {
             Producto producto = productoRepo.buscarPorId(item.getProductoId());
 
@@ -119,7 +119,6 @@ public class ControladorVentas {
                 total += precioUnitario * cantidad;
             } 
         }
-
         return total;
     }
 

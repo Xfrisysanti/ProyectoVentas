@@ -23,8 +23,8 @@ public class GananciaTotal extends javax.swing.JFrame {
     }
     public void mostrarGananciaTotal(){
         int id=parseInt(jLabel1.getText());
-        List items=controlador.getVentaPorId(id).getItems();
-        double total=controlador.calcularTotalVenta(items);
+        //List items=controlador.getVentaPorId(id).getItems();
+        double total=controlador.calcularTotalVenta(controlador.getVentaPorId(id));
         jLabel1.setText(String.valueOf(total));
     }
     /**

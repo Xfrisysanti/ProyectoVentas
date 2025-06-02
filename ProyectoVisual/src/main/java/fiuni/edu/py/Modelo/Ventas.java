@@ -121,10 +121,7 @@ public class Ventas {
      * 
      * @return Total de la venta
      */
-    public int getTotal() {
-        
-        return total;
-    }
+
 
     /**
      * Establece el monto total de la venta.

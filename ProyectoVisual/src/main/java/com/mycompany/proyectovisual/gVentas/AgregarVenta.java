@@ -43,6 +43,9 @@ public class AgregarVenta extends javax.swing.JFrame {
         jSeparator11 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         jSeparator13 = new javax.swing.JSeparator();
+        jPanel9 = new javax.swing.JPanel();
+        jSeparator18 = new javax.swing.JSeparator();
+        jTextField6 = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         jPanel7 = new javax.swing.JPanel();
         jSeparator15 = new javax.swing.JSeparator();
@@ -153,6 +156,25 @@ public class AgregarVenta extends javax.swing.JFrame {
         jPanel5.add(jSeparator13);
 
         jPanel1.add(jPanel5);
+
+        jPanel9.setBackground(new java.awt.Color(220, 220, 180));
+        jPanel9.setMaximumSize(new java.awt.Dimension(32767, 40));
+        jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
+
+        jSeparator18.setBackground(new java.awt.Color(220, 220, 180));
+        jSeparator18.setForeground(new java.awt.Color(220, 220, 180));
+        jSeparator18.setMaximumSize(new java.awt.Dimension(50, 25));
+        jPanel9.add(jSeparator18);
+
+        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField6.setText("Ingrese el texto aquí");
+        jTextField6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTextField6.setMaximumSize(new java.awt.Dimension(500, 40));
+        jTextField6.setPreferredSize(new java.awt.Dimension(50, 26));
+        jPanel9.add(jTextField6);
+
+        jPanel1.add(jPanel9);
 
         jSeparator5.setBackground(new java.awt.Color(220, 220, 180));
         jSeparator5.setForeground(new java.awt.Color(220, 220, 180));
@@ -565,6 +587,7 @@ public class AgregarVenta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
@@ -572,6 +595,7 @@ public class AgregarVenta extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator15;
     private javax.swing.JSeparator jSeparator16;
     private javax.swing.JSeparator jSeparator17;
+    private javax.swing.JSeparator jSeparator18;
     private javax.swing.JSeparator jSeparator20;
     private javax.swing.JSeparator jSeparator21;
     private javax.swing.JSeparator jSeparator22;
@@ -597,5 +621,6 @@ public class AgregarVenta extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,13 +5,15 @@
 package com.mycompany.proyectovisual.gClientes;
 
 import com.mycompany.proyectovisual.gProductos.*;
+import fiuni.edu.py.Controladores.ControladorClientes;
+import static java.lang.Integer.parseInt;
 
 /**
  *
  * @author luisf
  */
 public class EliminarCliente extends javax.swing.JFrame {
-
+    ControladorClientes controlador=new ControladorClientes();
     /**
      * Creates new form MenuPrincipal
      */
@@ -125,7 +127,7 @@ public class EliminarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        controlador.eliminarCliente(parseInt(jTextField1.getText()));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

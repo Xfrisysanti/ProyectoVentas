@@ -4,22 +4,46 @@
  */
 package com.mycompany.proyectovisual.gClientes;
 
-import com.mycompany.proyectovisual.gProductos.*;
+import fiuni.edu.py.Controladores.ControladorClientes;
+import fiuni.edu.py.Modelo.Clientes;
+import java.util.Comparator;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author luisf
  */
 public class ListarCliente extends javax.swing.JFrame {
-
+    ControladorClientes controlador=new ControladorClientes();
     /**
      * Creates new form MenuPrincipal
      */
     public ListarCliente() {
         initComponents();
         setLocationRelativeTo(null);
+        listar();
     }
+    
+    
+    
+    public void listar(){
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+    modelo.setRowCount(0); 
+    List<Clientes> clientes = controlador.listarClientes();
 
+    for (Clientes c : clientes) {
+       
+        modelo.addRow(new Object[]{
+            c.getIdentificacion(),
+            c.getNombre(),
+            c.getEdad(),
+            c.getEmail(),
+        });
+    
+       
+    }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -215,15 +239,48 @@ public class ListarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+    modelo.setRowCount(0); 
+    List<Clientes> clientes = controlador.listarClientes();
+    clientes.sort(Comparator.comparingInt(Clientes::getEdad));
+    for (Clientes c : clientes) {
+       
+        modelo.addRow(new Object[]{
+            c.getIdentificacion(),
+            c.getNombre(),
+            c.getEdad(),
+            c.getEmail(),
+        });
+    
+       
+    }
+    
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        new MenuGestionClientes().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+    modelo.setRowCount(0); 
+    List<Clientes> clientes = controlador.listarClientes();
+    clientes.sort(Comparator.comparing(Clientes::getNombre)); // ordena por nombre
+
+    for (Clientes c : clientes) {
+       
+        modelo.addRow(new Object[]{
+            c.getIdentificacion(),
+            c.getNombre(),
+            c.getEdad(),
+            c.getEmail(),
+        });
+    
+       
+    }
+    
+       
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

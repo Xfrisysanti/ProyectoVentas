@@ -4,12 +4,16 @@
  */
 package com.mycompany.proyectovisual.gClientes;
 
+import fiuni.edu.py.Controladores.ControladorClientes;
+import static java.lang.Integer.parseInt;
+
 /**
  *
  * @author luisf
  */
 public class EditarCliente extends javax.swing.JFrame {
     int id;
+    ControladorClientes controlador=new ControladorClientes();
     /**
      * Creates new form MenuPrincipal
      */
@@ -273,7 +277,12 @@ public class EditarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        String nombre=jTextField2.getText();
+        String gmail=jTextField4.getText();
+        int edad=parseInt(jTextField2.getText());
+        controlador.buscarCliente(id).setEdad(edad);
+        controlador.buscarCliente(id).setEmail(gmail);
+        controlador.buscarCliente(id).setNombre(nombre);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

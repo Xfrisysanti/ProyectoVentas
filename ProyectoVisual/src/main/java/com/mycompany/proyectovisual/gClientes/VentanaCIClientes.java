@@ -138,7 +138,7 @@ public class VentanaCIClientes extends javax.swing.JFrame {
         int cI = Integer.parseInt(idTexto); 
 
         if (controlador.buscarCliente(cI) == null) {
-            JOptionPane.showMessageDialog(this, "No se encontró el cliente con el CI: " + id);
+            JOptionPane.showMessageDialog(this, "No se encontró el cliente con el CI: " + cI);
         } else if(editarObuscar) {
             new EditarCliente(cI).setVisible(true); // pasa el ID al constructor de edicion
             dispose();

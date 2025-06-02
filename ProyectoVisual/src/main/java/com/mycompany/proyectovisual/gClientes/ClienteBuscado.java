@@ -4,22 +4,34 @@
  */
 package com.mycompany.proyectovisual.gClientes;
 
-import com.mycompany.proyectovisual.gProductos.*;
+import fiuni.edu.py.Controladores.ControladorClientes;
 
 /**
  *
  * @author luisf
  */
 public class ClienteBuscado extends javax.swing.JFrame {
-
+    int id;
+    ControladorClientes controlador=new ControladorClientes();
     /**
      * Creates new form MenuPrincipal
      */
-    public ClienteBuscado() {
+    public ClienteBuscado(int id) {
+        this.id=id;
         initComponents();
         setLocationRelativeTo(null);
     }
-
+    public ClienteBuscado() {
+    initComponents();
+        setLocationRelativeTo(null);
+    }
+    public void cargarDatos(){
+        jLabel1.setText(String.valueOf(controlador.getNombre(id)));
+        jLabel6.setText(String.valueOf(controlador.getEdad(id)));
+        jLabel7.setText(String.valueOf(controlador.getGmail(id)));
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

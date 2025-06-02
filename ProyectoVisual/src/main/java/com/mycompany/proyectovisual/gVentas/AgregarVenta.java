@@ -4,19 +4,14 @@
  */
 package com.mycompany.proyectovisual.gVentas;
 
-import com.mycompany.proyectovisual.gClientes.*;
-import com.mycompany.proyectovisual.gProductos.*;
 import javax.swing.JOptionPane;
 import fiuni.edu.py.Controladores.ControladorClientes;
-import fiuni.edu.py.Modelo.Clientes;
-import fiuni.edu.py.Repositorios.RepositorioClientes;
 /**
  *
  * @author luisf
  */
 public class AgregarVenta extends javax.swing.JFrame {
-    RepositorioClientes repo = new RepositorioClientes();
-    ControladorClientes controlador = new ControladorClientes(repo);
+    ControladorClientes controlador = new ControladorClientes();
     /**
      * Creates new form MenuPrincipal
      */
@@ -309,19 +304,7 @@ public class AgregarVenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try{
-            int ci = Integer.parseInt(jTextField1.getText().trim());
-            String nombre = jTextField2.getText().trim();
-            int edad = Integer.parseInt(jTextField1.getText().trim());
-            String email = jTextField2.getText().trim();
-                        
-            controlador.agregarCliente(ci, nombre, edad, email);
-            JOptionPane.showMessageDialog(this, "Cliente agregado exitosamente");
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(this, "Error al ingresar número de CI o edad. Verifique que sean números válidos.");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
-        }
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 

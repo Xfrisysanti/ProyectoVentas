@@ -251,12 +251,12 @@ public class MenuGestionClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        new VentanaCIClientes().setVisible(true);
+        new VentanaCIClientes(false).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        new VentanaCIClientes().setVisible(true);
+        new VentanaCIClientes(true).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 

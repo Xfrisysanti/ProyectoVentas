@@ -63,6 +63,14 @@
             }
             return false;
         }
+        public int buscarProductoPorNombre(String nombre){
+            for(Producto p :repo.listarTodos()){
+                if(p.getNombre().trim().toLowerCase().replaceAll(" ", "").equalsIgnoreCase(nombre)){
+                    return p.getIdProducto();
+                }
+            }
+            return -1;
+        }
         public boolean editarProducto(int id, String nuevoNombre, double nuevoPrecio, String stock, boolean pesoOunidad) {
             Producto producto = repo.buscarPorId(id);
             if (producto != null) {

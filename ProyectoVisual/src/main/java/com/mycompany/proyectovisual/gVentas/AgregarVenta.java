@@ -7,20 +7,52 @@ package com.mycompany.proyectovisual.gVentas;
 import com.mycompany.proyectovisual.gClientes.*;
 import javax.swing.JOptionPane;
 import fiuni.edu.py.Controladores.ControladorClientes;
+import fiuni.edu.py.Controladores.ControladorProducto;
+import fiuni.edu.py.Controladores.ControladorVentas;
+import fiuni.edu.py.Modelo.ItemVenta;
+import fiuni.edu.py.Modelo.Ventas;
+import static java.lang.Integer.parseInt;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.List;
 /**
  *
  * @author luisf
  */
 public class AgregarVenta extends javax.swing.JFrame {
-
+    private int ci;
+    private String nombre;
+    private LocalDate fecha;
+    private int cantidad;
+    private ItemVenta itemVenta;
+    List<ItemVenta> listaDeVentas = null;
+    ControladorProducto controladorProductos = new ControladorProducto();
+    ControladorVentas controladorVentas= new ControladorVentas();
     /**
-     * Creates new form MenuPrincipal
+    * Creates new form MenuPrincipal
      */
     public AgregarVenta() {
         initComponents();
         setLocationRelativeTo(null);
     }
-
+    public void cargarDatos1(){
+    ci = Integer.parseInt(jTextField3.getText().trim());
+    String fechaTexto = jTextField4.getText().trim();
+    try {
+        fecha = LocalDate.parse(fechaTexto); // Debe estar en formato yyyy-MM-dd
+    } catch (DateTimeParseException e) {
+        JOptionPane.showMessageDialog(null, "Formato de fecha inválido. Use yyyy-MM-dd");
+    }
+}
+    public void cargarDatos2(){
+        nombre=jTextField5.getText();
+        cantidad=parseInt(jTextField6.getText());
+        
+    }
+    public void crearItemVenta(){
+        itemVenta=new ItemVenta(controladorProductos.buscarProductoPorNombre(nombre),cantidad);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -146,7 +178,6 @@ public class AgregarVenta extends javax.swing.JFrame {
         jPanel5.add(jSeparator11);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Ingrese el número de CI del Cliente");
         jPanel5.add(jLabel3);
 
@@ -166,12 +197,15 @@ public class AgregarVenta extends javax.swing.JFrame {
         jSeparator18.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel9.add(jSeparator18);
 
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
         jTextField6.setText("Ingrese el texto aquí");
         jTextField6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField6.setMaximumSize(new java.awt.Dimension(500, 40));
         jTextField6.setPreferredSize(new java.awt.Dimension(50, 26));
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
         jPanel9.add(jTextField6);
 
         jPanel1.add(jPanel9);
@@ -191,7 +225,6 @@ public class AgregarVenta extends javax.swing.JFrame {
         jPanel7.add(jSeparator15);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Ingrese la Fecha de la Venta (AAAA-MM-DD)");
         jPanel7.add(jLabel4);
 
@@ -211,8 +244,6 @@ public class AgregarVenta extends javax.swing.JFrame {
         jSeparator17.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel8.add(jSeparator17);
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
         jTextField3.setText("Ingrese el texto aquí");
         jTextField3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField3.setMaximumSize(new java.awt.Dimension(500, 40));
@@ -303,7 +334,6 @@ public class AgregarVenta extends javax.swing.JFrame {
         jPanel12.add(jSeparator24);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Ingrese el Nombre del Producto");
         jPanel12.add(jLabel5);
 
@@ -323,8 +353,6 @@ public class AgregarVenta extends javax.swing.JFrame {
         jSeparator26.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel13.add(jSeparator26);
 
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField4.setForeground(new java.awt.Color(0, 0, 0));
         jTextField4.setText("Ingrese el texto aquí");
         jTextField4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField4.setMaximumSize(new java.awt.Dimension(500, 40));
@@ -348,7 +376,6 @@ public class AgregarVenta extends javax.swing.JFrame {
         jPanel14.add(jSeparator28);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Ingrese la Cantidad del Producto");
         jPanel14.add(jLabel6);
 
@@ -368,8 +395,6 @@ public class AgregarVenta extends javax.swing.JFrame {
         jSeparator30.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel15.add(jSeparator30);
 
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField5.setForeground(new java.awt.Color(0, 0, 0));
         jTextField5.setText("Ingrese el texto aquí");
         jTextField5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField5.setMaximumSize(new java.awt.Dimension(500, 40));
@@ -453,17 +478,29 @@ public class AgregarVenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        
+        cargarDatos1();
+        jPanel2.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        cargarDatos2();
+        crearItemVenta();
+        listaDeVentas.add(itemVenta);
+        jPanel1.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        Ventas nuevaVenta=new Ventas(ci,listaDeVentas,fecha);
+        controladorVentas.registrarVenta(nuevaVenta);
+        new MenuGestionVentas().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
 
     /**
      * @param args the command line arguments

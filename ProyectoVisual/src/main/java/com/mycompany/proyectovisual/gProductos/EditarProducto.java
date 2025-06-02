@@ -316,25 +316,25 @@ public class EditarProducto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ya existe un producto con ese nombre.");
             return;
         }
-        if (precio < 0) {
-            JOptionPane.showMessageDialog(this, "El precio no puede ser negativo.");
-            
+        if (precio <= 0) {
+            JOptionPane.showMessageDialog(this, "El precio no puede ser negativo o 0.");
             return;
         }
         if ( 0>Double.parseDouble(jTextField3.getText().trim())) {
-                JOptionPane.showMessageDialog(this, "El stock  no puede ser negativo o 0.");
+                JOptionPane.showMessageDialog(this, "El stock  no puede ser negativo.");
                 return;
             }
         if (jRadioButton1.isSelected()) { // Por peso  true
             controlador.editarProducto(id, nombre, precio,stock,true);
-
             JOptionPane.showMessageDialog(this, "Producto por peso editado exitosamente:"+(controlador.conseguirId()));
+            
         } else if (jRadioButton2.isSelected()) { // Por unidad false
             controlador.editarProducto(id, nombre, precio,stock,false);
             JOptionPane.showMessageDialog(this, "Producto por unidad editado exitosamente con id:"+(controlador.conseguirId()));
             
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione el tipo de producto.");
+            return;
         }
 
         

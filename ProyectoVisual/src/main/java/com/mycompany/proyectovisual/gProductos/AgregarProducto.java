@@ -324,14 +324,17 @@ public class AgregarProducto extends javax.swing.JFrame {
             Producto p = new Producto(precio, nombre, stock);
             controlador.agregarProducto(p);
             JOptionPane.showMessageDialog(this, "Producto por peso agregado exitosamente:"+(controlador.conseguirId()-1));
+           
         } else if (jRadioButton2.isSelected()) { // Por unidad
             int stock = Integer.parseInt(jTextField3.getText().trim());
             Producto p = new Producto(precio,nombre, stock);
             controlador.agregarProducto(p);
             JOptionPane.showMessageDialog(this, "Producto por unidad agregado exitosamente con id:"+(controlador.conseguirId()-1));
             
+            
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione el tipo de producto.");
+            return;
         }
 
         

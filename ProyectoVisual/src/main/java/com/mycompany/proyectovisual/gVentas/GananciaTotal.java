@@ -5,6 +5,8 @@
 package com.mycompany.proyectovisual.gVentas;
 
 import fiuni.edu.py.Controladores.ControladorVentas;
+import static java.lang.Integer.parseInt;
+import java.util.List;
 
 /**
  *
@@ -21,7 +23,9 @@ public class GananciaTotal extends javax.swing.JFrame {
     }
     public void mostrarGananciaTotal(){
         int id=parseInt(jLabel1.getText());
-        controlador.calcularTotalVenta(items)
+        List items=controlador.getVentaPorId(id).getItems();
+        double total=controlador.calcularTotalVenta(items);
+        jLabel1.setText(String.valueOf(total));
     }
     /**
      * This method is called from within the constructor to initialize the form.

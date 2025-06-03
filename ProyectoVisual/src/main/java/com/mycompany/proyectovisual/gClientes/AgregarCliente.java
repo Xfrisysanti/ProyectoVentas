@@ -6,15 +6,28 @@ package com.mycompany.proyectovisual.gClientes;
 
 import javax.swing.JOptionPane;
 import fiuni.edu.py.Controladores.ControladorClientes;
+
 /**
+ * Clase que representa la interfaz gráfica para agregar un nuevo cliente.
+ * Permite al usuario ingresar los datos del cliente como CI, nombre, edad y
+ * email. Al confirmar, valida los datos e intenta registrar el cliente a través
+ * del {@link ControladorClientes}. Si el proceso es exitoso, muestra un mensaje
+ * y redirige al menú de gestión de clientes.
  *
- * @author luisf
+ * Esta ventana forma parte del sistema de gestión de clientes.
+ *
+ * Autor: luisf
  */
 public class AgregarCliente extends javax.swing.JFrame {
 
-    ControladorClientes controlador = new ControladorClientes();
     /**
-     * Creates new form MenuPrincipal
+     * Controlador encargado de manejar las operaciones sobre los clientes.
+     */
+    private final ControladorClientes controlador = new ControladorClientes();
+
+    /**
+     * Constructor por defecto. Inicializa los componentes gráficos y centra la
+     * ventana en la pantalla.
      */
     public AgregarCliente() {
         initComponents();
@@ -304,20 +317,35 @@ public class AgregarCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción ejecutada al presionar el botón de confirmación para agregar un
+     * cliente.
+     *
+     * Valida los datos ingresados: - CI y edad deben ser números enteros
+     * válidos. - El nombre y el email deben ser textos no vacíos.
+     *
+     * Si los datos son válidos, se agrega el cliente mediante el controlador.
+     * En caso de error, se muestra un mensaje adecuado.
+     *
+     * @param evt Evento generado al hacer clic en el botón.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try{
+        try {
             int ci = Integer.parseInt(jTextField1.getText().trim());
             String nombre = jTextField2.getText().trim();
             int edad = Integer.parseInt(jTextField3.getText().trim());
             String email = jTextField4.getText().trim();
-               
+
             controlador.agregarCliente(ci, nombre, edad, email);
             JOptionPane.showMessageDialog(this, "Cliente agregado exitosamente");
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
+            // Error al convertir CI o edad a número
             JOptionPane.showMessageDialog(this, "Error al ingresar número de CI o edad. Verifique que sean números válidos.");
-        }catch(Exception e){
+        } catch (Exception e) {
+            // Otro error general
             JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
         }
+        // Cierra esta ventana y abre el menú de gestión de clientes
         dispose();
         new MenuGestionClientes().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed

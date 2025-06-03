@@ -10,13 +10,23 @@ import static java.lang.Integer.parseInt;
 import javax.swing.JOptionPane;
 
 /**
+ * Clase que representa la ventana para eliminar un cliente del sistema. Permite
+ * al usuario ingresar el ID del cliente y, si es válido, eliminarlo mediante el
+ * controlador.
  *
- * @author luisf
+ * Autor: luisf
  */
 public class EliminarCliente extends javax.swing.JFrame {
-    ControladorClientes controlador=new ControladorClientes();
+
     /**
-     * Creates new form MenuPrincipal
+     * Controlador encargado de gestionar las operaciones relacionadas con los
+     * clientes.
+     */
+    private final ControladorClientes controlador = new ControladorClientes();
+
+    /**
+     * Constructor por defecto que inicializa los componentes de la interfaz y
+     * centra la ventana en la pantalla.
      */
     public EliminarCliente() {
         initComponents();
@@ -127,15 +137,28 @@ public class EliminarCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método que se ejecuta al presionar el botón para eliminar un cliente.
+     * Obtiene el ID ingresado en el campo de texto, valida que sea un número, y
+     * si es válido, intenta eliminar el cliente correspondiente. Muestra
+     * mensajes de error si el ID no es numérico o si ocurre un error en el
+     * proceso. Luego redirige al menú de gestión de clientes.
+     *
+     * @param evt Evento generado al presionar el botón de eliminar
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try{
+        try {
+            // Intenta parsear el ID desde el campo de texto
             controlador.eliminarCliente(parseInt(jTextField1.getText()));
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
+            // Muestra mensaje si el texto no es un número válido
             JOptionPane.showMessageDialog(this, "Error al ingresar ID. Verifique que sean números válidos.");
-        }catch(Exception e){
+        } catch (Exception e) {
+            // Muestra mensaje si ocurre otro tipo de error
             JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
         }
         JOptionPane.showMessageDialog(this, "Cliente eliminado con exito.");
+        // Regresa al menú de gestión de clientes
         new MenuGestionClientes().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

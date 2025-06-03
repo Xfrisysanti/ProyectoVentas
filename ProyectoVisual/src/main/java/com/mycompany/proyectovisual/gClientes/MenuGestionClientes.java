@@ -7,13 +7,17 @@ package com.mycompany.proyectovisual.gClientes;
 import com.mycompany.proyectovisual.MenuPrincipal;
 
 /**
+ * Clase que representa la ventana del menú de gestión de clientes. Permite
+ * acceder a las funcionalidades de agregar, eliminar, buscar, editar, listar
+ * clientes y volver al menú principal.
  *
- * @author luisf
+ * Autor: luisf
  */
 public class MenuGestionClientes extends javax.swing.JFrame {
 
     /**
-     * Creates new form MenuPrincipal
+     * Constructor que inicializa los componentes de la interfaz gráfica y
+     * centra la ventana en la pantalla.
      */
     public MenuGestionClientes() {
         initComponents();
@@ -235,31 +239,70 @@ public class MenuGestionClientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción ejecutada al presionar el botón "Eliminar Cliente". Abre la
+     * ventana de eliminación de cliente y cierra el menú actual.
+     *
+     * @param evt Evento generado por el botón
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-     new EliminarCliente().setVisible(true);
-     dispose();
+        new EliminarCliente().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    /**
+     * Acción ejecutada al presionar el botón "Agregar Cliente". Abre la ventana
+     * para agregar un nuevo cliente y cierra el menú actual.
+     *
+     * @param evt Evento generado por el botón
+     */
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         new AgregarCliente().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    /**
+     * Acción ejecutada al presionar el botón "Volver al Menú Principal". Abre
+     * el menú principal de la aplicación y cierra el menú de gestión de
+     * clientes.
+     *
+     * @param evt Evento generado por el botón
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new MenuPrincipal().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Acción ejecutada al presionar el botón "Buscar Cliente por CI". Abre una
+     * ventana para buscar un cliente ingresando su número de CI y cierra el
+     * menú actual.
+     *
+     * @param evt Evento generado por el botón
+     */
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         new VentanaCIClientes(false).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    /**
+     * Acción ejecutada al presionar el botón "Editar Cliente". Abre una ventana
+     * para buscar y editar los datos de un cliente utilizando su número de CI.
+     *
+     * @param evt Evento generado por el botón
+     */
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         new VentanaCIClientes(true).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    /**
+     * Acción ejecutada al presionar el botón "Listar Clientes". Muestra una
+     * ventana con todos los clientes registrados en el sistema y cierra el menú
+     * actual.
+     *
+     * @param evt Evento generado por el botón
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new ListarCliente().setVisible(true);
         dispose();

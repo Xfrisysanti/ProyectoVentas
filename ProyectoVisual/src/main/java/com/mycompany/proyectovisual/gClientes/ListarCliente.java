@@ -11,39 +11,49 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Clase que representa una interfaz gráfica para listar los clientes del
+ * sistema. Ofrece funcionalidades para mostrar todos los clientes, ordenarlos
+ * por nombre o edad, y volver al menú de gestión de clientes.
  *
- * @author luisf
+ * Autor: luisf
  */
 public class ListarCliente extends javax.swing.JFrame {
-    ControladorClientes controlador=new ControladorClientes();
+
     /**
-     * Creates new form MenuPrincipal
+     * Controlador encargado de manejar las operaciones de los clientes.
+     */
+    private final ControladorClientes controlador = new ControladorClientes();
+
+    /**
+     * Constructor de la clase que inicializa los componentes gráficos, centra
+     * la ventana en pantalla y muestra la lista inicial de clientes.
      */
     public ListarCliente() {
         initComponents();
         setLocationRelativeTo(null);
         listar();
     }
-    
-    
-    
-    public void listar(){
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-    modelo.setRowCount(0); 
-    List<Clientes> clientes = controlador.listarClientes();
 
-    for (Clientes c : clientes) {
-       
-        modelo.addRow(new Object[]{
-            c.getIdentificacion(),
-            c.getNombre(),
-            c.getEdad(),
-            c.getEmail(),
-        });
-    
-       
+    /**
+     * Método que carga y muestra en la tabla todos los clientes existentes sin
+     * orden específico.
+     */
+    public void listar() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
+        List<Clientes> clientes = controlador.listarClientes();
+
+        for (Clientes c : clientes) {
+
+            modelo.addRow(new Object[]{
+                c.getIdentificacion(),
+                c.getNombre(),
+                c.getEdad(),
+                c.getEmail(),});
+
+        }
     }
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -238,47 +248,63 @@ public class ListarCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción ejecutada al presionar el botón para ordenar clientes por nombre.
+     * Se obtiene la lista de clientes, se ordena alfabéticamente por nombre y
+     * se muestra en la tabla.
+     *
+     * @param evt Evento generado al presionar el botón
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-    modelo.setRowCount(0); 
-    List<Clientes> clientes = controlador.listarClientes();
-    clientes.sort(Comparator.comparing(Clientes::getNombre)); // ordena por nombre
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
+        List<Clientes> clientes = controlador.listarClientes();
+        clientes.sort(Comparator.comparing(Clientes::getNombre)); // ordena por nombre
 
-    for (Clientes c : clientes) {
-       
-        modelo.addRow(new Object[]{
-            c.getIdentificacion(),
-            c.getNombre(),
-            c.getEdad(),
-            c.getEmail(),
-        });
-    
-       
-    }   
-    
+        for (Clientes c : clientes) {
+
+            modelo.addRow(new Object[]{
+                c.getIdentificacion(),
+                c.getNombre(),
+                c.getEdad(),
+                c.getEmail(),});
+
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Acción ejecutada al presionar el botón para volver al menú de gestión de
+     * clientes. Cierra esta ventana y abre el menú correspondiente.
+     *
+     * @param evt Evento generado al presionar el botón
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new MenuGestionClientes().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    /**
+     * Acción ejecutada al presionar el botón para ordenar clientes por edad. Se
+     * obtiene la lista de clientes, se ordena por edad en orden ascendente y se
+     * muestra en la tabla.
+     *
+     * @param evt Evento generado al presionar el botón
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-    modelo.setRowCount(0); 
-    List<Clientes> clientes = controlador.listarClientes();
-    clientes.sort(Comparator.comparingInt(Clientes::getEdad));
-    for (Clientes c : clientes) {
-       
-        modelo.addRow(new Object[]{
-            c.getIdentificacion(),
-            c.getNombre(),
-            c.getEdad(),
-            c.getEmail(),
-        });
-    
-       
-    }
+        modelo.setRowCount(0);
+        List<Clientes> clientes = controlador.listarClientes();
+        clientes.sort(Comparator.comparingInt(Clientes::getEdad));
+        for (Clientes c : clientes) {
+
+            modelo.addRow(new Object[]{
+                c.getIdentificacion(),
+                c.getNombre(),
+                c.getEdad(),
+                c.getEmail(),});
+
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

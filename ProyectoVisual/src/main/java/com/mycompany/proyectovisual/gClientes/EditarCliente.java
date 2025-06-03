@@ -9,24 +9,55 @@ import static java.lang.Integer.parseInt;
 import javax.swing.JOptionPane;
 
 /**
+ * Clase que representa la ventana para editar los datos de un cliente
+ * existente. Permite modificar el nombre, la edad y el correo electrónico
+ * (Gmail) de un cliente previamente registrado en el sistema, identificado por
+ * su ID.
  *
- * @author luisf
+ * Autor: luisf
  */
 public class EditarCliente extends javax.swing.JFrame {
-    int id;
-    private String nombre;
-    private String gmail;
-    private int edad;
-    
-    ControladorClientes controlador=new ControladorClientes();
+
     /**
-     * Creates new form MenuPrincipal
+     * ID del cliente que se desea editar.
+     */
+    private int id;
+    /**
+     * Nombre del cliente.
+     */
+    private String nombre;
+    /**
+     * Correo electrónico (Gmail) del cliente.
+     */
+    private String gmail;
+    /**
+     * Edad del cliente.
+     */
+    private int edad;
+
+    /**
+     * Controlador encargado de gestionar las operaciones relacionadas con
+     * clientes.
+     */
+    private final ControladorClientes controlador = new ControladorClientes();
+
+    /**
+     * Constructor que recibe el ID del cliente a editar. Inicializa la interfaz
+     * gráfica y la centra en la pantalla.
+     *
+     * @param id ID del cliente a editar
      */
     public EditarCliente(int id) {
-        this.id=id;
+        this.id = id;
         initComponents();
         setLocationRelativeTo(null);
     }
+
+    /**
+     * Constructor sin parámetros. Inicializa la interfaz gráfica y la centra en
+     * la pantalla. Se puede utilizar para pruebas o para cargar el formulario
+     * sin un cliente específico.
+     */
     public EditarCliente() {
         initComponents();
         setLocationRelativeTo(null);
@@ -281,19 +312,30 @@ public class EditarCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método que se ejecuta al presionar el botón de guardar cambios. Obtiene
+     * los datos ingresados por el usuario (nombre, edad, gmail), los valida, y
+     * si son correctos, actualiza la información del cliente mediante el
+     * controlador. En caso de error numérico en la edad, se muestra un mensaje
+     * y se retorna al menú de gestión.
+     *
+     * @param evt Evento de acción del botón
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-            nombre=jTextField2.getText();
-            gmail=jTextField4.getText();
-            try{
-            edad = parseInt(jTextField3.getText());
-            }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(this, "Error al ingresar edad. Verifique que sea un número válido.");
-                 new MenuGestionClientes().setVisible(true);
-        dispose();
-            }
-            controlador.editarCliente(id, nombre, edad, gmail);   
-        JOptionPane.showMessageDialog(this,"Cliente Guardado con exito.");
+
+        nombre = jTextField2.getText();// Obtener nombre del campo de texto
+        gmail = jTextField4.getText();// Obtener gmail del campo de texto
+        try {
+            edad = parseInt(jTextField3.getText());// Convertir edad a entero
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error al ingresar edad. Verifique que sea un número válido.");
+            new MenuGestionClientes().setVisible(true);// Volver al menú
+            dispose();
+        }
+        // Llamar al controlador para editar el cliente
+        controlador.editarCliente(id, nombre, edad, gmail);
+        JOptionPane.showMessageDialog(this, "Cliente Guardado con exito.");
+        // Redirigir al menú principal de clientes
         new MenuGestionClientes().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -324,7 +366,7 @@ public class EditarCliente extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(EditarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-       
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

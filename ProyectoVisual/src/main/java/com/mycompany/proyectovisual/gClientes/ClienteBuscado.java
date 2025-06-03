@@ -7,32 +7,59 @@ package com.mycompany.proyectovisual.gClientes;
 import fiuni.edu.py.Controladores.ControladorClientes;
 
 /**
+ * Clase que representa una ventana gráfica para mostrar los datos de un cliente
+ * buscado. Permite visualizar la información del cliente, como su nombre, edad
+ * y correo electrónico, obtenidos a partir de su ID.
  *
- * @author luisf
+ * Autor: luisf
  */
 public class ClienteBuscado extends javax.swing.JFrame {
-    int id;
-    ControladorClientes controlador=new ControladorClientes();
+
     /**
-     * Creates new form MenuPrincipal
+     * Identificador único del cliente a mostrar.
+     */
+    private int id;
+    /**
+     * Controlador encargado de manejar las operaciones relacionadas con
+     * clientes.
+     */
+    private final ControladorClientes controlador = new ControladorClientes();
+
+    /**
+     * Constructor que recibe el ID del cliente a buscar. Inicializa la
+     * interfaz, la centra en pantalla y carga los datos del cliente
+     * correspondiente.
+     *
+     * @param id ID del cliente a mostrar
      */
     public ClienteBuscado(int id) {
-        this.id=id;
+        this.id = id;
         initComponents();
         setLocationRelativeTo(null);
         cargarDatos();
     }
+
+    /**
+     * Constructor sin parámetros. Inicializa los componentes y centra la
+     * ventana, sin mostrar datos de cliente. Este constructor puede ser útil en
+     * pruebas o interfaces en blanco.
+     */
     public ClienteBuscado() {
-    initComponents();
+        initComponents();
         setLocationRelativeTo(null);
     }
-    public void cargarDatos(){
+
+    /**
+     * Carga y muestra los datos del cliente en los campos de la interfaz. Los
+     * datos mostrados son: - Nombre - Edad - Correo electrónico (Gmail)
+     */
+    public void cargarDatos() {
         jLabel1.setText(controlador.getNombre(id));
         jLabel6.setText(String.valueOf(controlador.getEdad(id)));
         jLabel7.setText(controlador.getGmail(id));
-        
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -260,6 +287,12 @@ public class ClienteBuscado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción que se ejecuta al hacer clic en el botón de volver. Redirige al
+     * menú de gestión de clientes y cierra la ventana actual.
+     *
+     * @param evt Evento generado por el botón
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new MenuGestionClientes().setVisible(true);
         dispose();

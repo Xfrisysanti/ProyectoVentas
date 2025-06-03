@@ -10,21 +10,43 @@ import fiuni.edu.py.Controladores.ControladorClientes;
 import javax.swing.JOptionPane;
 
 /**
+ * Clase que representa la ventana para ingresar el número de CI (cédula de
+ * identidad) de un cliente con el fin de buscarlo o editarlo, dependiendo del
+ * valor del parámetro {@code editarObuscar}.
  *
- * @author luisf
+ * Esta ventana permite validar si el cliente existe antes de redirigir a una
+ * ventana específica.
+ *
+ * Autor: luisf
  */
 public class VentanaCIClientes extends javax.swing.JFrame {
-    boolean editarObuscar;
-    ControladorClientes controlador=new ControladorClientes();
+
     /**
-     * Creates new form MenuPrincipal
-     * @param editarObuscar
+     * Indica si la operación será para editar (true) o solo buscar/ver (false).
+     */
+    private boolean editarObuscar;
+    /**
+     * Controlador para gestionar operaciones relacionadas con clientes.
+     */
+    private final ControladorClientes controlador = new ControladorClientes();
+
+    /**
+     * Constructor con parámetro que determina si se editará o solo se buscará
+     * al cliente.
+     *
+     * @param editarObuscar true para editar el cliente, false para solo
+     * visualizarlo.
      */
     public VentanaCIClientes(boolean editarObuscar) {
-        this.editarObuscar=editarObuscar;
+        this.editarObuscar = editarObuscar;
         initComponents();
         setLocationRelativeTo(null);
     }
+
+    /**
+     * Constructor por defecto. Inicializa los componentes de la interfaz
+     * gráfica y centra la ventana.
+     */
     public VentanaCIClientes() {
         initComponents();
         setLocationRelativeTo(null);
@@ -131,26 +153,40 @@ public class VentanaCIClientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción ejecutada al presionar el botón de confirmación de búsqueda o
+     * edición.
+     *
+     * Se obtiene el número de CI desde el campo de texto, se verifica su
+     * validez y existencia, y según la operación (buscar o editar), se redirige
+     * a la ventana correspondiente.
+     *
+     * @param evt Evento generado por la acción del botón.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-            String idTexto = jTextField1.getText().trim();
 
-            try {
-                int cI = Integer.parseInt(idTexto);
+        String idTexto = jTextField1.getText().trim();
 
-                if (controlador.buscarCliente(cI) == null) {
-                    JOptionPane.showMessageDialog(this, "No se encontró el cliente con el CI: " + cI);
-                } else if (editarObuscar) {
-                    new EditarCliente(cI).setVisible(true); // pasa el ID al constructor de edicion
-                    dispose();
-                } else {
-                    new ClienteBuscado(cI).setVisible(true); // pasa el ID al constructor de buscador
-                    dispose();
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "El CI debe ser un número válido.");
+        try {
+            int cI = Integer.parseInt(idTexto);// Convierte el texto ingresado a número entero
+
+            if (controlador.buscarCliente(cI) == null) {
+                // Si no se encuentra el cliente, se muestra un mensaje de error
+                JOptionPane.showMessageDialog(this, "No se encontró el cliente con el CI: " + cI);
+            } else if (editarObuscar) {
+                // Si se va a editar, se abre la ventana EditarCliente
+                new EditarCliente(cI).setVisible(true); // pasa el ID al constructor de edicion
+                dispose();
+            } else {
+                // Si solo se va a visualizar, se abre la ventana ClienteBuscado
+                new ClienteBuscado(cI).setVisible(true); // pasa el ID al constructor de buscador
+                dispose();
             }
-        
+        } catch (NumberFormatException e) {
+            // En caso de error al convertir el CI a número
+            JOptionPane.showMessageDialog(this, "El CI debe ser un número válido.");
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

@@ -9,13 +9,17 @@ import com.mycompany.proyectovisual.gProductos.MenuGestionProductos;
 import com.mycompany.proyectovisual.gVentas.MenuGestionVentas;
 
 /**
+ * Clase que representa el menú principal de la aplicación. Desde esta ventana
+ * se puede acceder a las gestiones de productos, clientes y ventas, así como
+ * salir del sistema.
  *
- * @author luisf
+ * Autor: luisf
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
     /**
-     * Creates new form MenuPrincipal
+     * Constructor por defecto del menú principal. Inicializa los componentes
+     * gráficos de la interfaz y centra la ventana en pantalla.
      */
     public MenuPrincipal() {
         initComponents();
@@ -155,21 +159,45 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción que se ejecuta al presionar el botón de "Gestión de Ventas". Abre
+     * la ventana de gestión de ventas y cierra el menú principal.
+     *
+     * @param evt Evento generado por el botón.
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new MenuGestionVentas().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * Acción que se ejecuta al presionar el botón de "Gestión de Clientes".
+     * Abre la ventana de gestión de clientes y cierra el menú principal.
+     *
+     * @param evt Evento generado por el botón.
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         new MenuGestionClientes().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    /**
+     * Acción que se ejecuta al presionar el botón de "Gestión de Productos".
+     * Abre la ventana de gestión de productos y cierra el menú principal.
+     *
+     * @param evt Evento generado por el botón.
+     */
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         new MenuGestionProductos().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    /**
+     * Acción que se ejecuta al presionar el botón de "Salir". Finaliza la
+     * ejecución de la aplicación.
+     *
+     * @param evt Evento generado por el botón.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed

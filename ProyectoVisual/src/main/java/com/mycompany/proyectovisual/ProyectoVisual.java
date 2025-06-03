@@ -11,6 +11,6 @@ package com.mycompany.proyectovisual;
 public class ProyectoVisual {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        new MenuPrincipal().setVisible(true);
     }
 }

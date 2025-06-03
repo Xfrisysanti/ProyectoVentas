@@ -7,29 +7,48 @@ package com.mycompany.proyectovisual.gVentas;
 import fiuni.edu.py.Controladores.ControladorVentas;
 import fiuni.edu.py.Modelo.Ventas;
 
-
 /**
+ * Ventana que muestra la ganancia total generada por todas las ventas
+ * realizadas.
+ *
+ * Esta clase representa una interfaz gráfica que calcula y visualiza el total
+ * de ingresos sumando el valor de todas las ventas registradas.
+ *
+ * Utiliza un controlador para obtener los datos de ventas, siguiendo el patrón
+ * MVC.
  *
  * @author luisf
  */
 public class GananciaTotal extends javax.swing.JFrame {
-    private ControladorVentas controlador= new ControladorVentas();
+
+    // Controlador que gestiona las operaciones relacionadas con las ventas
+    private final ControladorVentas controlador = new ControladorVentas();
+    // Variable que almacena la ganancia total calculada
     private int total;
+
     /**
-     * Creates new form MenuPrincipal
+     * Constructor de la clase. Inicializa los componentes gráficos, centra la
+     * ventana y llama al método para mostrar la ganancia total.
      */
     public GananciaTotal() {
         initComponents();
         setLocationRelativeTo(null);
         mostrarGananciaTotal();
     }
-    public void mostrarGananciaTotal(){
-        
-        for(Ventas v:controlador.listarVentas()){
-            total+=controlador.calcularTotalVenta(v);
+
+    /**
+     * Calcula y muestra la ganancia total sumando el valor de todas las ventas.
+     * La suma se realiza llamando al método {@code calcularTotalVenta} del
+     * controlador. El resultado se muestra en la etiqueta {@code jLabel1}.
+     */
+    public void mostrarGananciaTotal() {
+
+        for (Ventas v : controlador.listarVentas()) {
+            total += controlador.calcularTotalVenta(v);
         }
         jLabel1.setText(String.valueOf(total));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -148,6 +167,13 @@ public class GananciaTotal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción que se ejecuta al presionar el botón para regresar al menú de
+     * gestión de ventas. Abre la ventana de gestión de ventas y cierra la
+     * actual.
+     *
+     * @param evt Evento generado al hacer clic en el botón.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new MenuGestionVentas().setVisible(true);
         dispose();
@@ -179,7 +205,7 @@ public class GananciaTotal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GananciaTotal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-       
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

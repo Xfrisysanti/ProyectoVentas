@@ -4,20 +4,29 @@
  */
 package com.mycompany.proyectovisual.gVentas;
 
-import com.mycompany.proyectovisual.gClientes.*;
 import javax.swing.JOptionPane;
-import fiuni.edu.py.Controladores.ControladorClientes;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+
 /**
+ * Ventana para ingresar un rango de fechas y visualizar las ventas realizadas
+ * entre esas fechas.
+ *
+ * Esta clase permite al usuario introducir dos fechas (inicio y fin) para luego
+ * filtrar las ventas realizadas en ese rango. Las fechas deben tener el formato
+ * "yyyy-MM-dd".
  *
  * @author luisf
  */
 public class FechasVenta extends javax.swing.JFrame {
-     private LocalDate fecha1;
+
+    // Fecha de inicio del rango
+    private LocalDate fecha1;
+    // Fecha de fin del rango
     private LocalDate fecha2;
+
     /**
-     * Creates new form MenuPrincipal
+     * Constructor que inicializa la interfaz gráfica y centra la ventana.
      */
     public FechasVenta() {
         initComponents();
@@ -245,25 +254,40 @@ public class FechasVenta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método que se ejecuta al presionar el botón para buscar ventas entre dos
+     * fechas.
+     *
+     * Este método realiza lo siguiente:
+     * <ul>
+     * <li>Lee las fechas introducidas en los campos de texto.</li>
+     * <li>Valida que las fechas tengan el formato correcto (yyyy-MM-dd).</li>
+     * <li>Muestra mensajes de error si alguna fecha es inválida.</li>
+     * <li>Si ambas fechas son válidas, abre la ventana
+     * {@code VentasEntreFechas} con ese rango.</li>
+     * </ul>
+     *
+     * @param evt Evento generado al hacer clic en el botón.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // Validar campo Fecha1
-    String fechaTexto1 = jTextField6.getText().trim();
-    try {
-        fecha1 = LocalDate.parse(fechaTexto1); // formato esperado: yyyy-MM-dd
-    } catch (DateTimeParseException e) {
-        JOptionPane.showMessageDialog(null, "Formato de fecha inválido. Use yyyy-MM-dd (por ejemplo: 2006-02-04).");
-    }
-    
-    // Validar campo Fecha2
-    String fechaTexto2 = jTextField3.getText().trim();
-    try {
-        fecha2 = LocalDate.parse(fechaTexto2); // formato esperado: yyyy-MM-dd
-    } catch (DateTimeParseException e) {
-        JOptionPane.showMessageDialog(null, "Formato de fecha inválido. Use yyyy-MM-dd (por ejemplo: 2006-02-04).");
-    }
-    
-    new VentasEntreFechas(fecha1,fecha2).setVisible(true);
-    dispose();
+        String fechaTexto1 = jTextField6.getText().trim();
+        try {
+            fecha1 = LocalDate.parse(fechaTexto1); // formato esperado: yyyy-MM-dd
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(null, "Formato de fecha inválido. Use yyyy-MM-dd (por ejemplo: 2006-02-04).");
+        }
+
+        // Validar campo Fecha2
+        String fechaTexto2 = jTextField3.getText().trim();
+        try {
+            fecha2 = LocalDate.parse(fechaTexto2); // formato esperado: yyyy-MM-dd
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(null, "Formato de fecha inválido. Use yyyy-MM-dd (por ejemplo: 2006-02-04).");
+        }
+
+        new VentasEntreFechas(fecha1, fecha2).setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

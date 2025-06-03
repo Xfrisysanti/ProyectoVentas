@@ -15,21 +15,35 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
+ * Ventana para eliminar una venta del sistema y restaurar el stock de los
+ * productos implicados.
+ *
+ * Esta clase permite al usuario ingresar un ID de venta, verificar si la venta
+ * existe, restaurar el stock de los productos incluidos en esa venta (ya sea
+ * por unidad o por peso), registrar la venta eliminada en un historial, y
+ * finalmente eliminarla del sistema.
  *
  * @author luisf
  */
 public class EliminarVenta extends javax.swing.JFrame {
-    ControladorVentas controlador= new ControladorVentas();
-    ControladorVentasEliminadas controladorVentasEliminadas= new ControladorVentasEliminadas();
-    ControladorProducto controladorProducto= new ControladorProducto();
+
+    // Controlador principal de ventas
+    ControladorVentas controlador = new ControladorVentas();
+    // Controlador para registrar ventas eliminadas
+    ControladorVentasEliminadas controladorVentasEliminadas = new ControladorVentasEliminadas();
+    // Controlador de productos para actualizar el stock
+    ControladorProducto controladorProducto = new ControladorProducto();
+    // Lista temporal para almacenar los productos que serán restaurados al eliminar la venta
     List<ItemVenta> listaDeProductosRestaurados = new ArrayList<>();
+
     /**
-     * Creates new form MenuPrincipal
+     * Constructor que inicializa la interfaz gráfica y centra la ventana en
+     * pantalla.
      */
     public EliminarVenta() {
         initComponents();
         setLocationRelativeTo(null);
-        
+
     }
 
     /**
@@ -136,50 +150,79 @@ public class EliminarVenta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción ejecutada al presionar el botón para eliminar una venta.
+     *
+     * Este método realiza los siguientes pasos:
+     * <ul>
+     * <li>Lee el ID de venta ingresado por el usuario.</li>
+     * <li>Valida si la venta existe.</li>
+     * <li>Restaura el stock de los productos incluidos en la venta:
+     * <ul>
+     * <li>Si el producto se mide por peso, se suma la cantidad de peso vendido
+     * al stock actual.</li>
+     * <li>Si el producto se mide por unidades, se suman las unidades vendidas
+     * al stock actual.</li>
+     * </ul>
+     * </li>
+     * <li>Registra la venta eliminada en el historial.</li>
+     * <li>Elimina la venta del sistema.</li>
+     * <li>Muestra un mensaje de confirmación.</li>
+     * <li>Redirige al menú de gestión de ventas.</li>
+     * </ul>
+     *
+     * También maneja errores como:
+     * <ul>
+     * <li>Ingreso de un ID inválido.</li>
+     * <li>Errores generales en el proceso de eliminación.</li>
+     * </ul>
+     *
+     * @param evt Evento generado al hacer clic en el botón de eliminación.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-        int id = Integer.parseInt(jTextField1.getText().trim());
+            int id = Integer.parseInt(jTextField1.getText().trim());
 
-        Ventas venta = controlador.getVentaPorId(id);
-        if (venta == null) {
-            JOptionPane.showMessageDialog(this, "Venta no encontrada.");
+            Ventas venta = controlador.getVentaPorId(id);
+            if (venta == null) {
+                JOptionPane.showMessageDialog(this, "Venta no encontrada.");
+                new MenuGestionVentas().setVisible(true);
+                dispose();
+                return;
+            }
+
+            // Restaurar stock de productos
+            listaDeProductosRestaurados = venta.getItems();
+            for (ItemVenta i : listaDeProductosRestaurados) {
+                int productoId = i.getProductoId();
+
+                if (controladorProducto.getUnidades(productoId) == -1) {
+                    // Producto por peso
+                    double nuevoPeso = controladorProducto.getPeso(productoId) + i.getCantidadPeso();
+                    controladorProducto.setPeso(productoId, nuevoPeso);
+                } else {
+                    // Producto por unidad
+                    int nuevasUnidades = controladorProducto.getUnidades(productoId) + i.getCantidadUnidad();
+                    controladorProducto.setUnidades(productoId, nuevasUnidades);
+                }
+            }
+
+            // Registrar venta eliminada ANTES de eliminarla
+            controladorVentasEliminadas.registrarVenta(venta);
+
+            // Eliminar la venta
+            controlador.eliminarVenta(id);
+
+            JOptionPane.showMessageDialog(this, "Venta eliminada con éxito. Stock restaurado.");
             new MenuGestionVentas().setVisible(true);
             dispose();
-            return;
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingresa un ID válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
-
-        // Restaurar stock de productos
-        listaDeProductosRestaurados = venta.getItems();
-        for (ItemVenta i : listaDeProductosRestaurados) {
-            int productoId = i.getProductoId();
-
-            if (controladorProducto.getUnidades(productoId) == -1) {
-                // Producto por peso
-                double nuevoPeso = controladorProducto.getPeso(productoId) + i.getCantidadPeso();
-                controladorProducto.setPeso(productoId, nuevoPeso);
-            } else {
-                // Producto por unidad
-                int nuevasUnidades = controladorProducto.getUnidades(productoId) + i.getCantidadUnidad();
-                controladorProducto.setUnidades(productoId, nuevasUnidades);
-            }
-        }
-
-        // Registrar venta eliminada ANTES de eliminarla
-        controladorVentasEliminadas.registrarVenta(venta);
-
-        // Eliminar la venta
-        controlador.eliminarVenta(id);
-
-        JOptionPane.showMessageDialog(this, "Venta eliminada con éxito. Stock restaurado.");
-        new MenuGestionVentas().setVisible(true);
-        dispose();
-
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Por favor, ingresa un ID válido.", "Error", JOptionPane.ERROR_MESSAGE);
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        e.printStackTrace();
-    }  
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -208,7 +251,7 @@ public class EliminarVenta extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(EliminarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-      
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

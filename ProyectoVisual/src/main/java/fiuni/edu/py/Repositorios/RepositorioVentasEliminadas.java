@@ -4,8 +4,7 @@
  */
 package fiuni.edu.py.Repositorios;
 
-import fiuni.edu.py.Modelo.ItemVenta;
-import fiuni.edu.py.Modelo.Producto;
+
 import fiuni.edu.py.Modelo.Ventas;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -32,11 +31,6 @@ public class RepositorioVentasEliminadas {
      * Nombre del archivo donde se almacenan las ventas eliminadas.
      */
     private static final String ARCHIVO = "ventasEliminadas.dat";
-    /**
-     * Repositorio de productos para recuperar información del producto en las
-     * ventas.
-     */
-    RepositorioProducto productoRepo = new RepositorioProducto();
     /**
      * Mapa que almacena las ventas eliminadas, usando como clave un ID
      * incremental.

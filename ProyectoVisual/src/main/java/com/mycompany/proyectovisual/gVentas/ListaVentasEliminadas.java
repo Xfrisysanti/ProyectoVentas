@@ -4,7 +4,6 @@
  */
 package com.mycompany.proyectovisual.gVentas;
 
-
 import fiuni.edu.py.Controladores.ControladorVentasEliminadas;
 import fiuni.edu.py.Modelo.Ventas;
 import java.util.List;
@@ -12,39 +11,57 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Clase que representa la ventana de lista de ventas eliminadas. Muestra en una
+ * tabla todas las ventas que han sido eliminadas previamente, incluyendo su ID,
+ * fecha, cliente, cantidad de ítems y total.
+ *
+ * Utiliza un controlador para obtener los datos y seguir el patrón MVC.
  *
  * @author luisf
  */
 public class ListaVentasEliminadas extends javax.swing.JFrame {
-    ControladorVentasEliminadas controlador = new ControladorVentasEliminadas();
+
+    // Controlador que maneja las operaciones relacionadas a ventas eliminadas
+    private final ControladorVentasEliminadas controlador = new ControladorVentasEliminadas();
+
     /**
-     * Creates new form MenuPrincipal
+     * Constructor de la clase. Inicializa los componentes gráficos de la
+     * ventana, la centra en pantalla y llama al método para listar las ventas
+     * eliminadas.
      */
     public ListaVentasEliminadas() {
         initComponents();
         setLocationRelativeTo(null);
         listar();
     }
-     public void listar() {
-    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-    modelo.setRowCount(0); 
 
-    List<Ventas> ventas = controlador.listarVentas();
+    /**
+     * Lista todas las ventas eliminadas en la tabla de la interfaz gráfica.
+     * Obtiene los datos a través del controlador y los carga en el modelo de la
+     * tabla. Si ocurre un error al cargar una venta, se muestra un mensaje al
+     * usuario.
+     */
+    public void listar() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
 
-    for (Ventas v : ventas) {
-        try {
-            modelo.addRow(new Object[]{
-                v.getIdVenta(),
-                v.getFechaVenta(),
-                v.getIdCliente(),
-                v.getItems().size(),
-                controlador.calcularTotalVenta(v)
-            });
-        } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(null,"Error al cargar una venta con ID: " + v.getIdVenta() + ". Verifica los datos.");
+        List<Ventas> ventas = controlador.listarVentas();
+
+        for (Ventas v : ventas) {
+            try {
+                modelo.addRow(new Object[]{
+                    v.getIdVenta(),
+                    v.getFechaVenta(),
+                    v.getIdCliente(),
+                    v.getItems().size(),
+                    controlador.calcularTotalVenta(v)
+                });
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null, "Error al cargar una venta con ID: " + v.getIdVenta() + ". Verifica los datos.");
+            }
         }
     }
-}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -183,8 +200,14 @@ public class ListaVentasEliminadas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción que se ejecuta al presionar el botón de regreso al menú de gestión
+     * de ventas. Abre la ventana de gestión de ventas y cierra la actual.
+     *
+     * @param evt Evento de acción generado al presionar el botón.
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       new MenuGestionVentas().setVisible(true);
+        new MenuGestionVentas().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 

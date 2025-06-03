@@ -15,8 +15,7 @@ import java.util.List;
 
 /**
  * Controlador encargado de gestionar las operaciones relacionadas con las
- * ventas, incluyendo el registro, eliminación, cálculo de totales y consultas
- * por fechas. Se comunica con los repositorios de ventas, clientes y productos.
+ * ventas que son eliminadas, incluyendo el registro, Se comunica con los repositorios de ventas y productos.
  *
  * @author luisf
  */
@@ -24,18 +23,13 @@ public class ControladorVentasEliminadas {
 
     public ControladorVentasEliminadas() {
     }
-    /**Repositorio de ventas*/
+    /**Repositorio de ventas eliminadas*/
     private final RepositorioVentasEliminadas ventaRepo = new RepositorioVentasEliminadas();
     /**Repositorio de productos*/
     private final RepositorioProducto productoRepo = new RepositorioProducto();
-    /**
-     * Controlador encargado de gestionar las operaciones relacionadas con los
-     * productos.
-     */
-    private final ControladorProducto controladorProducto = new ControladorProducto();
     
     /**
-     * Guarda una venta en el repositorio.
+     * Guarda una venta eliminada en el repositorio.
      *
      * @param venta que se desea guardar.
      */
@@ -44,7 +38,7 @@ public class ControladorVentasEliminadas {
     }
 
     /**
-     * Devuelve una lista con todas las ventas registradas.
+     * Devuelve una lista con todas las ventas eliminadas registradas.
      *
      * @return Lista de ventas.
      */
@@ -54,7 +48,7 @@ public class ControladorVentasEliminadas {
 
 
     /**
-     * Calcula el total de una venta en base a los productos y sus cantidades.
+     * Calcula el total de una venta eliminada en base a los productos y sus cantidades.
      * Tiene en cuenta si el producto se vende por unidad o por peso.
      *
      * @param venta La venta a la que se le desea calcular el total.

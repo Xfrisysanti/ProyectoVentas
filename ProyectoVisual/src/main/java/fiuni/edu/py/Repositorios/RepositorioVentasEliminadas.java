@@ -80,7 +80,7 @@ public class RepositorioVentasEliminadas {
      *
      * @param ventaEliminada La venta que ha sido eliminada.
      */
-    public void agregarEventaEliminada(Ventas ventaEliminada) {
+    public void agregarVentaEliminada(Ventas ventaEliminada) {
         ventasEliminadas.put(idActual, ventaEliminada);
         idActual++;
         guardarDatos();
@@ -95,31 +95,4 @@ public class RepositorioVentasEliminadas {
         return new ArrayList<>(ventasEliminadas.values());
     }
 
-    /**
-     * Calcula el total de una venta en base a los productos y sus cantidades.
-     * Tiene en cuenta si el producto se vende por unidad o por peso.
-     *
-     * @param venta La venta a la que se le desea calcular el total.
-     * @return El valor total de la venta.
-     */
-    public double calcularTotalVenta(Ventas venta) {
-        double total = 0.0;
-        List<ItemVenta> items = venta.getItems();
-
-        for (ItemVenta item : items) {
-            Producto producto = productoRepo.buscarPorId(item.getProductoId());
-
-            if (producto != null) {
-                if (producto.getPeso() == -1) {
-                    // Producto vendido por unidad
-                    total += item.getCantidadUnidad() * producto.getPrecio();
-                } else {
-                    // Producto vendido por peso
-                    total += item.getCantidadPeso() * producto.getPrecio();
-                }
-            }
-        }
-
-        return total;
-    }
 }

@@ -7,13 +7,20 @@ package com.mycompany.proyectovisual.gVentas;
 import com.mycompany.proyectovisual.MenuPrincipal;
 
 /**
+ * Clase que representa el menú de gestión de ventas en la interfaz gráfica.
+ * Permite al usuario acceder a distintas funcionalidades relacionadas con las
+ * ventas: agregar, eliminar, listar, consultar por ID, ver ganancias, etc.
+ *
+ * Esta clase extiende {@code javax.swing.JFrame} y actúa como una pantalla de
+ * navegación.
  *
  * @author luisf
  */
 public class MenuGestionVentas extends javax.swing.JFrame {
 
     /**
-     * Creates new form MenuPrincipal
+     * Constructor del formulario. Inicializa los componentes gráficos y centra
+     * la ventana en la pantalla.
      */
     public MenuGestionVentas() {
         initComponents();
@@ -273,36 +280,83 @@ public class MenuGestionVentas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción ejecutada al presionar el botón de "Eliminar Venta". Abre la
+     * ventana correspondiente para eliminar una venta y cierra esta ventana.
+     *
+     * @param evt Evento generado por la acción del botón.
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         new EliminarVenta().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    /**
+     * Acción ejecutada al presionar el botón de "Agregar Venta". Abre la
+     * ventana correspondiente para registrar una nueva venta y cierra esta
+     * ventana.
+     *
+     * @param evt Evento generado por la acción del botón.
+     */
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         new AgregarVenta().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    /**
+     * Acción ejecutada al presionar el botón para volver al menú principal.
+     * Abre la ventana del menú principal y cierra esta ventana.
+     *
+     * @param evt Evento generado por la acción del botón.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new MenuPrincipal().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Acción ejecutada al presionar el botón de "Buscar venta por ID". Abre la
+     * ventana para ingresar un ID y buscar una venta específica, y cierra esta
+     * ventana.
+     *
+     * @param evt Evento generado por la acción del botón.
+     */
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         new VentanaIdVentas().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    /**
+     * Acción ejecutada al presionar el botón de "Listar ventas". Abre la
+     * ventana donde se listan todas las ventas registradas y cierra esta
+     * ventana.
+     *
+     * @param evt Evento generado por la acción del botón.
+     */
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         new ListarVentas().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    /**
+     * Acción ejecutada al presionar el botón de "Ganancia total". Abre la
+     * ventana que muestra las ganancias obtenidas por ventas y cierra esta
+     * ventana.
+     *
+     * @param evt Evento generado por la acción del botón.
+     */
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         new GananciaTotal().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    /**
+     * Acción ejecutada al presionar el botón de "Ventas eliminadas". Abre la
+     * ventana que muestra el historial de ventas eliminadas y cierra esta
+     * ventana.
+     *
+     * @param evt Evento generado por la acción del botón.
+     */
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         new ListaVentasEliminadas().setVisible(true);
         dispose();

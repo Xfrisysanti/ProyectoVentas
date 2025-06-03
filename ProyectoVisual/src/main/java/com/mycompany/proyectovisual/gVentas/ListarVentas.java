@@ -1,11 +1,9 @@
- /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.proyectovisual.gVentas;
 
-
-import fiuni.edu.py.Modelo.Clientes;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import fiuni.edu.py.Controladores.ControladorVentas;
@@ -13,39 +11,58 @@ import fiuni.edu.py.Modelo.Ventas;
 import javax.swing.JOptionPane;
 
 /**
+ * Clase que representa la ventana de interfaz gráfica para listar todas las
+ * ventas registradas. Esta clase muestra una tabla con la información de cada
+ * venta, incluyendo ID, fecha, cliente, cantidad de productos y el total de la
+ * venta.
+ *
+ * También permite navegar a otras ventanas relacionadas con la gestión de
+ * ventas.
  *
  * @author luisf
  */
 public class ListarVentas extends javax.swing.JFrame {
-    ControladorVentas controlador= new ControladorVentas();
+
+    // Controlador que maneja la lógica relacionada con las ventas
+    private final ControladorVentas controlador = new ControladorVentas();
+
     /**
-     * Creates new form MenuPrincipal
+     * Constructor de la ventana. Inicializa los componentes gráficos, centra la
+     * ventana en pantalla y carga la lista de ventas.
      */
     public ListarVentas() {
         initComponents();
         setLocationRelativeTo(null);
         listar();
     }
+
+    /**
+     * Método que llena la tabla con las ventas registradas. Extrae los datos
+     * desde el controlador de ventas y los muestra en la tabla. Si hay un error
+     * al cargar una venta específica (por ejemplo, por datos corruptos), se
+     * muestra un mensaje al usuario indicando el ID de la venta con problemas.
+     */
     public void listar() {
-    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-    modelo.setRowCount(0); 
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
 
-    List<Ventas> ventas = controlador.listarVentas();
+        List<Ventas> ventas = controlador.listarVentas();
 
-    for (Ventas v : ventas) {
-        try {
-            modelo.addRow(new Object[]{
-                v.getIdVenta(),
-                v.getFechaVenta(),
-                v.getIdCliente(),
-                v.getItems().size(),
-                controlador.calcularTotalVenta(v)
-            });
-        } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(null,"Error al cargar una venta con ID: " + v.getIdVenta() + ". Verifica los datos.");
+        for (Ventas v : ventas) {
+            try {
+                modelo.addRow(new Object[]{
+                    v.getIdVenta(),
+                    v.getFechaVenta(),
+                    v.getIdCliente(),
+                    v.getItems().size(),
+                    controlador.calcularTotalVenta(v)
+                });
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null, "Error al cargar una venta con ID: " + v.getIdVenta() + ". Verifica los datos.");
+            }
         }
     }
-}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -222,13 +239,26 @@ public class ListarVentas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción que se ejecuta al presionar el botón para regresar al menú de
+     * gestión de ventas. Abre la ventana de menú de gestión y cierra la actual.
+     *
+     * @param evt Evento del botón presionado.
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new MenuGestionVentas().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    /**
+     * Acción que se ejecuta al presionar el botón para ver ventas por rango de
+     * fechas. Abre la ventana que permite filtrar ventas entre dos fechas y
+     * cierra la actual.
+     *
+     * @param evt Evento del botón presionado.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new FechasVenta()    .setVisible(true);
+        new FechasVenta().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

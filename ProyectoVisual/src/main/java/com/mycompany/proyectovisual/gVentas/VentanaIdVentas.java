@@ -7,13 +7,17 @@ package com.mycompany.proyectovisual.gVentas;
 import static java.lang.Integer.parseInt;
 
 /**
+ * Clase que representa una ventana para buscar una venta por su ID. Extiende
+ * {@code javax.swing.JFrame} y proporciona una interfaz gráfica para ingresar
+ * el ID de una venta y visualizarla.
  *
- * @author luisf
+ * @author santi
  */
 public class VentanaIdVentas extends javax.swing.JFrame {
 
     /**
-     * Creates new form MenuPrincipal
+     * Constructor que inicializa la ventana e inicializa los componentes
+     * gráficos. También centra la ventana en la pantalla.
      */
     public VentanaIdVentas() {
         initComponents();
@@ -124,8 +128,16 @@ public class VentanaIdVentas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción que se ejecuta cuando el usuario hace clic en el botón de búsqueda
+     * (jButton2). Obtiene el ID ingresado en el campo de texto, abre una nueva
+     * ventana para mostrar los detalles de la venta correspondiente y cierra la
+     * ventana actual.
+     *
+     * @param evt Evento de acción generado por el botón.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int id=parseInt(jTextField1.getText());
+        int id = parseInt(jTextField1.getText());
         new VentaBuscada(id).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

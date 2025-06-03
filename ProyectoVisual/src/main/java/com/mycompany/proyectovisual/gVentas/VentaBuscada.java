@@ -4,7 +4,6 @@
  */
 package com.mycompany.proyectovisual.gVentas;
 
-
 import fiuni.edu.py.Controladores.ControladorClientes;
 import fiuni.edu.py.Controladores.ControladorProducto;
 import fiuni.edu.py.Controladores.ControladorVentas;
@@ -13,43 +12,76 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Ventana gráfica que permite visualizar los detalles de una venta específica,
+ * incluyendo cliente, fecha, total de la venta y productos vendidos.
+ *
+ * Esta clase extiende {@code javax.swing.JFrame} y hace uso de controladores
+ * para acceder a la información de ventas, productos y clientes.
  *
  * @author luisf
  */
 public class VentaBuscada extends javax.swing.JFrame {
-    int id;
-    ControladorVentas controlador=new ControladorVentas();
-    ControladorProducto controladorProducto=new ControladorProducto();
-    ControladorClientes controladorClientes=new ControladorClientes();
+
     /**
-     * Creates new form MenuPrincipal
+     * ID de la venta que se desea consultar.
+     */
+    private int id;
+    /**
+     * Controlador para operaciones relacionadas con ventas.
+     */
+    private final ControladorVentas controlador = new ControladorVentas();
+    /**
+     * Controlador para operaciones relacionadas con productos.
+     */
+    private final ControladorProducto controladorProducto = new ControladorProducto();
+    /**
+     * Controlador para operaciones relacionadas con clientes.
+     */
+    private final ControladorClientes controladorClientes = new ControladorClientes();
+
+    /**
+     * Constructor que inicializa la ventana con una venta específica.
+     *
+     * @param id El identificador de la venta que se desea visualizar.
      */
     public VentaBuscada(int id) {
-        this.id=id;
+        this.id = id;
         initComponents();
         setLocationRelativeTo(null);
         cargarDatos();
     }
+
+    /**
+     * Constructor por defecto. Inicializa la ventana sin una venta cargada.
+     * Útil si el ID de la venta se establece posteriormente.
+     */
     public VentaBuscada() {
-    initComponents();
+        initComponents();
         setLocationRelativeTo(null);
     }
-    public void cargarDatos(){
+
+    /**
+     * Carga los datos de la venta con el ID proporcionado en la interfaz
+     * gráfica. Muestra el nombre del cliente, la fecha, el total de la venta y
+     * los nombres de los productos involucrados.
+     */
+    public void cargarDatos() {
+        // Establece el nombre del cliente
         jLabel1.setText(controladorClientes.buscarCliente(controlador.getVentaPorId(id).getIdCliente()).getNombre());
+        // Establece la fecha de la venta
         jLabel5.setText(String.valueOf(controlador.getVentaPorId(id).getFechaVenta()));
+        // Establece el total de la venta
         jLabel7.setText(String.valueOf(controlador.calcularTotalVenta(controlador.getVentaPorId(id))));
-       DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-    modelo.setRowCount(0); 
-    List<ItemVenta> ventas = controlador.getVentaPorId(id).getItems();
-    for (ItemVenta v : ventas) {
-        modelo.addRow(new Object[]{
-            controladorProducto.buscarProducto(v.getProductoId()).getNombre(),
-        });
+        // Llena la tabla con los productos de la venta
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
+        List<ItemVenta> ventas = controlador.getVentaPorId(id).getItems();
+        for (ItemVenta v : ventas) {
+            modelo.addRow(new Object[]{
+                controladorProducto.buscarProducto(v.getProductoId()).getNombre(),});
+        }
     }
-    }
-    
-        
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -323,6 +355,12 @@ public class VentaBuscada extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción del botón para volver al menú de gestión de ventas. Abre la
+     * ventana del menú de gestión y cierra esta ventana.
+     *
+     * @param evt Evento generado al hacer clic en el botón.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new MenuGestionVentas().setVisible(true);
         dispose();
@@ -354,7 +392,7 @@ public class VentaBuscada extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VentaBuscada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

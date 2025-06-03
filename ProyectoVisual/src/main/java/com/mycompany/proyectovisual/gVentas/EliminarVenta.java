@@ -4,12 +4,12 @@
  */
 package com.mycompany.proyectovisual.gVentas;
 
-import com.mycompany.proyectovisual.gProductos.*;
 import fiuni.edu.py.Controladores.ControladorProducto;
 import fiuni.edu.py.Controladores.ControladorVentas;
+import fiuni.edu.py.Controladores.ControladorVentasEliminadas;
 import fiuni.edu.py.Modelo.ItemVenta;
 import fiuni.edu.py.Modelo.Ventas;
-import fiuni.edu.py.Repositorios.RepositorioVentasEliminadas;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class EliminarVenta extends javax.swing.JFrame {
     ControladorVentas controlador= new ControladorVentas();
-    RepositorioVentasEliminadas repositorio= new RepositorioVentasEliminadas();
+    ControladorVentasEliminadas controladorVentasEliminadas= new ControladorVentasEliminadas();
     ControladorProducto controladorProducto= new ControladorProducto();
     List<ItemVenta> listaDeProductosRestaurados = new ArrayList<>();
     /**
@@ -165,7 +165,7 @@ public class EliminarVenta extends javax.swing.JFrame {
         }
 
         // Registrar venta eliminada ANTES de eliminarla
-        repositorio.agregarEventaEliminada(venta);
+        controladorVentasEliminadas.registrarVenta(venta);
 
         // Eliminar la venta
         controlador.eliminarVenta(id);

@@ -12,50 +12,75 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Clase que representa una ventana para mostrar ventas registradas entre dos
+ * fechas. Extiende {@code javax.swing.JFrame} para generar una interfaz
+ * gráfica.
  *
  * @author luisf
  */
 public class VentasEntreFechas extends javax.swing.JFrame {
-    ControladorVentas controlador= new ControladorVentas();
-    private  LocalDate fecha1;
-    private  LocalDate fecha2;
+
     /**
-     * Creates new form MenuPrincipal
+     * Controlador para manejar operaciones relacionadas con ventas.
      */
-    public VentasEntreFechas(LocalDate fecha1,LocalDate fecha2) {
+    private final ControladorVentas controlador = new ControladorVentas();
+    /**
+     * Fecha de inicio del rango de búsqueda.
+     */
+    private LocalDate fecha1;
+    /**
+     * Fecha de fin del rango de búsqueda.
+     */
+    private LocalDate fecha2;
+
+    /**
+     * Constructor que inicializa la ventana con un rango de fechas específico.
+     *
+     * @param fecha1 Fecha inicial del rango.
+     * @param fecha2 Fecha final del rango.
+     */
+    public VentasEntreFechas(LocalDate fecha1, LocalDate fecha2) {
         initComponents();
         setLocationRelativeTo(null);
-        this.fecha1=fecha1;
-        this.fecha2=fecha2;
+        this.fecha1 = fecha1;
+        this.fecha2 = fecha2;
     }
+
+    /**
+     * Constructor sin parámetros. Útil para inicializar la ventana sin rango de
+     * fechas. Las fechas pueden establecerse posteriormente.
+     */
     public VentasEntreFechas() {
         initComponents();
         setLocationRelativeTo(null);
-       
-    }
-    
-    public void listar(){
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-    modelo.setRowCount(0); 
-    List<Ventas> ventas = controlador.listarVentas();
-    ventas.sort(Comparator.comparing(Ventas::getFechaVenta));
-    
-    for (Ventas v : ventas) {
-       LocalDate fechaVenta = v.getFechaVenta();
 
-        if ((fechaVenta.isEqual(fecha1) || fechaVenta.isAfter(fecha1)) &&
-            (fechaVenta.isEqual(fecha2) || fechaVenta.isBefore(fecha2))) {
-            
-        modelo.addRow(new Object[]{
-            v.getIdVenta(),
-            v.getFechaVenta(),
-            v.getIdCliente(),
-            v.getItems().size(),
-            controlador.calcularTotalVenta(v),
-        });
-    
-       }
     }
+
+    /**
+     * Lista las ventas realizadas entre las fechas {@code fecha1} y
+     * {@code fecha2}, y las muestra en una tabla gráfica.
+     */
+    public void listar() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
+        List<Ventas> ventas = controlador.listarVentas();
+        ventas.sort(Comparator.comparing(Ventas::getFechaVenta));
+
+        for (Ventas v : ventas) {
+            LocalDate fechaVenta = v.getFechaVenta();
+
+            if ((fechaVenta.isEqual(fecha1) || fechaVenta.isAfter(fecha1))
+                    && (fechaVenta.isEqual(fecha2) || fechaVenta.isBefore(fecha2))) {
+
+                modelo.addRow(new Object[]{
+                    v.getIdVenta(),
+                    v.getFechaVenta(),
+                    v.getIdCliente(),
+                    v.getItems().size(),
+                    controlador.calcularTotalVenta(v),});
+
+            }
+        }
     }
 
     /**
@@ -193,11 +218,17 @@ public class VentasEntreFechas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción asociada al botón "Volver" o similar. Abre el menú de gestión de
+     * ventas y cierra la ventana actual.
+     *
+     * @param evt Evento generado al hacer clic en el botón.
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new MenuGestionVentas().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
-     
+
     /**
      * @param args the command line arguments
      */

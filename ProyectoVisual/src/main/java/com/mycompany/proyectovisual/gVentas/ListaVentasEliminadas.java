@@ -5,8 +5,8 @@
 package com.mycompany.proyectovisual.gVentas;
 
 
+import fiuni.edu.py.Controladores.ControladorVentasEliminadas;
 import fiuni.edu.py.Modelo.Ventas;
-import fiuni.edu.py.Repositorios.RepositorioVentasEliminadas;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author luisf
  */
 public class ListaVentasEliminadas extends javax.swing.JFrame {
-    RepositorioVentasEliminadas repositorio=new RepositorioVentasEliminadas();
+    ControladorVentasEliminadas controlador = new ControladorVentasEliminadas();
     /**
      * Creates new form MenuPrincipal
      */
@@ -29,7 +29,7 @@ public class ListaVentasEliminadas extends javax.swing.JFrame {
     DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
     modelo.setRowCount(0); 
 
-    List<Ventas> ventas = repositorio.listarTodas();
+    List<Ventas> ventas = controlador.listarVentas();
 
     for (Ventas v : ventas) {
         try {
@@ -38,7 +38,7 @@ public class ListaVentasEliminadas extends javax.swing.JFrame {
                 v.getFechaVenta(),
                 v.getIdCliente(),
                 v.getItems().size(),
-                repositorio.calcularTotalVenta(v)
+                controlador.calcularTotalVenta(v)
             });
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null,"Error al cargar una venta con ID: " + v.getIdVenta() + ". Verifica los datos.");

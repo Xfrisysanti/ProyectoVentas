@@ -77,6 +77,8 @@ public class ListarCliente extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jButton4 = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JSeparator();
+        jButton5 = new javax.swing.JButton();
         jSeparator8 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jButton3 = new javax.swing.JButton();
@@ -94,7 +96,6 @@ public class ListarCliente extends javax.swing.JFrame {
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("LISTA DE CLIENTES");
         jLabel2.setAlignmentX(0.5F);
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -116,8 +117,6 @@ public class ListarCliente extends javax.swing.JFrame {
 
         jScrollPane1.setMaximumSize(new java.awt.Dimension(450, 32767));
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -207,6 +206,28 @@ public class ListarCliente extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton4);
+
+        jSeparator4.setMaximumSize(new java.awt.Dimension(32767, 20));
+        jSeparator4.setMinimumSize(new java.awt.Dimension(50, 20));
+        jPanel2.add(jSeparator4);
+
+        jButton5.setBackground(new java.awt.Color(204, 204, 204));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(102, 102, 102));
+        jButton5.setText("VENTAS POR CLIENTE");
+        jButton5.setAlignmentX(0.5F);
+        jButton5.setAlignmentY(1.0F);
+        jButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.setMaximumSize(new java.awt.Dimension(150, 50));
+        jButton5.setMinimumSize(new java.awt.Dimension(100, 50));
+        jButton5.setPreferredSize(new java.awt.Dimension(100, 50));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton5);
 
         jPanel4.add(jPanel2);
 
@@ -306,6 +327,10 @@ public class ListarCliente extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -409,6 +434,7 @@ public class ListarCliente extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -419,6 +445,7 @@ public class ListarCliente extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;

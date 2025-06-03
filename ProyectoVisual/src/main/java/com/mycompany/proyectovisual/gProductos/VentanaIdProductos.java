@@ -10,20 +10,43 @@ import fiuni.edu.py.Controladores.ControladorProducto;
 import javax.swing.JOptionPane;
 
 /**
+ * Clase que representa una ventana para ingresar el ID de un producto.
+ *
+ * Dependiendo del valor del parámetro {@code editarObuscar}, esta ventana
+ * permite al usuario editar un producto existente o buscar sus detalles para
+ * visualizarlos. Se utiliza como paso intermedio antes de abrir las interfaces
+ * de edición o visualización.
  *
  * @author luisf
  */
 public class VentanaIdProductos extends javax.swing.JFrame {
-    ControladorProducto controlador= new ControladorProducto();
-    boolean editarObuscar;
+
     /**
-     * Creates new form MenuPrincipal
+     * Controlador responsable de las operaciones relacionadas con productos.
+     */
+    private final ControladorProducto controlador = new ControladorProducto();
+    /**
+     * Bandera que indica si se desea editar ({@code true}) o solo visualizar
+     * ({@code false}) el producto correspondiente al ID ingresado.
+     */
+    private boolean editarObuscar;
+
+    /**
+     * Constructor que recibe el modo de operación (editar o buscar).
+     *
+     * @param editarObuscar {@code true} si se desea editar el producto,
+     * {@code false} si se desea solo buscar.
      */
     public VentanaIdProductos(boolean editarObuscar) {
-        this.editarObuscar=editarObuscar;
+        this.editarObuscar = editarObuscar;
         initComponents();
         setLocationRelativeTo(null);
     }
+
+    /**
+     * Constructor por defecto. Inicializa los componentes de la ventana sin
+     * configurar el modo de operación.
+     */
     public VentanaIdProductos() {
         initComponents();
         setLocationRelativeTo(null);
@@ -133,25 +156,37 @@ public class VentanaIdProductos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción que se ejecuta al presionar el botón para continuar según el ID
+     * ingresado.
+     *
+     * Si el producto con el ID especificado existe: - Abre la ventana de
+     * edición si {@code editarObuscar} es {@code true}. - Abre la ventana de
+     * visualización si {@code editarObuscar} es {@code false}.
+     *
+     * Si el ID no es válido o el producto no existe, se muestra un mensaje de
+     * error.
+     *
+     * @param evt Evento de acción generado por el botón.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    String idTexto = jTextField1.getText().trim();
-    
-    try {
-        int id = Integer.parseInt(idTexto); 
+        String idTexto = jTextField1.getText().trim();
 
-        if (controlador.buscarProducto(id) == null) {
-            JOptionPane.showMessageDialog(this, "No se encontró el producto con ID: " + id);
-        } else if(editarObuscar) {
-            new EditarProducto(id).setVisible(true); // pasa el ID al constructor de edicion
-            dispose();
+        try {
+            int id = Integer.parseInt(idTexto);
+
+            if (controlador.buscarProducto(id) == null) {
+                JOptionPane.showMessageDialog(this, "No se encontró el producto con ID: " + id);
+            } else if (editarObuscar) {
+                new EditarProducto(id).setVisible(true); // pasa el ID al constructor de edicion
+                dispose();
+            } else {
+                new ProductoBuscado(id).setVisible(true); // pasa el ID al constructor de buscador
+                dispose();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.");
         }
-        else{
-            new ProductoBuscado(id).setVisible(true); // pasa el ID al constructor de buscador
-            dispose();
-        }
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.");
-    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

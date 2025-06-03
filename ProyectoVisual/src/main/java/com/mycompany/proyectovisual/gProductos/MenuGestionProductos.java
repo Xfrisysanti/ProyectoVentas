@@ -7,13 +7,30 @@ package com.mycompany.proyectovisual.gProductos;
 import com.mycompany.proyectovisual.MenuPrincipal;
 
 /**
+ * Clase que representa el menú de gestión de productos dentro de la aplicación.
+ *
+ * Permite al usuario navegar entre distintas funciones relacionadas con la
+ * gestión de productos, como:
+ * <ul>
+ * <li>Agregar productos</li>
+ * <li>Editar productos</li>
+ * <li>Eliminar productos</li>
+ * <li>Listar todos los productos</li>
+ * <li>Ver la cantidad total de productos</li>
+ * <li>Regresar al menú principal</li>
+ * </ul>
+ *
+ * Esta clase extiende {@link javax.swing.JFrame} y actúa como una interfaz
+ * gráfica de navegación central. Al hacer clic en los botones correspondientes,
+ * se redirige a otras ventanas específicas.
  *
  * @author luisf
  */
 public class MenuGestionProductos extends javax.swing.JFrame {
 
     /**
-     * Creates new form MenuPrincipal
+     * Constructor de la clase. Inicializa la interfaz gráfica y centra la
+     * ventana en la pantalla.
      */
     public MenuGestionProductos() {
         initComponents();
@@ -272,36 +289,82 @@ public class MenuGestionProductos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción realizada al presionar el botón para eliminar productos. Abre la
+     * ventana {@link EliminarProducto} y cierra esta ventana.
+     *
+     * @param evt Evento de acción generado por el botón.
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    new EliminarProducto().setVisible(true);
-    dispose();
+        new EliminarProducto().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    /**
+     * Acción realizada al presionar el botón para agregar un nuevo producto.
+     * Abre la ventana {@link AgregarProducto} y cierra esta ventana.
+     *
+     * @param evt Evento de acción generado por el botón.
+     */
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-    new AgregarProducto().setVisible(true);
+        new AgregarProducto().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    /**
+     * Acción realizada al presionar el botón para regresar al menú principal.
+     * Abre la ventana {@link MenuPrincipal} y cierra esta ventana.
+     *
+     * @param evt Evento de acción generado por el botón.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new MenuPrincipal().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Acción realizada al presionar el botón para editar un producto. Abre la
+     * ventana {@link VentanaIdProductos} en modo de edición (true) y cierra
+     * esta ventana.
+     *
+     * @param evt Evento de acción generado por el botón.
+     */
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       new VentanaIdProductos(true).setVisible(true);
-       dispose();
+        new VentanaIdProductos(true).setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    /**
+     * Acción realizada al presionar el botón para listar todos los productos.
+     * Abre la ventana {@link ListarProducto} y cierra esta ventana.
+     *
+     * @param evt Evento de acción generado por el botón.
+     */
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         new ListarProducto().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    /**
+     * Acción realizada al presionar el botón para ver los detalles de un
+     * producto por ID (modo no edición). Abre la ventana
+     * {@link VentanaIdProductos} en modo consulta (false) y cierra esta
+     * ventana.
+     *
+     * @param evt Evento de acción generado por el botón.
+     */
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         new VentanaIdProductos(false).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    /**
+     * Acción realizada al presionar el botón para mostrar la cantidad total de
+     * productos registrados. Abre la ventana {@link CantidadProductos} y cierra
+     * esta ventana.
+     *
+     * @param evt Evento de acción generado por el botón.
+     */
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         new CantidadProductos().setVisible(true);
         dispose();

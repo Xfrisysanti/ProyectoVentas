@@ -9,13 +9,28 @@ import static java.lang.Integer.parseInt;
 import javax.swing.JOptionPane;
 
 /**
+ * Clase que representa la ventana para eliminar un producto del sistema.
+ *
+ * Permite al usuario ingresar el ID de un producto para buscarlo y eliminarlo.
+ * Si el producto no existe, se muestra un mensaje informativo. Al finalizar la
+ * operación, se redirige al menú de gestión de productos.
+ *
+ * Esta clase forma parte de la interfaz gráfica de usuario (GUI) y extiende
+ * {@link javax.swing.JFrame}. Utiliza el {@link ControladorProducto} para
+ * interactuar con los datos de productos.
  *
  * @author luisf
  */
 public class EliminarProducto extends javax.swing.JFrame {
-    ControladorProducto controlador= new ControladorProducto();
+
     /**
-     * Creates new form MenuPrincipal
+     * Controlador que gestiona las operaciones relacionadas a los productos.
+     */
+    private final ControladorProducto controlador = new ControladorProducto();
+
+    /**
+     * Constructor de la clase. Inicializa los componentes visuales y centra la
+     * ventana en la pantalla.
      */
     public EliminarProducto() {
         initComponents();
@@ -126,17 +141,24 @@ public class EliminarProducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción asociada al botón para eliminar un producto. Se intenta buscar el
+     * producto por su ID (ingresado en un campo de texto). Si el producto
+     * existe, se elimina; si no, se muestra un mensaje de error. En ambos
+     * casos, se regresa al menú de gestión de productos.
+     *
+     * @param evt Evento generado al hacer clic en el botón.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int id=parseInt(jTextField1.getText());
-        if(controlador.buscarProducto(id)==null){
+        int id = parseInt(jTextField1.getText());
+        if (controlador.buscarProducto(id) == null) {
             JOptionPane.showMessageDialog(this, "Producto no encontrado.");
             new MenuGestionProductos().setVisible(true);
             dispose();
-        }
-        else{
-        controlador.eliminarProducto(id);
-        new MenuGestionProductos().setVisible(true);
-        dispose();
+        } else {
+            controlador.eliminarProducto(id);
+            new MenuGestionProductos().setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

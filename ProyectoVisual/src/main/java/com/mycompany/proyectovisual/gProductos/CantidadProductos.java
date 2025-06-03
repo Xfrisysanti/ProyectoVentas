@@ -7,13 +7,27 @@ package com.mycompany.proyectovisual.gProductos;
 import fiuni.edu.py.Controladores.ControladorProducto;
 
 /**
+ * Ventana gráfica que muestra la cantidad total de productos registrados en el
+ * sistema.
+ *
+ * Esta clase forma parte del módulo de gestión de productos y utiliza el
+ * {@link ControladorProducto} para obtener la lista de productos almacenados.
+ *
+ * Permite volver al menú de gestión de productos mediante un botón.
  *
  * @author luisf
  */
 public class CantidadProductos extends javax.swing.JFrame {
-    ControladorProducto controlador= new ControladorProducto();
+
     /**
-     * Creates new form MenuPrincipal
+     * Controlador encargado de interactuar con los datos de productos.
+     */
+    private final ControladorProducto controlador = new ControladorProducto();
+
+    /**
+     * Constructor de la clase. Inicializa los componentes de la interfaz,
+     * posiciona la ventana en el centro de la pantalla y actualiza la cantidad
+     * de productos mostrada.
      */
     public CantidadProductos() {
         initComponents();
@@ -142,9 +156,21 @@ public class CantidadProductos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void lista() {    
-    jLabel1.setText(String.valueOf( controlador.obtenerTodos().size()));
-}
+    /**
+     * Método que actualiza la etiqueta {@code jLabel1} con la cantidad total de
+     * productos registrados. Obtiene la lista de productos desde el controlador
+     * y muestra el número correspondiente.
+     */
+    public void lista() {
+        jLabel1.setText(String.valueOf(controlador.obtenerTodos().size()));
+    }
+
+    /**
+     * Acción asociada al botón de volver. Abre la ventana del menú de gestión
+     * de productos y cierra la actual.
+     *
+     * @param evt Evento de acción generado al presionar el botón.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new MenuGestionProductos().setVisible(true);
         dispose();
@@ -154,7 +180,7 @@ public class CantidadProductos extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

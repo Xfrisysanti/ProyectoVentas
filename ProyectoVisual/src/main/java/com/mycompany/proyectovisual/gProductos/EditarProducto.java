@@ -1,43 +1,57 @@
 package com.mycompany.proyectovisual.gProductos;
 
-
-
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
-
-
-
-
-
 import com.mycompany.proyectovisual.gProductos.MenuGestionProductos;
 import fiuni.edu.py.Controladores.ControladorProducto;
 import fiuni.edu.py.Modelo.Producto;
 import javax.swing.JOptionPane;
 
 /**
+ * Clase que representa la ventana para editar un producto existente.
+ *
+ * Permite modificar el nombre, precio, stock y tipo (por peso o por unidad) de
+ * un producto previamente registrado en el sistema. Utiliza el
+ * {@link ControladorProducto} para acceder y actualizar los datos.
+ *
+ * Esta clase extiende {@link javax.swing.JFrame} y es parte de la interfaz
+ * gráfica de usuario.
  *
  * @author luisf
  */
 public class EditarProducto extends javax.swing.JFrame {
-    private int id;
-    ControladorProducto controlador=new ControladorProducto();
+
     /**
-     * Creates new form MenuPrincipal
-     * @param id
+     * Identificador del producto a editar.
+     */
+    private int id;
+    /**
+     * Identificador del producto a editar.
+     */
+    private final ControladorProducto controlador = new ControladorProducto();
+
+    /**
+     * Constructor que recibe el ID del producto que se desea editar.
+     *
+     * @param id ID del producto a modificar.
      */
     public EditarProducto(int id) {
-        this.id=id;
+        this.id = id;
         initComponents();
         setLocationRelativeTo(null);
     }
+
+    /**
+     * Constructor sin parámetros. Se utiliza generalmente para pruebas o
+     * inicializaciones sin contexto.
+     */
     public EditarProducto() {
         initComponents();
         setLocationRelativeTo(null);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -303,50 +317,58 @@ public class EditarProducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método que se ejecuta cuando se presiona el botón para guardar los
+     * cambios del producto. Valida los datos ingresados, verifica la existencia
+     * de otro producto con el mismo nombre, y actualiza el producto en el
+     * sistema utilizando el controlador.
+     *
+     * @param evt Evento generado al presionar el botón.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-          try {
-        String nombre = jTextField1.getText().trim();
-        double precio = Double.parseDouble(jTextField2.getText().trim());
-        String stock= jTextField3.getText().trim();
-        if (nombre.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "El nombre no puede estar vacío.");
-            return;
-        }
-        if(controlador.existeProductosConEsteNombre(nombre.toLowerCase().replaceAll(" ", ""))){
-            JOptionPane.showMessageDialog(this, "Ya existe un producto con ese nombre.");
-            return;
-        }
-        if (precio <= 0) {
-            JOptionPane.showMessageDialog(this, "El precio no puede ser negativo o 0.");
-            return;
-        }
-        if ( 0>Double.parseDouble(jTextField3.getText().trim())) {
+        try {
+            String nombre = jTextField1.getText().trim();
+            double precio = Double.parseDouble(jTextField2.getText().trim());
+            String stock = jTextField3.getText().trim();
+            if (nombre.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "El nombre no puede estar vacío.");
+                return;
+            }
+            if (controlador.existeProductosConEsteNombre(nombre.toLowerCase().replaceAll(" ", ""))) {
+                JOptionPane.showMessageDialog(this, "Ya existe un producto con ese nombre.");
+                return;
+            }
+            if (precio <= 0) {
+                JOptionPane.showMessageDialog(this, "El precio no puede ser negativo o 0.");
+                return;
+            }
+            if (0 > Double.parseDouble(jTextField3.getText().trim())) {
                 JOptionPane.showMessageDialog(this, "El stock  no puede ser negativo.");
                 return;
             }
-        if (jRadioButton1.isSelected()) { // Por peso  true
-            controlador.editarProducto(id, nombre, precio,stock,true);
-            JOptionPane.showMessageDialog(this, "Producto por peso editado exitosamente");
-            
-        } else if (jRadioButton2.isSelected()) { // Por unidad false
-            controlador.editarProducto(id, nombre, precio,stock,false);
-            JOptionPane.showMessageDialog(this, "Producto por unidad editado exitosamente");
-            
-        } else {
-            JOptionPane.showMessageDialog(this, "Seleccione el tipo de producto.");
-            return;
+            if (jRadioButton1.isSelected()) { // Por peso  true
+                controlador.editarProducto(id, nombre, precio, stock, true);
+                JOptionPane.showMessageDialog(this, "Producto por peso editado exitosamente");
+
+            } else if (jRadioButton2.isSelected()) { // Por unidad false
+                controlador.editarProducto(id, nombre, precio, stock, false);
+                JOptionPane.showMessageDialog(this, "Producto por unidad editado exitosamente");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Seleccione el tipo de producto.");
+                return;
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error al ingresar precio o stock. Verifique que sean números válidos.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
         }
 
-        
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Error al ingresar precio o stock. Verifique que sean números válidos.");
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
-    }
-    
-    new MenuGestionProductos().setVisible(true);
-    dispose();
-        
+        // Regresa al menú de gestión de productos
+        new MenuGestionProductos().setVisible(true);
+        dispose();
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -375,7 +397,7 @@ public class EditarProducto extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(EditarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-   
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

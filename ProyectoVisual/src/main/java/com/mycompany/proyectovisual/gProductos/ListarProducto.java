@@ -10,50 +10,76 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Clase que representa la interfaz gráfica para listar todos los productos
+ * disponibles.
+ *
+ * Muestra en una tabla los productos registrados, ya sea por unidades o por
+ * peso. Esta clase forma parte de la GUI y extiende {@link javax.swing.JFrame}.
+ * Utiliza el {@link ControladorProducto} para obtener la lista de productos
+ * desde el modelo.
+ *
+ * Cada fila de la tabla contiene:
+ * <ul>
+ * <li>ID del producto</li>
+ * <li>Nombre</li>
+ * <li>Tipo (por Kgs o por unidades)</li>
+ * <li>Precio</li>
+ * <li>Stock (peso o unidades)</li>
+ * </ul>
+ *
+ * Al presionar el botón, se regresa al menú de gestión de productos.
  *
  * @author luisf
  */
 public class ListarProducto extends javax.swing.JFrame {
-    ControladorProducto controlador=new ControladorProducto();
+
     /**
-     * Creates new form MenuPrincipal
+     * Controlador para la lógica de negocio relacionada con productos.
+     */
+    private final ControladorProducto controlador = new ControladorProducto();
+
+    /**
+     * Constructor de la clase. Inicializa los componentes gráficos, centra la
+     * ventana y carga la lista de productos en la tabla.
      */
     public ListarProducto() {
         initComponents();
-    setLocationRelativeTo(null);
-    listar();
+        setLocationRelativeTo(null);
+        listar();
 
-    
     }
-    public void listar(){
+
+    /**
+     * Método encargado de cargar los productos en la tabla visual. Utiliza un
+     * {@link DefaultTableModel} para llenar los datos según el tipo de
+     * producto. Si el producto es por peso, se muestra como "Por Kgs", de lo
+     * contrario, como "Por unidades".
+     */
+    public void listar() {
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-    modelo.setRowCount(0); 
-    String peso="Por Kgs";
-    String unidad="Por unidades";
-    List<Producto> productos = controlador.obtenerTodos();
-    for (Producto p : productos) {
-        if(p.getPeso()!=-1){
-        modelo.addRow(new Object[]{
-            p.getIdProducto(),
-            p.getNombre(),
-            peso,
-            p.getPrecio(),
-            p.getPeso(),
-        
-        });
+        modelo.setRowCount(0);
+        String peso = "Por Kgs";
+        String unidad = "Por unidades";
+        List<Producto> productos = controlador.obtenerTodos();
+        for (Producto p : productos) {
+            if (p.getPeso() != -1) {
+                modelo.addRow(new Object[]{
+                    p.getIdProducto(),
+                    p.getNombre(),
+                    peso,
+                    p.getPrecio(),
+                    p.getPeso(),});
+            } else {
+                modelo.addRow(new Object[]{
+                    p.getIdProducto(),
+                    p.getNombre(),
+                    unidad,
+                    p.getPrecio(),
+                    p.getUnidades(),});
+            }
+        }
     }
-        else{
-        modelo.addRow(new Object[]{
-            p.getIdProducto(),
-            p.getNombre(),
-            unidad,
-            p.getPrecio(),
-            p.getUnidades(),
-        
-        });
-    }
-    }
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -164,6 +190,12 @@ public class ListarProducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción ejecutada al presionar el botón de volver. Cierra la ventana
+     * actual y abre el menú de gestión de productos.
+     *
+     * @param evt Evento generado por el botón.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new MenuGestionProductos().setVisible(true);
         dispose();
@@ -173,7 +205,7 @@ public class ListarProducto extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-      
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

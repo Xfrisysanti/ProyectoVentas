@@ -7,23 +7,50 @@ package com.mycompany.proyectovisual.gProductos;
 import fiuni.edu.py.Controladores.ControladorProducto;
 
 /**
+ * Clase que representa una ventana para mostrar los detalles de un producto
+ * buscado por su ID.
+ *
+ * Esta ventana permite visualizar el nombre, precio y cantidad (peso o
+ * unidades) de un producto específico que ha sido identificado mediante su ID.
+ * Se utiliza como parte de la funcionalidad de consulta dentro del sistema de
+ * gestión de productos.
+ *
+ * La información del producto se obtiene a través de un
+ * {@link ControladorProducto}.
  *
  * @author luisf
  */
 public class ProductoBuscado extends javax.swing.JFrame {
-    int id;
-    ControladorProducto controlador= new ControladorProducto();
+
     /**
-     * Creates new form MenuPrincipal
+     * ID del producto a consultar.
      */
+    private int id;
+    /**
+     * Controlador que maneja las operaciones sobre productos.
+     */
+    private final ControladorProducto controlador = new ControladorProducto();
+
+    /**
+     * Constructor que recibe el ID del producto a buscar. Inicializa la
+     * interfaz gráfica, centra la ventana y carga los datos del producto.
+     *
+     * @param id ID del producto que se desea mostrar.
+     */
+
     public ProductoBuscado(int id) {
-        this.id=id;
+        this.id = id;
         initComponents();
         setLocationRelativeTo(null);
         cargarDatos();
     }
+
+    /**
+     * Constructor por defecto (sin ID). No carga datos hasta que se asigne un
+     * ID manualmente.
+     */
     public ProductoBuscado() {
-        
+
         setLocationRelativeTo(null);
     }
 
@@ -253,17 +280,29 @@ public class ProductoBuscado extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void cargarDatos(){
+    /**
+     * Carga los datos del producto correspondiente al ID proporcionado. Se
+     * actualizan las etiquetas de la interfaz con el nombre, precio, peso o
+     * unidades del producto.
+     */
+    public void cargarDatos() {
         jLabel1.setText(String.valueOf(controlador.getNombre(id)));
         jLabel6.setText(String.valueOf(controlador.getPrecio(id)));
-        if( controlador.getPeso(id)!=-1){
-        jLabel7.setText(String.valueOf(controlador.getPeso(id)));
-        }
-        else{
+        if (controlador.getPeso(id) != -1) {
+            jLabel7.setText(String.valueOf(controlador.getPeso(id)));
+        } else {
             jLabel7.setText(String.valueOf(controlador.getUnidades(id)));
         }
-        
+
     }
+
+    /**
+     * Acción que se ejecuta al presionar el botón para regresar al menú de
+     * gestión de productos. Abre la ventana {@link MenuGestionProductos} y
+     * cierra esta ventana.
+     *
+     * @param evt Evento de acción generado por el botón.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new MenuGestionProductos().setVisible(true);
         dispose();
@@ -273,7 +312,7 @@ public class ProductoBuscado extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ProductoBuscado().setVisible(true);

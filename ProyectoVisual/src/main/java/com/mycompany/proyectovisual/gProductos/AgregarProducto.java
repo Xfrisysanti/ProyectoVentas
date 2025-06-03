@@ -9,13 +9,25 @@ import fiuni.edu.py.Modelo.Producto;
 import javax.swing.JOptionPane;
 
 /**
+ * Clase que representa la ventana para agregar un nuevo producto al sistema.
+ * Permite ingresar los datos del producto, validar su formato y registrar el
+ * producto en la base de datos a través del {@link ControladorProducto}.
  *
- * @author luisf
+ * Esta clase extiende {@link javax.swing.JFrame}, por lo que es una ventana
+ * gráfica que se ejecuta dentro de una aplicación Swing.
+ *
+ * @author luisf santi
  */
 public class AgregarProducto extends javax.swing.JFrame {
-    ControladorProducto controlador=new ControladorProducto();
+
     /**
-     * Creates new form MenuPrincipal
+     * Controlador encargado de gestionar los productos.
+     */
+    private final ControladorProducto controlador = new ControladorProducto();
+
+    /**
+     * Constructor de la clase. Inicializa los componentes de la ventana y la
+     * posiciona en el centro de la pantalla.
      */
     public AgregarProducto() {
         initComponents();
@@ -297,55 +309,61 @@ public class AgregarProducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Evento asociado al botón para agregar un producto. Realiza la validación
+     * de los campos y, si son válidos, crea un objeto {@link Producto} y lo
+     * registra mediante el controlador. Muestra mensajes de error en caso de
+     * valores inválidos o faltantes.
+     *
+     * @param evt Evento de acción generado al presionar el botón.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-           try {
-        String nombre = jTextField1.getText().trim();
-        double precio = Double.parseDouble(jTextField2.getText().trim());
-        if (nombre.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "El nombre no puede estar vacío.");
-            return;
-        }
-        if(controlador.existeProductosConEsteNombre(nombre.toLowerCase().replaceAll(" ", ""))){
-            JOptionPane.showMessageDialog(this, "Ya existe un producto con ese nombre.");
-            return;
-        }
-        if (precio < 0) {
-            JOptionPane.showMessageDialog(this, "El precio no puede ser negativo.");
-            
-            return;
-        }
-        if ( 0>Double.parseDouble(jTextField3.getText().trim())) {
+        try {
+            String nombre = jTextField1.getText().trim();
+            double precio = Double.parseDouble(jTextField2.getText().trim());
+            if (nombre.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "El nombre no puede estar vacío.");
+                return;
+            }
+            if (controlador.existeProductosConEsteNombre(nombre.toLowerCase().replaceAll(" ", ""))) {
+                JOptionPane.showMessageDialog(this, "Ya existe un producto con ese nombre.");
+                return;
+            }
+            if (precio < 0) {
+                JOptionPane.showMessageDialog(this, "El precio no puede ser negativo.");
+
+                return;
+            }
+            if (0 > Double.parseDouble(jTextField3.getText().trim())) {
                 JOptionPane.showMessageDialog(this, "El stock  no puede ser negativo o 0.");
                 return;
             }
 
-        if (jRadioButton1.isSelected()) { // Por peso
-            double stock = Double.parseDouble(jTextField3.getText().trim());
-            Producto p = new Producto(precio, nombre, stock);
-            controlador.agregarProducto(p);
-            JOptionPane.showMessageDialog(this, "Producto por peso agregado exitosamente:"+(controlador.conseguirId()-1));
-           
-        } else if (jRadioButton2.isSelected()) { // Por unidad
-            int stock = Integer.parseInt(jTextField3.getText().trim());
-            Producto p = new Producto(precio,nombre, stock);
-            controlador.agregarProducto(p);
-            JOptionPane.showMessageDialog(this, "Producto por unidad agregado exitosamente con id:"+(controlador.conseguirId()-1));
-            
-            
-        } else {
-            JOptionPane.showMessageDialog(this, "Seleccione el tipo de producto.");
-            return;
+            if (jRadioButton1.isSelected()) { // Por peso
+                double stock = Double.parseDouble(jTextField3.getText().trim());
+                Producto p = new Producto(precio, nombre, stock);
+                controlador.agregarProducto(p);
+                JOptionPane.showMessageDialog(this, "Producto por peso agregado exitosamente:" + (controlador.conseguirId() - 1));
+
+            } else if (jRadioButton2.isSelected()) { // Por unidad
+                int stock = Integer.parseInt(jTextField3.getText().trim());
+                Producto p = new Producto(precio, nombre, stock);
+                controlador.agregarProducto(p);
+                JOptionPane.showMessageDialog(this, "Producto por unidad agregado exitosamente con id:" + (controlador.conseguirId() - 1));
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Seleccione el tipo de producto.");
+                return;
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error al ingresar precio o stock. Verifique que sean números válidos.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
         }
 
-        
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Error al ingresar precio o stock. Verifique que sean números válidos.");
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
-    }
-    
-    new MenuGestionProductos().setVisible(true);
-    dispose();
+        new MenuGestionProductos().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -366,7 +384,7 @@ public class AgregarProducto extends javax.swing.JFrame {
                 new AgregarProducto().setVisible(true);
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

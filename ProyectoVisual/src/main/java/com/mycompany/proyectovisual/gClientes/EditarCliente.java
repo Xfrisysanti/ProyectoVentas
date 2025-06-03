@@ -105,6 +105,9 @@ public class EditarCliente extends javax.swing.JFrame {
         jSeparator24 = new javax.swing.JSeparator();
         jTextField4 = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
+        jPanel2 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -148,7 +151,6 @@ public class EditarCliente extends javax.swing.JFrame {
         jPanel5.add(jSeparator11);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Ingrese el Nombre del Cliente Editado");
         jPanel5.add(jLabel3);
 
@@ -168,8 +170,6 @@ public class EditarCliente extends javax.swing.JFrame {
         jSeparator14.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel6.add(jSeparator14);
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
         jTextField2.setText("Ingrese el texto aquí");
         jTextField2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField2.setMaximumSize(new java.awt.Dimension(500, 40));
@@ -193,7 +193,6 @@ public class EditarCliente extends javax.swing.JFrame {
         jPanel7.add(jSeparator15);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText(" Ingrese la Edad del Cliente Editado");
         jPanel7.add(jLabel4);
 
@@ -213,8 +212,6 @@ public class EditarCliente extends javax.swing.JFrame {
         jSeparator17.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel8.add(jSeparator17);
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
         jTextField3.setText("Ingrese el texto aquí");
         jTextField3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField3.setMaximumSize(new java.awt.Dimension(500, 40));
@@ -238,7 +235,6 @@ public class EditarCliente extends javax.swing.JFrame {
         jPanel11.add(jSeparator22);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Ingrese el Email del Cliente Editado (Ej: nombre@gmail.com) ");
         jPanel11.add(jLabel6);
 
@@ -272,8 +268,6 @@ public class EditarCliente extends javax.swing.JFrame {
         jSeparator24.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel12.add(jSeparator24);
 
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField4.setForeground(new java.awt.Color(0, 0, 0));
         jTextField4.setText("Ingrese el texto aquí");
         jTextField4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField4.setMaximumSize(new java.awt.Dimension(500, 40));
@@ -289,6 +283,31 @@ public class EditarCliente extends javax.swing.JFrame {
         jSeparator7.setMaximumSize(new java.awt.Dimension(32767, 20));
         jPanel1.add(jSeparator7);
 
+        jPanel2.setBackground(new java.awt.Color(220, 220, 180));
+        jPanel2.setMaximumSize(new java.awt.Dimension(700, 100));
+        jPanel2.setPreferredSize(new java.awt.Dimension(40, 100));
+
+        jButton3.setBackground(new java.awt.Color(204, 204, 204));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(102, 102, 102));
+        jButton3.setText("CANCELAR");
+        jButton3.setAlignmentX(0.5F);
+        jButton3.setAlignmentY(1.0F);
+        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setMaximumSize(new java.awt.Dimension(200, 50));
+        jButton3.setMinimumSize(new java.awt.Dimension(100, 50));
+        jButton3.setPreferredSize(new java.awt.Dimension(200, 50));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton3);
+
+        jSeparator1.setPreferredSize(new java.awt.Dimension(100, 10));
+        jPanel2.add(jSeparator1);
+
         jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(102, 102, 102));
@@ -299,13 +318,15 @@ public class EditarCliente extends javax.swing.JFrame {
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setMaximumSize(new java.awt.Dimension(200, 50));
         jButton2.setMinimumSize(new java.awt.Dimension(100, 50));
-        jButton2.setPreferredSize(new java.awt.Dimension(100, 50));
+        jButton2.setPreferredSize(new java.awt.Dimension(200, 50));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2);
+        jPanel2.add(jButton2);
+
+        jPanel1.add(jPanel2);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -339,6 +360,10 @@ public class EditarCliente extends javax.swing.JFrame {
         new MenuGestionClientes().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -379,6 +404,7 @@ public class EditarCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
@@ -386,11 +412,13 @@ public class EditarCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator13;

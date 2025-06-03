@@ -247,6 +247,9 @@ public class AgregarVenta extends javax.swing.JFrame {
         jSeparator22 = new javax.swing.JSeparator();
         jSeparator23 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
+        jPanel6 = new javax.swing.JPanel();
+        jButton5 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jSeparator8 = new javax.swing.JSeparator();
@@ -275,6 +278,10 @@ public class AgregarVenta extends javax.swing.JFrame {
         jPanel17 = new javax.swing.JPanel();
         jSeparator34 = new javax.swing.JSeparator();
         jSeparator35 = new javax.swing.JSeparator();
+        jButton6 = new javax.swing.JButton();
+        jPanel18 = new javax.swing.JPanel();
+        jSeparator36 = new javax.swing.JSeparator();
+        jSeparator37 = new javax.swing.JSeparator();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -434,6 +441,31 @@ public class AgregarVenta extends javax.swing.JFrame {
         jSeparator7.setMaximumSize(new java.awt.Dimension(32767, 10));
         jPanel1.add(jSeparator7);
 
+        jPanel6.setBackground(new java.awt.Color(220, 220, 180));
+        jPanel6.setMaximumSize(new java.awt.Dimension(700, 100));
+        jPanel6.setPreferredSize(new java.awt.Dimension(40, 70));
+
+        jButton5.setBackground(new java.awt.Color(204, 204, 204));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(102, 102, 102));
+        jButton5.setText("CANCELAR");
+        jButton5.setAlignmentX(0.5F);
+        jButton5.setAlignmentY(1.0F);
+        jButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.setMaximumSize(new java.awt.Dimension(200, 50));
+        jButton5.setMinimumSize(new java.awt.Dimension(100, 50));
+        jButton5.setPreferredSize(new java.awt.Dimension(200, 50));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButton5);
+
+        jSeparator1.setPreferredSize(new java.awt.Dimension(100, 10));
+        jPanel6.add(jSeparator1);
+
         jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(102, 102, 102));
@@ -444,13 +476,15 @@ public class AgregarVenta extends javax.swing.JFrame {
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setMaximumSize(new java.awt.Dimension(200, 50));
         jButton2.setMinimumSize(new java.awt.Dimension(100, 50));
-        jButton2.setPreferredSize(new java.awt.Dimension(100, 50));
+        jButton2.setPreferredSize(new java.awt.Dimension(200, 50));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2);
+        jPanel6.add(jButton2);
+
+        jPanel1.add(jPanel6);
 
         getContentPane().add(jPanel1, "card2");
 
@@ -620,6 +654,40 @@ public class AgregarVenta extends javax.swing.JFrame {
 
         jPanel2.add(jPanel17);
 
+        jButton6.setBackground(new java.awt.Color(204, 204, 204));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(102, 102, 102));
+        jButton6.setText("CANCELAR");
+        jButton6.setAlignmentX(0.5F);
+        jButton6.setAlignmentY(1.0F);
+        jButton6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setMaximumSize(new java.awt.Dimension(200, 50));
+        jButton6.setMinimumSize(new java.awt.Dimension(100, 50));
+        jButton6.setPreferredSize(new java.awt.Dimension(200, 50));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton6);
+
+        jPanel18.setBackground(new java.awt.Color(220, 220, 180));
+        jPanel18.setMaximumSize(new java.awt.Dimension(32767, 30));
+        jPanel18.setLayout(new javax.swing.BoxLayout(jPanel18, javax.swing.BoxLayout.LINE_AXIS));
+
+        jSeparator36.setBackground(new java.awt.Color(220, 220, 180));
+        jSeparator36.setForeground(new java.awt.Color(220, 220, 180));
+        jSeparator36.setMaximumSize(new java.awt.Dimension(50, 25));
+        jPanel18.add(jSeparator36);
+
+        jSeparator37.setBackground(new java.awt.Color(220, 220, 180));
+        jSeparator37.setForeground(new java.awt.Color(220, 220, 180));
+        jSeparator37.setMaximumSize(new java.awt.Dimension(50, 25));
+        jPanel18.add(jSeparator37);
+
+        jPanel2.add(jPanel18);
+
         jButton4.setBackground(new java.awt.Color(204, 204, 204));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(102, 102, 102));
@@ -703,6 +771,14 @@ public class AgregarVenta extends javax.swing.JFrame {
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -807,6 +883,8 @@ public class AgregarVenta extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -820,13 +898,16 @@ public class AgregarVenta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
@@ -851,6 +932,8 @@ public class AgregarVenta extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator33;
     private javax.swing.JSeparator jSeparator34;
     private javax.swing.JSeparator jSeparator35;
+    private javax.swing.JSeparator jSeparator36;
+    private javax.swing.JSeparator jSeparator37;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;

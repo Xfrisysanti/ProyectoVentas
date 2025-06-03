@@ -18,16 +18,40 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Repositorio para gestionar las ventas que han sido eliminadas del sistema.
+ * Permite almacenar, cargar y listar ventas eliminadas, así como calcular el
+ * total de una venta específica.
+ *
+ * Los datos se almacenan de forma persistente en un archivo binario.
  *
  * @author santi
  */
 public class RepositorioVentasEliminadas {
+
+    /**
+     * Nombre del archivo donde se almacenan las ventas eliminadas.
+     */
     private static final String ARCHIVO = "ventasEliminadas.dat";
-    RepositorioProducto productoRepo= new RepositorioProducto();
-   private static final Map<Integer, Ventas> ventasEliminadas = new HashMap<>();
-   private static int idActual=1000;
-   
-   private void guardarDatos() {
+    /**
+     * Repositorio de productos para recuperar información del producto en las
+     * ventas.
+     */
+    RepositorioProducto productoRepo = new RepositorioProducto();
+    /**
+     * Mapa que almacena las ventas eliminadas, usando como clave un ID
+     * incremental.
+     */
+    private static final Map<Integer, Ventas> ventasEliminadas = new HashMap<>();
+    /**
+     * ID actual que se asignará a la próxima venta eliminada.
+     */
+    private static int idActual = 1000;
+
+    /**
+     * Guarda los datos actuales del repositorio (ventas eliminadas e ID actual)
+     * en un archivo binario.
+     */
+    private void guardarDatos() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ARCHIVO))) {
             out.writeObject(ventasEliminadas);
             out.writeInt(idActual);
@@ -36,7 +60,10 @@ public class RepositorioVentasEliminadas {
         }
     }
 
-    // Método para cargar datos desde el archivo binario al iniciar el repositorio
+    /**
+     * Carga los datos del archivo binario al iniciar el repositorio. Si el
+     * archivo no existe o hay un error, el mapa se mantiene vacío.
+     */
     private void cargarDatos() {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(ARCHIVO))) {
             Map<Integer, Ventas> datosCargados = (Map<Integer, Ventas>) in.readObject();
@@ -46,33 +73,53 @@ public class RepositorioVentasEliminadas {
             // Si hay error, el archivo puede no existir aún, entonces mantenemos el mapa vacío
         }
     }
-   public void agregarEventaEliminada(Ventas ventaEliminada){  
+
+    /**
+     * Agrega una nueva venta eliminada al repositorio y guarda los datos en el
+     * archivo.
+     *
+     * @param ventaEliminada La venta que ha sido eliminada.
+     */
+    public void agregarEventaEliminada(Ventas ventaEliminada) {
         ventasEliminadas.put(idActual, ventaEliminada);
         idActual++;
-         guardarDatos();
-   }
-   
-   public List<Ventas> listarTodas() {
+        guardarDatos();
+    }
+
+    /**
+     * Lista todas las ventas que han sido eliminadas.
+     *
+     * @return Una lista de todas las ventas eliminadas.
+     */
+    public List<Ventas> listarTodas() {
         return new ArrayList<>(ventasEliminadas.values());
     }
-   public double calcularTotalVenta(Ventas venta) {
-    double total = 0.0;
-    List<ItemVenta> items = venta.getItems();
 
-    for (ItemVenta item : items) {
-        Producto producto = productoRepo.buscarPorId(item.getProductoId());
+    /**
+     * Calcula el total de una venta en base a los productos y sus cantidades.
+     * Tiene en cuenta si el producto se vende por unidad o por peso.
+     *
+     * @param venta La venta a la que se le desea calcular el total.
+     * @return El valor total de la venta.
+     */
+    public double calcularTotalVenta(Ventas venta) {
+        double total = 0.0;
+        List<ItemVenta> items = venta.getItems();
 
-        if (producto != null) {
-            if (producto.getPeso() == -1) {
-                // Producto vendido por unidad
-                total += item.getCantidadUnidad() * producto.getPrecio();
-            } else {
-                // Producto vendido por peso
-                total += item.getCantidadPeso() * producto.getPrecio();
+        for (ItemVenta item : items) {
+            Producto producto = productoRepo.buscarPorId(item.getProductoId());
+
+            if (producto != null) {
+                if (producto.getPeso() == -1) {
+                    // Producto vendido por unidad
+                    total += item.getCantidadUnidad() * producto.getPrecio();
+                } else {
+                    // Producto vendido por peso
+                    total += item.getCantidadPeso() * producto.getPrecio();
+                }
             }
         }
-    }
 
-    return total;
-}
+        return total;
+    }
 }

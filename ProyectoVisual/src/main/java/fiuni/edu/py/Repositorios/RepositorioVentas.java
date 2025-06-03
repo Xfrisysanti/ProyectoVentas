@@ -4,7 +4,6 @@
  */
 package fiuni.edu.py.Repositorios;
 
-import fiuni.edu.py.Modelo.Producto;
 import fiuni.edu.py.Modelo.Ventas;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -22,6 +21,7 @@ import java.time.LocalDate;
  * @author luisf
  */
 public class RepositorioVentas {
+
     private static final String ARCHIVO = "ventas.dat";
     /**
      * Mapa que almacena las ventas registradas, usando su ID como clave
@@ -31,10 +31,11 @@ public class RepositorioVentas {
     /**
      * ID actual para asignar automáticamente a nuevas ventas
      */
-    public RepositorioVentas(){
+    public RepositorioVentas() {
         cargarDatos();
     }
     private int idActual = 1;
+
     private void guardarDatos() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ARCHIVO))) {
             out.writeObject(ventas);
@@ -47,13 +48,14 @@ public class RepositorioVentas {
     // Método para cargar datos desde el archivo binario al iniciar el repositorio
     private void cargarDatos() {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(ARCHIVO))) {
-            Map<Integer,Ventas> datosCargados = (Map<Integer, Ventas>) in.readObject();
+            Map<Integer, Ventas> datosCargados = (Map<Integer, Ventas>) in.readObject();
             ventas.putAll(datosCargados);
             idActual = in.readInt(); // Recuperar el último ID usado
         } catch (IOException | ClassNotFoundException e) {
             // Si hay error, el archivo puede no existir aún, entonces mantenemos el mapa vacío
         }
     }
+
     /**
      * Guarda una nueva venta en el repositorio, asignándole un ID único.
      *
@@ -63,7 +65,7 @@ public class RepositorioVentas {
     public Ventas guardar(Ventas venta) {
         venta.setIdVenta(idActual++);
         ventas.put(venta.getIdVenta(), venta);
-         guardarDatos();
+        guardarDatos();
         return venta;
     }
 
@@ -81,11 +83,10 @@ public class RepositorioVentas {
      * Elimina una venta del repositorio por su ID.
      *
      * @param id Identificador de la venta a eliminar
-     * @return {@code true} si se eliminó la venta, {@code false} si no existía
      */
     public void eliminar(int id) {
         ventas.remove(id);
-         guardarDatos();
+        guardarDatos();
     }
 
     /**

@@ -18,24 +18,30 @@ import java.util.Map;
 
 /**
  * Repositorio que gestiona operaciones CRUD (crear, leer, actualizar, eliminar)
- * para objetos de tipo {@link Producto}, utilizando una estructura 
- * de tipo mapa.
- * Este repositorio asigna automáticamente un ID único a cada producto 
+ * para objetos de tipo {@link Producto}, utilizando una estructura de tipo
+ * mapa. Este repositorio asigna automáticamente un ID único a cada producto
  * registrado.
- * 
+ *
  * @author luisf
  */
 public class RepositorioProducto {
+
     //GUARDACIOND DE DATOS
     private static final String ARCHIVO = "productos.dat";
-    /** Mapa que almacena productos con su ID como clave */
+    /**
+     * Mapa que almacena productos con su ID como clave
+     */
     private static final Map<Integer, Producto> productos = new HashMap<>();
 
-    /** Identificador actual para asignar automáticamente a nuevos productos */
+    /**
+     * Identificador actual para asignar automáticamente a nuevos productos
+     */
     private static int idActual = 1000;
+
     public RepositorioProducto() {
         cargarDatos();
     }
+
     // Método para guardar datos en un archivo binario
     private void guardarDatos() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ARCHIVO))) {
@@ -56,24 +62,27 @@ public class RepositorioProducto {
             // Si hay error, el archivo puede no existir aún, entonces mantenemos el mapa vacío
         }
     }
+
     /**
      * Guarda un nuevo producto, asignándole un ID único automáticamente.
-     * 
+     *
      * @param producto Producto a guardar
      * @return El producto guardado con su ID asignado
      */
     public Producto guardar(Producto producto) {
         producto.setIdProducto(idActual++);
         productos.put(producto.getIdProducto(), producto);
-         guardarDatos(); 
+        guardarDatos();
         return producto;
     }
-    public int conseguirID(){
+
+    public int conseguirID() {
         return idActual;
     }
+
     /**
      * Busca un producto por su ID.
-     * 
+     *
      * @param id Identificador del producto
      * @return El producto correspondiente o {@code null} si no se encuentra
      */
@@ -83,18 +92,17 @@ public class RepositorioProducto {
 
     /**
      * Elimina un producto del repositorio según su ID.
-     * 
+     *
      * @param id Identificador del producto a eliminar
-     * @return {@code true} si el producto fue eliminado, {@code false} si no existía
      */
     public void eliminar(int id) {
         productos.remove(id);
-        guardarDatos(); 
+        guardarDatos();
     }
 
     /**
      * Lista todos los productos almacenados en el repositorio.
-     * 
+     *
      * @return Lista con todos los productos registrados
      */
     public List<Producto> listarTodos() {
@@ -102,10 +110,12 @@ public class RepositorioProducto {
     }
 
     /**
-     * Edita un producto existente en el repositorio, reemplazándolo por una nueva versión.
-     * 
+     * Edita un producto existente en el repositorio, reemplazándolo por una
+     * nueva versión.
+     *
      * @param productoEditado Producto con los datos actualizados
-     * @return {@code true} si se actualizó el producto, {@code false} si no existía
+     * @return {@code true} si se actualizó el producto, {@code false} si no
+     * existía
      */
     public boolean editar(Producto productoEditado) {
         if (productos.containsKey(productoEditado.getIdProducto())) {
@@ -113,7 +123,7 @@ public class RepositorioProducto {
             guardarDatos();
             return true;
         }
-       
+
         return false;
     }
 }

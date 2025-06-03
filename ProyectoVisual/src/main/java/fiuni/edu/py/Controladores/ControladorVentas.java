@@ -108,18 +108,25 @@ public class ControladorVentas {
      * @return Total calculado de la venta.
      */
     public double calcularTotalVenta(Ventas venta) {
-        double total = 0.0;
-        List<ItemVenta> items = venta.getItems();
-        for (ItemVenta item : items) {
-            Producto producto = productoRepo.buscarPorId(item.getProductoId());
+    double total = 0.0;
+    List<ItemVenta> items = venta.getItems();
 
-            if (producto != null) {
-                double precioUnitario = producto.getPrecio();
-                
-            } 
+    for (ItemVenta item : items) {
+        Producto producto = productoRepo.buscarPorId(item.getProductoId());
+
+        if (producto != null) {
+            if (producto.getPeso() == -1) {
+                // Producto vendido por unidad
+                total += item.getCantidadUnidad() * producto.getPrecio();
+            } else {
+                // Producto vendido por peso
+                total += item.getCantidadPeso() * producto.getPrecio();
+            }
         }
-        return total;
     }
+
+    return total;
+}
 
     /**
      * Obtiene todas las ventas realizadas entre dos fechas específicas

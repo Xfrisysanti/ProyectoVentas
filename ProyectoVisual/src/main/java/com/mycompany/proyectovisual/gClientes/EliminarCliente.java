@@ -135,7 +135,9 @@ public class EliminarCliente extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
         }
-        
+        JOptionPane.showMessageDialog(this, "Cliente eliminado con exito.");
+        new MenuGestionClientes().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

@@ -286,7 +286,7 @@ public class EditarCliente extends javax.swing.JFrame {
             nombre=jTextField2.getText();
             gmail=jTextField4.getText();
             try{
-                edad = parseInt(jTextField2.getText());
+                edad = parseInt(jTextField3.getText());
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(this, "Error al ingresar edad. Verifique que sea un número válido.");
             }

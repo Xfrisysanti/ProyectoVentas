@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class ControladorClientes {
 
-    private final RepositorioClientes repo= new RepositorioClientes();
+    private final RepositorioClientes repo = new RepositorioClientes();
 
     /**
      * Agrega un nuevo cliente al repositorio.
@@ -31,7 +31,7 @@ public class ControladorClientes {
      */
     public void agregarCliente(int identificacion, String nombre, int edad, String email) {
         Clientes cliente = new Clientes(identificacion, nombre, edad, email);
-         repo.guardar(cliente);
+        repo.guardar(cliente);
     }
 
     /**
@@ -41,25 +41,25 @@ public class ControladorClientes {
      * @param nuevoNombre Nuevo nombre que se asignará al cliente.
      * @param nuevaEdad Nueva edad que se asignará al cliente.
      * @param nuevoEmail Nuevo email del cliente
-
+     *
      */
     public void editarCliente(int identificacion, String nuevoNombre, int nuevaEdad, String nuevoEmail) {
         Clientes cliente = repo.buscarPorIdentificacion(identificacion);
-            cliente.setNombre(nuevoNombre);
-            cliente.setEdad(nuevaEdad);
-            cliente.setEmail(nuevoEmail);
-            repo.editar(cliente);
-       
+        cliente.setNombre(nuevoNombre);
+        cliente.setEdad(nuevaEdad);
+        cliente.setEmail(nuevoEmail);
+        repo.editar(cliente);
+
     }
 
     /**
      * Elimina un cliente del repositorio por su identificación.
      *
      * @param identificacion Identificación del cliente a eliminar.
- 
+     *
      */
     public void eliminarCliente(int identificacion) {
-         repo.eliminar(identificacion);
+        repo.eliminar(identificacion);
     }
 
     /**
@@ -81,16 +81,35 @@ public class ControladorClientes {
         return repo.listarTodos();
     }
 
+    /**
+     * Obtiene el correo electrónico (Gmail) de una persona a partir de su
+     * identificación.
+     *
+     * @param id Identificación de la persona.
+     * @return El correo electrónico de la persona.
+     */
     public String getGmail(int id) {
         return repo.buscarPorIdentificacion(id).getEmail();
     }
 
+    /**
+     * Obtiene la edad de una persona a partir de su identificación.
+     *
+     * @param id Identificación de la persona.
+     * @return La edad de la persona.
+     */
     public int getEdad(int id) {
-       return repo.buscarPorIdentificacion(id).getEdad();
+        return repo.buscarPorIdentificacion(id).getEdad();
     }
 
+    /**
+     * Obtiene el nombre de una persona a partir de su identificación.
+     *
+     * @param id Identificación de la persona.
+     * @return El nombre de la persona.
+     */
     public String getNombre(int id) {
         return repo.buscarPorIdentificacion(id).getNombre();
     }
-    
+
 }

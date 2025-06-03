@@ -4,9 +4,7 @@ package com.mycompany.proyectovisual.gProductos;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-import com.mycompany.proyectovisual.gProductos.MenuGestionProductos;
 import fiuni.edu.py.Controladores.ControladorProducto;
-import fiuni.edu.py.Modelo.Producto;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,7 +26,8 @@ public class EditarProducto extends javax.swing.JFrame {
      */
     private int id;
     /**
-     * Identificador del producto a editar.
+     * Controlador encargado de gestionar las operaciones relacionadas con los
+     * productos.
      */
     private final ControladorProducto controlador = new ControladorProducto();
 

@@ -7,29 +7,37 @@ package fiuni.edu.py.Modelo;
 import java.io.Serializable;
 
 /**
- * Representa a un cliente con su identificación, nombre y edad
- * Usado para registrar y gestionar los datos de los clientes en el sistema
- * de ventas
- * 
+ * Representa a un cliente con su identificación, nombre y edad Usado para
+ * registrar y gestionar los datos de los clientes en el sistema de ventas
+ *
  * @author luisf
  */
-public class Clientes implements Serializable{
+public class Clientes implements Serializable {
 
-    /** Identificación única del cliente */
+    /**
+     * Identificación única del cliente
+     */
     private int identificacion;
 
-    /** Nombre del cliente */
+    /**
+     * Nombre del cliente
+     */
     private String nombre;
 
-    /** Edad del cliente */
+    /**
+     * Edad del cliente
+     */
     private int edad;
-    
-    /** Email del cliente*/
+
+    /**
+     * Email del cliente
+     */
     private String email;
     private static final long serialVersionUID = 1L;
+
     /**
      * Crea un nuevo cliente con los datos especificados.
-     * 
+     *
      * @param identificacion Identificación única del cliente
      * @param nombre Nombre del cliente
      * @param edad Edad del cliente
@@ -41,10 +49,10 @@ public class Clientes implements Serializable{
         this.edad = edad;
         this.email = email;
     }
-    
+
     /**
      * Obtiene el email del cliente.
-     * 
+     *
      * @return email del cliente
      */
     public String getEmail() {
@@ -55,10 +63,9 @@ public class Clientes implements Serializable{
         this.email = email;
     }
 
-    
     /**
      * Obtiene la identificación del cliente.
-     * 
+     *
      * @return Identificación del cliente
      */
     public int getIdentificacion() {
@@ -67,7 +74,7 @@ public class Clientes implements Serializable{
 
     /**
      * Establece la identificación del cliente.
-     * 
+     *
      * @param identificacion Nueva identificación del cliente
      */
     public void setIdentificacion(int identificacion) {
@@ -76,7 +83,7 @@ public class Clientes implements Serializable{
 
     /**
      * Obtiene el nombre del cliente.
-     * 
+     *
      * @return Nombre del cliente
      */
     public String getNombre() {
@@ -85,7 +92,7 @@ public class Clientes implements Serializable{
 
     /**
      * Establece el nombre del cliente.
-     * 
+     *
      * @param nombre Nuevo nombre del cliente
      */
     public void setNombre(String nombre) {
@@ -94,7 +101,7 @@ public class Clientes implements Serializable{
 
     /**
      * Obtiene la edad del cliente.
-     * 
+     *
      * @return Edad del cliente
      */
     public int getEdad() {
@@ -103,7 +110,7 @@ public class Clientes implements Serializable{
 
     /**
      * Establece la edad del cliente.
-     * 
+     *
      * @param edad Nueva edad del cliente
      */
     public void setEdad(int edad) {
@@ -112,7 +119,7 @@ public class Clientes implements Serializable{
 
     /**
      * Devuelve una representación en forma de cadena del cliente.
-     * 
+     *
      * @return Cadena que representa al cliente
      */
     @Override

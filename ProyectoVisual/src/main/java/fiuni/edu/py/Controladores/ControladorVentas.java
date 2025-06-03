@@ -8,7 +8,6 @@ package fiuni.edu.py.Controladores;
 import fiuni.edu.py.Modelo.Producto;
 import fiuni.edu.py.Modelo.Ventas;
 import fiuni.edu.py.Modelo.ItemVenta;
-import fiuni.edu.py.Repositorios.RepositorioClientes;
 import fiuni.edu.py.Repositorios.RepositorioProducto;
 import fiuni.edu.py.Repositorios.RepositorioVentas;
 
@@ -26,50 +25,24 @@ public class ControladorVentas {
 
     public ControladorVentas() {
     }
-
-    private final RepositorioVentas ventaRepo= new RepositorioVentas();
-    private final RepositorioClientes clienteRepo= new RepositorioClientes();
-    private final RepositorioProducto productoRepo=new RepositorioProducto();
-    private final ControladorProducto controladorProducto=new ControladorProducto();
+    /**Repositorio de ventas*/
+    private final RepositorioVentas ventaRepo = new RepositorioVentas();
+    /**Repositorio de productos*/
+    private final RepositorioProducto productoRepo = new RepositorioProducto();
+    /**
+     * Controlador encargado de gestionar las operaciones relacionadas con los
+     * productos.
+     */
+    private final ControladorProducto controladorProducto = new ControladorProducto();
     
-    
-    
-    
-    public void registrarVenta(Ventas venta){
+    /**
+     * Guarda una venta en el repositorio.
+     *
+     * @param venta que se desea guardar.
+     */
+    public void registrarVenta(Ventas venta) {
         ventaRepo.guardar(venta);
     }
-    
-    /*public Ventas registrarVenta(int clienteId, List<ItemVenta> items, LocalDate fecha) {
-        if (clienteRepo.buscarPorIdentificacion(clienteId) == null) {
-            System.out.println("Cliente no encontrado.");
-            return null;
-        }
-           /*
-        for (ItemVenta item : items) {
-            Producto producto = productoRepo.buscarPorId(item.getProductoId());
-            if (producto == null) {
-                System.out.printf("Producto con ID %d no encontrado.\n", item.getProductoId());
-                return null;
-            }
-            if (producto.getStock() < item.getCantidad()) {
-                System.out.printf("Stock insuficiente para el producto '%s'.\n", producto.getNombre());
-                return null;
-            }
-        }
-
-        for (ItemVenta item : items) {
-            Producto producto = productoRepo.buscarPorId(item.getProductoId());
-            producto.setStock(producto.getStock() - item.getCantidad());
-            productoRepo.editar(producto);
-        }
-        
-           
-        Ventas venta = new Ventas(clienteId, items, fecha);
-        ventaRepo.guardar(venta);
-        System.out.println("Venta registrada con exito.");
-        System.out.println("ID de Venta: " + venta.getIdVenta());
-        return venta;
-    }*/
 
     /**
      * Devuelve una lista con todas las ventas registradas.
@@ -79,42 +52,30 @@ public class ControladorVentas {
     public List<Ventas> listarVentas() {
         return ventaRepo.listarTodos();
     }
-    
-    public void eliminarVenta(int id){
+
+    /**
+     * Elimina una venta por su identificador
+     *
+     * @param id
+     */
+    public void eliminarVenta(int id) {
         ventaRepo.eliminar(id);
     }
-    /**
-     * Elimina una venta por su identificador. Muestra un mensaje indicando el
-     * resultado.
-     *
-     * @param ventaId Identificador de la venta a eliminar.
-     */
-    /*public void eliminarVenta(int ventaId) {
-        Ventas ventaEliminada = ventaRepo.eliminar(ventaId);
-        if (ventaEliminada != null) {
-            System.out.println("Venta eliminada.");
-        } else {
-            System.out.println("No se encontró la venta.");
-        }
-    }
-    */
-    
-    
+
     /**
      * Calcula el total de una venta dada la lista de ítems.Omite productos no
- encontrados.
+     * encontrados.
      *
      * @param venta
      * @return Total calculado de la venta.
      */
     public double calcularTotalVenta(Ventas venta) {
-    double total = 0.0;
-    List<ItemVenta> items = venta.getItems();
+        double total = 0.0;
+        List<ItemVenta> items = venta.getItems();
 
-    for (ItemVenta item : items) {
-        Producto producto = controladorProducto.buscarProducto(item.getProductoId());
+        for (ItemVenta item : items) {
+            Producto producto = controladorProducto.buscarProducto(item.getProductoId());
 
-        
             if (producto.getPeso() == -1) {
                 // Producto vendido por unidad
                 total += item.getCantidadUnidad() * producto.getPrecio();
@@ -122,11 +83,11 @@ public class ControladorVentas {
                 // Producto vendido por peso
                 total += item.getCantidadPeso() * producto.getPrecio();
             }
-        
-    }
 
-    return total;
-}
+        }
+
+        return total;
+    }
 
     /**
      * Obtiene todas las ventas realizadas entre dos fechas específicas
@@ -159,5 +120,5 @@ public class ControladorVentas {
     public Ventas getVentaPorId(int id) {
         return ventaRepo.buscarPorId(id);
     }
-    
+
 }

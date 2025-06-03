@@ -99,6 +99,7 @@ public class ProductoBuscado extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(220, 220, 180));
         setMinimumSize(new java.awt.Dimension(640, 420));
+        setResizable(false);
         getContentPane().setLayout(new java.awt.BorderLayout(5, 0));
 
         jPanel1.setBackground(new java.awt.Color(220, 220, 180));
@@ -121,7 +122,6 @@ public class ProductoBuscado extends javax.swing.JFrame {
         jPanel3.add(jSeparator9);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nombre del Producto");
         jPanel3.add(jLabel2);
 
@@ -142,7 +142,6 @@ public class ProductoBuscado extends javax.swing.JFrame {
         jSeparator10.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel4.add(jSeparator10);
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nombre");
         jPanel4.add(jLabel1);
 
@@ -163,7 +162,6 @@ public class ProductoBuscado extends javax.swing.JFrame {
         jPanel5.add(jSeparator11);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Precio del Producto");
         jPanel5.add(jLabel3);
 
@@ -184,7 +182,6 @@ public class ProductoBuscado extends javax.swing.JFrame {
         jSeparator14.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel6.add(jSeparator14);
 
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Precio");
         jPanel6.add(jLabel6);
 
@@ -205,7 +202,6 @@ public class ProductoBuscado extends javax.swing.JFrame {
         jPanel7.add(jSeparator15);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Stock del Producto");
         jPanel7.add(jLabel4);
 
@@ -226,7 +222,6 @@ public class ProductoBuscado extends javax.swing.JFrame {
         jSeparator17.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel8.add(jSeparator17);
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Stock");
         jPanel8.add(jLabel7);
 

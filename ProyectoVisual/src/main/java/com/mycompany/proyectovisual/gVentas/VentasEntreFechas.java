@@ -108,6 +108,7 @@ public class VentasEntreFechas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(220, 220, 180));
         setMinimumSize(new java.awt.Dimension(640, 420));
+        setResizable(false);
         getContentPane().setLayout(new java.awt.BorderLayout(5, 0));
 
         jPanel1.setBackground(new java.awt.Color(220, 220, 180));
@@ -117,7 +118,6 @@ public class VentasEntreFechas extends javax.swing.JFrame {
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("LISTA DE VENTAS");
         jLabel2.setAlignmentX(0.5F);
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -149,8 +149,6 @@ public class VentasEntreFechas extends javax.swing.JFrame {
 
         jScrollPane1.setMaximumSize(new java.awt.Dimension(450, 32767));
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},

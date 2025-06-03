@@ -63,6 +63,7 @@ public class CantidadProductos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(220, 220, 180));
         setMinimumSize(new java.awt.Dimension(640, 420));
+        setResizable(false);
         getContentPane().setLayout(new java.awt.BorderLayout(5, 0));
 
         jPanel1.setBackground(new java.awt.Color(220, 220, 180));
@@ -86,7 +87,6 @@ public class CantidadProductos extends javax.swing.JFrame {
         jPanel3.add(jSeparator9);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Hay");
         jPanel3.add(jLabel2);
 
@@ -105,7 +105,6 @@ public class CantidadProductos extends javax.swing.JFrame {
         jSeparator10.setMaximumSize(new java.awt.Dimension(12, 25));
         jPanel4.add(jSeparator10);
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("XXX");
         jPanel4.add(jLabel1);
 
@@ -117,7 +116,6 @@ public class CantidadProductos extends javax.swing.JFrame {
         jPanel3.add(jSeparator18);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Productos diferentes");
         jPanel3.add(jLabel5);
 

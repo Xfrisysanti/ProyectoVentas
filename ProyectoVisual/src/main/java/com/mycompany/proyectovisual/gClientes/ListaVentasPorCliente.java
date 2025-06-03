@@ -104,6 +104,7 @@ public class ListaVentasPorCliente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(220, 220, 180));
         setMinimumSize(new java.awt.Dimension(640, 420));
+        setResizable(false);
         getContentPane().setLayout(new java.awt.BorderLayout(5, 0));
 
         jPanel1.setBackground(new java.awt.Color(220, 220, 180));
@@ -113,7 +114,7 @@ public class ListaVentasPorCliente extends javax.swing.JFrame {
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("LISTA DE VENTAS");
+        jLabel2.setText("LISTA DE VENTAS POR CLIENTE");
         jLabel2.setAlignmentX(0.5F);
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabel2);
@@ -169,7 +170,7 @@ public class ListaVentasPorCliente extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID Antiguo", "Fecha", "Cliente", "Productos", "Total"
+                "ID", "Fecha", "Cliente", "Productos", "Total"
             }
         ));
         jTable1.setAlignmentX(0.0F);

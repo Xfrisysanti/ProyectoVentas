@@ -76,6 +76,7 @@ public class FechasVenta extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(220, 220, 180));
         setMinimumSize(new java.awt.Dimension(640, 420));
+        setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jPanel1.setBackground(new java.awt.Color(220, 220, 180));
@@ -130,7 +131,6 @@ public class FechasVenta extends javax.swing.JFrame {
         jPanel5.add(jSeparator11);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Ingrese la Fecha de Inicio (AAAA-MM-DD)");
         jPanel5.add(jLabel3);
 
@@ -150,8 +150,6 @@ public class FechasVenta extends javax.swing.JFrame {
         jSeparator18.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel9.add(jSeparator18);
 
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
         jTextField6.setText("Ingrese el texto aquí");
         jTextField6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField6.setMaximumSize(new java.awt.Dimension(500, 40));
@@ -175,7 +173,6 @@ public class FechasVenta extends javax.swing.JFrame {
         jPanel7.add(jSeparator15);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Ingrese la Fecha de Fin (AAAA-MM-DD)");
         jPanel7.add(jLabel4);
 
@@ -195,8 +192,6 @@ public class FechasVenta extends javax.swing.JFrame {
         jSeparator17.setMaximumSize(new java.awt.Dimension(50, 25));
         jPanel8.add(jSeparator17);
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
         jTextField3.setText("Ingrese el texto aquí");
         jTextField3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField3.setMaximumSize(new java.awt.Dimension(500, 40));

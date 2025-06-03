@@ -102,6 +102,7 @@ public class ListarProducto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(220, 220, 180));
         setMinimumSize(new java.awt.Dimension(640, 420));
+        setResizable(false);
         getContentPane().setLayout(new java.awt.BorderLayout(5, 0));
 
         jPanel1.setBackground(new java.awt.Color(220, 220, 180));

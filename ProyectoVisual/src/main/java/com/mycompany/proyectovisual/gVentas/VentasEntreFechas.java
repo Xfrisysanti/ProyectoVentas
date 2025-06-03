@@ -44,6 +44,7 @@ public class VentasEntreFechas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.fecha1 = fecha1;
         this.fecha2 = fecha2;
+        listar();
     }
 
     /**

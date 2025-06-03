@@ -142,7 +142,7 @@ public class VentanaIdProductos extends javax.swing.JFrame {
         if (controlador.buscarProducto(id) == null) {
             JOptionPane.showMessageDialog(this, "No se encontró el producto con ID: " + id);
         } else if(editarObuscar) {
-            new EditarCliente(id).setVisible(true); // pasa el ID al constructor de edicion
+            new EditarProducto(id).setVisible(true); // pasa el ID al constructor de edicion
             dispose();
         }
         else{

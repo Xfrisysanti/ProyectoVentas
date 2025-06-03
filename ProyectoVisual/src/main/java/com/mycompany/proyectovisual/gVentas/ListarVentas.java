@@ -26,24 +26,26 @@ public class ListarVentas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         listar();
     }
-    public void listar(){
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+    public void listar() {
+    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
     modelo.setRowCount(0); 
+
     List<Ventas> ventas = controlador.listarVentas();
 
     for (Ventas v : ventas) {
-       
-        modelo.addRow(new Object[]{
-            v.getIdVenta(),
-            v.getFechaVenta(),
-            v.getIdCliente(),
-            v.getItems().size(),
-            controlador.calcularTotalVenta(v),//METODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-        });
-    
-       
+        try {
+            modelo.addRow(new Object[]{
+                v.getIdVenta(),
+                v.getFechaVenta(),
+                v.getIdCliente(),
+                v.getItems().size(),
+                controlador.calcularTotalVenta(v)
+            });
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null,"Error al cargar una venta con ID: " + v.getIdVenta() + ". Verifica los datos.");
+        }
     }
-    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

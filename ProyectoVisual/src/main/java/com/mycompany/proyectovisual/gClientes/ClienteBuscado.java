@@ -26,9 +26,9 @@ public class ClienteBuscado extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     public void cargarDatos(){
-        jLabel1.setText(String.valueOf(controlador.getNombre(id)));
+        jLabel1.setText(controlador.getNombre(id));
         jLabel6.setText(String.valueOf(controlador.getEdad(id)));
-        jLabel7.setText(String.valueOf(controlador.getGmail(id)));
+        jLabel7.setText(controlador.getGmail(id));
         
         
     }
@@ -260,7 +260,8 @@ public class ClienteBuscado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        new MenuGestionClientes().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

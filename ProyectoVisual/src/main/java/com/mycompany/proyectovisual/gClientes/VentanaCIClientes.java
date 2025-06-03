@@ -132,7 +132,7 @@ public class VentanaCIClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
+        
             String idTexto = jTextField1.getText().trim();
 
             try {
@@ -150,9 +150,7 @@ public class VentanaCIClientes extends javax.swing.JFrame {
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "El CI debe ser un número válido.");
             }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
-        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

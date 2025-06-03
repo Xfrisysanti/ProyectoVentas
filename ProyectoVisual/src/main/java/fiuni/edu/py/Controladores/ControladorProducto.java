@@ -71,6 +71,7 @@
             }
             return -1;
         }
+        
         public boolean editarProducto(int id, String nuevoNombre, double nuevoPrecio, String stock, boolean pesoOunidad) {
             Producto producto = repo.buscarPorId(id);
             if (producto != null) {
@@ -99,6 +100,12 @@
         }
         public int getUnidades(int id){
             return repo.buscarPorId(id).getUnidades();
+        }
+        public void setUnidades(int id,int unidades){
+            repo.buscarPorId(id).setUnidades(unidades);
+        }
+        public void setPeso(int id,double peso){
+            repo.buscarPorId(id).setPeso(peso);
         }
 
 

@@ -115,8 +115,7 @@ public class ControladorVentas {
 
             if (producto != null) {
                 double precioUnitario = producto.getPrecio();
-                int cantidad = item.getCantidad();
-                total += precioUnitario * cantidad;
+                
             } 
         }
         return total;

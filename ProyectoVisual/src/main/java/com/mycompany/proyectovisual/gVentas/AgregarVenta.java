@@ -4,12 +4,12 @@
  */
 package com.mycompany.proyectovisual.gVentas;
 
+import fiuni.edu.py.Controladores.ControladorClientes;
 import javax.swing.JOptionPane;
 import fiuni.edu.py.Controladores.ControladorProducto;
 import fiuni.edu.py.Controladores.ControladorVentas;
 import fiuni.edu.py.Modelo.ItemVenta;
 import fiuni.edu.py.Modelo.Ventas;
-import static java.lang.Integer.parseInt;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -22,12 +22,13 @@ public class AgregarVenta extends javax.swing.JFrame {
     private int ci;
     private String nombre;
     private LocalDate fecha;
-    private int cantidad;
+    private int cantidadInt;
+    private double cantidadDouble;
     private ItemVenta itemVenta;
     List<ItemVenta> listaDeVentas = new ArrayList<>();
     ControladorProducto controladorProductos = new ControladorProducto();
     ControladorVentas controladorVentas= new ControladorVentas();
-    
+    ControladorClientes controladorClientes= new ControladorClientes();
     /**
     * Creates new form MenuPrincipal
      */
@@ -38,35 +39,133 @@ public class AgregarVenta extends javax.swing.JFrame {
     public void cargarDatos1() {
     // Validar campo CI
     String ciTexto = jTextField6.getText().trim();
+    if (ciTexto.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "El campo CI no puede estar vacío.");
+        resetearPanelCliente();
+        return;
+    }
+
     try {
         ci = Integer.parseInt(ciTexto);
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(null, "CI inválido. Ingrese solo números.");
+        resetearPanelCliente();
         return;
     }
 
+    if (controladorClientes.buscarCliente(ci) == null) {
+        JOptionPane.showMessageDialog(null, "CI del cliente no encontrado. Verifique que exista o que no tenga errores de escritura.");
+        resetearPanelCliente();
+        return;
+    }
+    
     // Validar campo Fecha
     String fechaTexto = jTextField3.getText().trim();
+    if (fechaTexto.isEmpty()) {
+    JOptionPane.showMessageDialog(null, "El campo de fecha no puede estar vacío.");
+    resetearPanelCliente();
+    return;
+    }
+
     try {
-        fecha = LocalDate.parse(fechaTexto); // formato esperado: yyyy-MM-dd
+    fecha = LocalDate.parse(fechaTexto); // formato esperado: yyyy-MM-dd
+    if (fecha.isAfter(LocalDate.now())) {
+        JOptionPane.showMessageDialog(null, "La fecha no puede ser posterior a la fecha actual.");
+        resetearPanelCliente();
+        return;
+    }
     } catch (DateTimeParseException e) {
-        JOptionPane.showMessageDialog(null, "Formato de fecha inválido. Use yyyy-MM-dd (por ejemplo: 2006-02-04).");
+    JOptionPane.showMessageDialog(null, "Formato de fecha inválido. Use yyyy-MM-dd (por ejemplo: 2006-02-04).");
+    resetearPanelCliente();
+    return;
     }
+    jPanel1.setVisible(false);
+    jPanel2.setVisible(true);
+}
+  
+    
+    
+   public void cargarDatos2() {
+    nombre = jTextField4.getText().trim();
+
+    // Validar campo nombre
+    if (nombre.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "El nombre del producto no puede estar vacío.");
+        resetearPanelProductos();
+        return;
     }
-   
-    public void cargarDatos2(){
-        nombre=jTextField4.getText();
-        cantidad=parseInt(jTextField5.getText());
+
+    // Verificar si el producto existe
+    if (!controladorProductos.existeProductosConEsteNombre(nombre)) {
+        JOptionPane.showMessageDialog(null, "Producto no encontrado. Verifique el nombre.");
+        resetearPanelProductos();
+        return;
+    }
+
+    try {
+        cantidadInt = Integer.parseInt(jTextField5.getText().trim());
+        cantidadDouble = Double.parseDouble(jTextField5.getText().trim());
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Cantidad inválida. Ingrese un número válido.");
+        resetearPanelProductos();
+        return;
+    }
+
+    int idProducto = controladorProductos.buscarProductoPorNombre(nombre);
+
+    // Producto por peso
+    if (controladorProductos.getPeso(idProducto) != -1) {
+        double stockDisponible = controladorProductos.getPeso(idProducto);
+
+        if (cantidadDouble <= 0) {
+            JOptionPane.showMessageDialog(null, "La cantidad debe ser mayor que cero.");
+            resetearPanelProductos();
+            return;
+        }
+
+        if (stockDisponible >= cantidadDouble) {
+            itemVenta = new ItemVenta(idProducto, cantidadDouble);
+            controladorProductos.setPeso(controladorProductos.buscarProductoPorNombre(nombre), stockDisponible-cantidadDouble);
+        } else {
+            JOptionPane.showMessageDialog(null, "Stock insuficiente. Disponible: " + stockDisponible + " kg.");
+            resetearPanelProductos();
+            return;
+        }
+    }
+    // Producto por unidad
+    else {
+        int stockDisponible = controladorProductos.getUnidades(idProducto);
+
+        if (cantidadInt <= 0) {
+            JOptionPane.showMessageDialog(null, "La cantidad debe ser mayor que cero.");
+            resetearPanelProductos();
+            return;
+        }
+
+        if (stockDisponible >= cantidadInt) {
+            itemVenta = new ItemVenta(idProducto, cantidadInt);
+            controladorProductos.setUnidades(controladorProductos.buscarProductoPorNombre(nombre), stockDisponible-cantidadInt);
+        } else {
+            JOptionPane.showMessageDialog(null, "Stock insuficiente. Disponible: " + stockDisponible + " unidades.");
+            resetearPanelProductos();
+            return;
+        }
+    }
+}
+
         
-    }
-    public void crearItemVenta(){
-        itemVenta=new ItemVenta(controladorProductos.buscarProductoPorNombre(nombre),cantidad);
         
-    }
+    
     private void resetearPanelProductos() {
     jTextField4.setText("Ingrese el texto"); // Nombre del producto
     jTextField5.setText("Ingrese el texto"); // Cantidad
     jPanel2.setVisible(true);  // Asegura que se muestra el panel
+    }
+    
+    private void resetearPanelCliente() {
+    jTextField6.setText("Ingrese el texto"); // Nombre del producto
+    jTextField3.setText("Ingrese el texto"); // Cantidad
+    jPanel1.setVisible(true);  // Asegura que se muestra el panel
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -504,15 +603,12 @@ public class AgregarVenta extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         cargarDatos1();
-        jPanel1.setVisible(false);
-        jPanel2.setVisible(true);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
                   
         cargarDatos2();
-        crearItemVenta();
         listaDeVentas.add(itemVenta); 
         resetearPanelProductos(); 
   

@@ -16,8 +16,8 @@ public class ItemVenta {
     private final int idProducto;
 
     /** Cantidad del producto que se está vendiendo */
-    private final int cantidad;
-
+    private  int cantidadUnidad;
+    private  double cantidadPeso;
     /**
      * Crea un nuevo ítem de venta con el producto y la cantidad especificados.
      * 
@@ -26,9 +26,12 @@ public class ItemVenta {
      */
     public ItemVenta(int productoId, int cantidad) {
         this.idProducto = productoId;
-        this.cantidad = cantidad;
+        this.cantidadUnidad = cantidad;
     }
-
+    public ItemVenta(int productoId, double cantidad) {
+        this.idProducto = productoId;
+        this.cantidadPeso = cantidad;
+    }
     /**
      * Obtiene el identificador del producto asociado a este ítem de venta.
      * 
@@ -43,7 +46,10 @@ public class ItemVenta {
      * 
      * @return Cantidad del producto
      */
-    public int getCantidad() {
-        return cantidad;
+    public int getCantidadUnidad() {
+        return cantidadUnidad;
+    }
+    public double getCantidadPeso() {
+        return cantidadPeso;
     }
 }

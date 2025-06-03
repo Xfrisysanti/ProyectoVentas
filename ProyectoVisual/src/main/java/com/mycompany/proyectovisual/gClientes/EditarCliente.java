@@ -6,6 +6,8 @@ package com.mycompany.proyectovisual.gClientes;
 
 import fiuni.edu.py.Controladores.ControladorClientes;
 import static java.lang.Integer.parseInt;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -62,7 +64,75 @@ public class EditarCliente extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+    
+    
+    
+    private static boolean isValidExtension(String extension) {
+        String[] validExtensions = {"com", "org", "net", "int", "edu", "gov", "mil"};
+        for (String validExtension : validExtensions) {
+            if (extension.equalsIgnoreCase(validExtension)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    /**
+     * Verifica si el dominio es válido.
+     *
+     * @param domain El nombre del dominio.
+     * @return true si el dominio es válido, false en caso contrario.
+     */
+    private static boolean isValidDomain(String domain) {
+        // Verificar si el dominio es nulo, está vacío o no contiene un punto
+        if (domain == null || domain.isEmpty() || !domain.contains(".")) {
+            return false;
+        }
+
+        // Verificar que el dominio tenga solo un punto separador entre el nombre del dominio y la extensión
+        int firstDotIndex = domain.indexOf(".");
+        int lastDotIndex = domain.lastIndexOf(".");
+        // Si hay más de un punto, se considera inválido
+        if (firstDotIndex != lastDotIndex) {
+            return false;
+        }
+        String extension = domain.substring(lastDotIndex + 1);
+        // Expresión regular para verificar que el dominio solo contenga un punto
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+        Matcher matcher = pattern.matcher(domain);
+
+        return matcher.matches() && isValidExtension(extension);
+    }
+
+    /**
+     * Verifica si el correo electrónico es válido.
+     *
+     * @param email La dirección de correo electrónico a verificar.
+     * @return true si el correo electrónico es válido, false en caso contrario.
+     */
+    public static boolean isValidEmail(String email) {
+    if (email == null || email.isEmpty()) {
+        return false;
+    }
+
+    // Verificar que contenga exactamente un símbolo '@'
+    int atIndex = email.indexOf('@');
+    if (atIndex == -1 || atIndex != email.lastIndexOf('@')) {
+        return false;
+    }
+
+    // Verificar estructura general del email con regex simple
+    Pattern pattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+$");
+    Matcher matcher = pattern.matcher(email);
+    if (!matcher.matches()) {
+        return false;
+    }
+
+    // Extraer y validar dominio
+    String domain = email.substring(atIndex + 1);
+    return isValidDomain(domain);
+}
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -346,6 +416,10 @@ public class EditarCliente extends javax.swing.JFrame {
 
         nombre = jTextField2.getText();// Obtener nombre del campo de texto
         gmail = jTextField4.getText();// Obtener gmail del campo de texto
+        if(!isValidEmail(gmail)){
+            JOptionPane.showMessageDialog(this, "Email del cliente no válido, no cumple la tipología esperada.");
+        return;
+        }
         try {
             edad = parseInt(jTextField3.getText());// Convertir edad a entero
         } catch (NumberFormatException e) {

@@ -159,4 +159,5 @@ public class ControladorVentas {
     public Ventas getVentaPorId(int id) {
         return ventaRepo.buscarPorId(id);
     }
+    
 }

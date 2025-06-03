@@ -10,7 +10,7 @@ public class Producto implements Serializable {
     private double peso;
     private int unidades;
     //private int stock;
-     private static final long serialVersionUID = 1L; // Recomendado para garantizar compatibilidad en versiones futuras
+     private static final long serialVersionUID = 1L; 
     public Producto( double precio, String nombre, int unidades) {
         this.id = id;
         this.peso = -1;

@@ -26,7 +26,7 @@ public class Clientes implements Serializable{
     
     /** Email del cliente*/
     private String email;
-
+    private static final long serialVersionUID = 1L;
     /**
      * Crea un nuevo cliente con los datos especificados.
      * 

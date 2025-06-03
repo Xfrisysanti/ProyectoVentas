@@ -5,15 +5,16 @@
 package com.mycompany.proyectovisual.gVentas;
 
 import fiuni.edu.py.Controladores.ControladorVentas;
-import static java.lang.Integer.parseInt;
-import java.util.List;
+import fiuni.edu.py.Modelo.Ventas;
+
 
 /**
  *
  * @author luisf
  */
 public class GananciaTotal extends javax.swing.JFrame {
-    ControladorVentas controlador= new ControladorVentas();
+    private ControladorVentas controlador= new ControladorVentas();
+    private int total;
     /**
      * Creates new form MenuPrincipal
      */
@@ -22,9 +23,10 @@ public class GananciaTotal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     public void mostrarGananciaTotal(){
-        int id=parseInt(jLabel1.getText());
-        //List items=controlador.getVentaPorId(id).getItems();
-        double total=controlador.calcularTotalVenta(controlador.getVentaPorId(id));
+        
+        for(Ventas v:controlador.listarVentas()){
+            total+=controlador.calcularTotalVenta(v);
+        }
         jLabel1.setText(String.valueOf(total));
     }
     /**
@@ -78,8 +80,7 @@ public class GananciaTotal extends javax.swing.JFrame {
         jPanel3.add(jSeparator9);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("El monto de la última venta es de ");
+        jLabel2.setText("El monto de todas las ventas es");
         jPanel3.add(jLabel2);
 
         jSeparator12.setBackground(new java.awt.Color(220, 220, 180));
@@ -97,7 +98,6 @@ public class GananciaTotal extends javax.swing.JFrame {
         jSeparator10.setMaximumSize(new java.awt.Dimension(12, 25));
         jPanel4.add(jSeparator10);
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("XXX");
         jPanel4.add(jLabel1);
 
@@ -109,7 +109,6 @@ public class GananciaTotal extends javax.swing.JFrame {
         jPanel3.add(jSeparator18);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Gs.");
         jPanel3.add(jLabel5);
 

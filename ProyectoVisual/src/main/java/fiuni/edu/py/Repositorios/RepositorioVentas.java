@@ -4,7 +4,13 @@
  */
 package fiuni.edu.py.Repositorios;
 
+import fiuni.edu.py.Modelo.Producto;
 import fiuni.edu.py.Modelo.Ventas;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 import java.time.LocalDate;
 
@@ -16,7 +22,7 @@ import java.time.LocalDate;
  * @author luisf
  */
 public class RepositorioVentas {
-
+    private static final String ARCHIVO = "ventas.dat";
     /**
      * Mapa que almacena las ventas registradas, usando su ID como clave
      */
@@ -26,7 +32,25 @@ public class RepositorioVentas {
      * ID actual para asignar automáticamente a nuevas ventas
      */
     private int idActual = 1;
+    private void guardarDatos() {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ARCHIVO))) {
+            out.writeObject(ventas);
+            out.writeInt(idActual);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    // Método para cargar datos desde el archivo binario al iniciar el repositorio
+    private void cargarDatos() {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(ARCHIVO))) {
+            Map<Integer,Ventas> datosCargados = (Map<Integer, Ventas>) in.readObject();
+            ventas.putAll(datosCargados);
+            idActual = in.readInt(); // Recuperar el último ID usado
+        } catch (IOException | ClassNotFoundException e) {
+            // Si hay error, el archivo puede no existir aún, entonces mantenemos el mapa vacío
+        }
+    }
     /**
      * Guarda una nueva venta en el repositorio, asignándole un ID único.
      *
@@ -36,6 +60,7 @@ public class RepositorioVentas {
     public Ventas guardar(Ventas venta) {
         venta.setIdVenta(idActual++);
         ventas.put(venta.getIdVenta(), venta);
+         guardarDatos();
         return venta;
     }
 
@@ -57,6 +82,7 @@ public class RepositorioVentas {
      */
     public void eliminar(int id) {
         ventas.remove(id);
+         guardarDatos();
     }
 
     /**

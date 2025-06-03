@@ -4,10 +4,14 @@
  */
 package com.mycompany.proyectovisual.gVentas;
 
-import com.mycompany.proyectovisual.gClientes.*;
 import com.mycompany.proyectovisual.gProductos.*;
+import fiuni.edu.py.Controladores.ControladorProducto;
 import fiuni.edu.py.Controladores.ControladorVentas;
-import static java.lang.Integer.parseInt;
+import fiuni.edu.py.Modelo.ItemVenta;
+import fiuni.edu.py.Modelo.Ventas;
+import fiuni.edu.py.Repositorios.RepositorioVentasEliminadas;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,12 +20,16 @@ import javax.swing.JOptionPane;
  */
 public class EliminarVenta extends javax.swing.JFrame {
     ControladorVentas controlador= new ControladorVentas();
+    RepositorioVentasEliminadas repositorio= new RepositorioVentasEliminadas();
+    ControladorProducto controladorProducto= new ControladorProducto();
+    List<ItemVenta> listaDeProductosRestaurados = new ArrayList<>();
     /**
      * Creates new form MenuPrincipal
      */
     public EliminarVenta() {
         initComponents();
         setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -129,17 +137,49 @@ public class EliminarVenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int id=parseInt(jTextField1.getText());
-        if(controlador.getVentaPorId(id)==null){
+        try {
+        int id = Integer.parseInt(jTextField1.getText().trim());
+
+        Ventas venta = controlador.getVentaPorId(id);
+        if (venta == null) {
             JOptionPane.showMessageDialog(this, "Venta no encontrada.");
-            new MenuGestionProductos().setVisible(true);
+            new MenuGestionVentas().setVisible(true);
             dispose();
+            return;
         }
-        else{
+
+        // Restaurar stock de productos
+        listaDeProductosRestaurados = venta.getItems();
+        for (ItemVenta i : listaDeProductosRestaurados) {
+            int productoId = i.getProductoId();
+
+            if (controladorProducto.getUnidades(productoId) == -1) {
+                // Producto por peso
+                double nuevoPeso = controladorProducto.getPeso(productoId) + i.getCantidadPeso();
+                controladorProducto.setPeso(productoId, nuevoPeso);
+            } else {
+                // Producto por unidad
+                int nuevasUnidades = controladorProducto.getUnidades(productoId) + i.getCantidadUnidad();
+                controladorProducto.setUnidades(productoId, nuevasUnidades);
+            }
+        }
+
+        // Registrar venta eliminada ANTES de eliminarla
+        repositorio.agregarEventaEliminada(venta);
+
+        // Eliminar la venta
         controlador.eliminarVenta(id);
+
+        JOptionPane.showMessageDialog(this, "Venta eliminada con éxito. Stock restaurado.");
         new MenuGestionProductos().setVisible(true);
         dispose();
-        }
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingresa un ID válido.", "Error", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();
+    }  
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -168,69 +208,7 @@ public class EliminarVenta extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(EliminarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+      
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

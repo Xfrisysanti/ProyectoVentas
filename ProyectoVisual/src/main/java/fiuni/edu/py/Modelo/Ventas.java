@@ -4,6 +4,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package fiuni.edu.py.Modelo;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  * @author luisf
  */
 
-public class Ventas {
+public class Ventas implements Serializable {
 
     /** Identificador único de la venta */
     private int idVenta = 0;
@@ -30,7 +31,7 @@ public class Ventas {
 
     /** Monto total de la venta */
     private int total = 0;
-
+    private static final long serialVersionUID = 1L; 
     /**
      * Constructor que crea una venta con los datos especificados.
      * 

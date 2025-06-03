@@ -4,14 +4,19 @@
  */
 package com.mycompany.proyectovisual.gVentas;
 
-import com.mycompany.proyectovisual.gProductos.*;
+
+import fiuni.edu.py.Modelo.Ventas;
+import fiuni.edu.py.Repositorios.RepositorioVentasEliminadas;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author luisf
  */
 public class ListaVentasEliminadas extends javax.swing.JFrame {
-
+    RepositorioVentasEliminadas repositorio=new RepositorioVentasEliminadas();
     /**
      * Creates new form MenuPrincipal
      */
@@ -19,7 +24,26 @@ public class ListaVentasEliminadas extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+     public void listar() {
+    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+    modelo.setRowCount(0); 
 
+    List<Ventas> ventas = repositorio.listarTodas();
+
+    for (Ventas v : ventas) {
+        try {
+            modelo.addRow(new Object[]{
+                v.getIdVenta(),
+                v.getFechaVenta(),
+                v.getIdCliente(),
+                v.getItems().size(),
+                repositorio.calcularTotalVenta(v)
+            });
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null,"Error al cargar una venta con ID: " + v.getIdVenta() + ". Verifica los datos.");
+        }
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

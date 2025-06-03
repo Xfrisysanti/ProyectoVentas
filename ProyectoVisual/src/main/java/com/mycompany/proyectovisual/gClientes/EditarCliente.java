@@ -296,7 +296,8 @@ public class EditarCliente extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
         }
-        
+        new MenuGestionClientes().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

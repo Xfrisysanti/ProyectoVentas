@@ -49,7 +49,7 @@ public class ListarVentas extends javax.swing.JFrame {
         List<Ventas> ventas = controlador.listarVentas();
 
         for (Ventas v : ventas) {
-            try {
+            
                 modelo.addRow(new Object[]{
                     v.getIdVenta(),
                     v.getFechaVenta(),
@@ -57,9 +57,7 @@ public class ListarVentas extends javax.swing.JFrame {
                     v.getItems().size(),
                     controlador.calcularTotalVenta(v)
                 });
-            } catch (NullPointerException e) {
-                JOptionPane.showMessageDialog(null, "Error al cargar una venta con ID: " + v.getIdVenta() + ". Verifica los datos.");
-            }
+            
         }
     }
 

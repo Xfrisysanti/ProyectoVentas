@@ -282,7 +282,7 @@ public class EditarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try{
+        
             nombre=jTextField2.getText();
             gmail=jTextField4.getText();
             try{
@@ -290,12 +290,11 @@ public class EditarCliente extends javax.swing.JFrame {
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(this, "Error al ingresar edad. Verifique que sea un número válido.");
             }
-            controlador.buscarCliente(id).setEdad(edad);
-            controlador.buscarCliente(id).setEmail(gmail);
-            controlador.buscarCliente(id).setNombre(nombre);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
-        }
+            controlador.setEdad(id,edad);
+            controlador.setEmail(id,gmail);
+            controlador.setNombre(id,nombre);
+        
+        JOptionPane.showMessageDialog(this,"Cliente Guardado con exito.");
         new MenuGestionClientes().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

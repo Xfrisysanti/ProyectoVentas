@@ -94,4 +94,15 @@ public class ControladorClientes {
     public String getNombre(int id) {
         return repo.buscarPorIdentificacion(id).getNombre();
     }
+    public void setEmail(int id,String email) {
+         repo.buscarPorIdentificacion(id).setEmail(email);
+    }
+
+    public void setEdad(int id,int edad) {
+        repo.buscarPorIdentificacion(id).setEdad(edad);
+    }
+
+    public void setNombre(int id,String nombre) {
+         repo.buscarPorIdentificacion(id).setNombre(nombre);
+    }
 }

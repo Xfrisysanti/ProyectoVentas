@@ -98,12 +98,9 @@ public class RepositorioClientes {
      * @param clienteEditado Objeto cliente con los datos actualizados
      * @return {@code true} si se realizó la edición, {@code false} si el cliente no existe
      */
-    public boolean editar(Clientes clienteEditado) {
-        if (clientes.containsKey(clienteEditado.getIdentificacion())) {
+    public  void editar(Clientes clienteEditado) {
             clientes.put(clienteEditado.getIdentificacion(), clienteEditado);
             guardarDatos();
-            return true;
-        }
-        return false;
+            
     }
 }

@@ -41,17 +41,15 @@ public class ControladorClientes {
      * @param nuevoNombre Nuevo nombre que se asignará al cliente.
      * @param nuevaEdad Nueva edad que se asignará al cliente.
      * @param nuevoEmail Nuevo email del cliente
-     * @return {@code true} si la edición fue exitosa; {@code false} si el
-     * cliente no fue encontrado.
+
      */
-    public boolean editarCliente(int identificacion, String nuevoNombre, int nuevaEdad, String nuevoEmail) {
+    public void editarCliente(int identificacion, String nuevoNombre, int nuevaEdad, String nuevoEmail) {
         Clientes cliente = repo.buscarPorIdentificacion(identificacion);
-        if (cliente != null) {
             cliente.setNombre(nuevoNombre);
             cliente.setEdad(nuevaEdad);
-            return repo.editar(cliente);
-        }
-        return false;
+            cliente.setEmail(nuevoEmail);
+        
+       
     }
 
     /**
@@ -94,15 +92,5 @@ public class ControladorClientes {
     public String getNombre(int id) {
         return repo.buscarPorIdentificacion(id).getNombre();
     }
-    public void setEmail(int id,String email) {
-         repo.buscarPorIdentificacion(id).setEmail(email);
-    }
-
-    public void setEdad(int id,int edad) {
-        repo.buscarPorIdentificacion(id).setEdad(edad);
-    }
-
-    public void setNombre(int id,String nombre) {
-         repo.buscarPorIdentificacion(id).setNombre(nombre);
-    }
+    
 }

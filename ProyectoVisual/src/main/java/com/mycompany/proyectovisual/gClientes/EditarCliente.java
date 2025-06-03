@@ -286,14 +286,11 @@ public class EditarCliente extends javax.swing.JFrame {
             nombre=jTextField2.getText();
             gmail=jTextField4.getText();
             try{
-                edad = parseInt(jTextField3.getText());
+            edad = parseInt(jTextField3.getText());
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(this, "Error al ingresar edad. Verifique que sea un número válido.");
             }
-            controlador.setEdad(id,edad);
-            controlador.setEmail(id,gmail);
-            controlador.setNombre(id,nombre);
-        
+            controlador.editarCliente(id, nombre, edad, gmail);   
         JOptionPane.showMessageDialog(this,"Cliente Guardado con exito.");
         new MenuGestionClientes().setVisible(true);
         dispose();
@@ -325,69 +322,7 @@ public class EditarCliente extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(EditarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+       
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

@@ -281,7 +281,7 @@ public class MenuGestionClientes extends javax.swing.JFrame {
      * @param evt Evento generado por el botón
      */
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        new VentanaCIClientes(false).setVisible(true);
+        new VentanaCIClientes(1).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -292,7 +292,7 @@ public class MenuGestionClientes extends javax.swing.JFrame {
      * @param evt Evento generado por el botón
      */
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        new VentanaCIClientes(true).setVisible(true);
+        new VentanaCIClientes(0).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 

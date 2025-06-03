@@ -5,7 +5,7 @@
 package com.mycompany.proyectovisual.gClientes;
 
 import com.mycompany.proyectovisual.gVentas.*;
-import fiuni.edu.py.Controladores.ControladorVentasEliminadas;
+import fiuni.edu.py.Controladores.ControladorVentas;
 import fiuni.edu.py.Modelo.Ventas;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -23,17 +23,23 @@ import javax.swing.table.DefaultTableModel;
 public class ListaVentasPorCliente extends javax.swing.JFrame {
 
     // Controlador que maneja las operaciones relacionadas a ventas eliminadas
-    private final ControladorVentasEliminadas controlador = new ControladorVentasEliminadas();
-
+    private final ControladorVentas controlador = new ControladorVentas();
+    private int id;
     /**
      * Constructor de la clase. Inicializa los componentes gráficos de la
      * ventana, la centra en pantalla y llama al método para listar las ventas
      * eliminadas.
      */
-    public ListaVentasPorCliente() {
+    public ListaVentasPorCliente(int id) {
+        this.id=id;
         initComponents();
         setLocationRelativeTo(null);
         listar();
+    }
+     public ListaVentasPorCliente() {
+        initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**
@@ -47,20 +53,21 @@ public class ListaVentasPorCliente extends javax.swing.JFrame {
         modelo.setRowCount(0);
 
         List<Ventas> ventas = controlador.listarVentas();
-
+        
         for (Ventas v : ventas) {
-            try {
+                if(v.getIdCliente()==id){
                 modelo.addRow(new Object[]{
                     v.getIdVenta(),
                     v.getFechaVenta(),
                     v.getIdCliente(),
                     v.getItems().size(),
                     controlador.calcularTotalVenta(v)
+                
                 });
-            } catch (NullPointerException e) {
-                JOptionPane.showMessageDialog(null, "Error al cargar una venta con ID: " + v.getIdVenta() + ". Verifica los datos.");
-            }
+                }
+            
         }
+        
     }
 
     /**

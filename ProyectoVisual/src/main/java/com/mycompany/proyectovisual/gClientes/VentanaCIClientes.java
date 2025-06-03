@@ -24,7 +24,7 @@ public class VentanaCIClientes extends javax.swing.JFrame {
     /**
      * Indica si la operación será para editar (true) o solo buscar/ver (false).
      */
-    private boolean editarObuscar;
+    private int editarObuscar;
     /**
      * Controlador para gestionar operaciones relacionadas con clientes.
      */
@@ -37,7 +37,7 @@ public class VentanaCIClientes extends javax.swing.JFrame {
      * @param editarObuscar true para editar el cliente, false para solo
      * visualizarlo.
      */
-    public VentanaCIClientes(boolean editarObuscar) {
+    public VentanaCIClientes(int editarObuscar) {
         this.editarObuscar = editarObuscar;
         initComponents();
         setLocationRelativeTo(null);
@@ -173,13 +173,17 @@ public class VentanaCIClientes extends javax.swing.JFrame {
             if (controlador.buscarCliente(cI) == null) {
                 // Si no se encuentra el cliente, se muestra un mensaje de error
                 JOptionPane.showMessageDialog(this, "No se encontró el cliente con el CI: " + cI);
-            } else if (editarObuscar) {
+            } else if (editarObuscar==0) {
                 // Si se va a editar, se abre la ventana EditarCliente
                 new EditarCliente(cI).setVisible(true); // pasa el ID al constructor de edicion
                 dispose();
-            } else {
+            } else if(editarObuscar==1) {
                 // Si solo se va a visualizar, se abre la ventana ClienteBuscado
                 new ClienteBuscado(cI).setVisible(true); // pasa el ID al constructor de buscador
+                dispose();
+            }
+            else{
+                new ListaVentasPorCliente(cI).setVisible(true); // pasa el ID al constructor de buscador
                 dispose();
             }
         } catch (NumberFormatException e) {

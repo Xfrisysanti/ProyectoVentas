@@ -23,6 +23,7 @@ public class ListaVentasEliminadas extends javax.swing.JFrame {
     public ListaVentasEliminadas() {
         initComponents();
         setLocationRelativeTo(null);
+        listar();
     }
      public void listar() {
     DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
@@ -183,7 +184,8 @@ public class ListaVentasEliminadas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+       new MenuGestionVentas().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

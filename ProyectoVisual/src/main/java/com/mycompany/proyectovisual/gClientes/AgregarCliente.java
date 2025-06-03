@@ -6,6 +6,8 @@ package com.mycompany.proyectovisual.gClientes;
 
 import javax.swing.JOptionPane;
 import fiuni.edu.py.Controladores.ControladorClientes;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Clase que representa la interfaz gráfica para agregar un nuevo cliente.
@@ -16,7 +18,7 @@ import fiuni.edu.py.Controladores.ControladorClientes;
  *
  * Esta ventana forma parte del sistema de gestión de clientes.
  *
- * Autor: luisf
+ * Autor: luisf y shanthi
  */
 public class AgregarCliente extends javax.swing.JFrame {
 
@@ -316,7 +318,7 @@ public class AgregarCliente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+        //Codigo copia del trabajo de nieves XD
     /**
      * Acción ejecutada al presionar el botón de confirmación para agregar un
      * cliente.
@@ -329,27 +331,103 @@ public class AgregarCliente extends javax.swing.JFrame {
      *
      * @param evt Evento generado al hacer clic en el botón.
      */
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            int ci = Integer.parseInt(jTextField1.getText().trim());
-            String nombre = jTextField2.getText().trim();
-            int edad = Integer.parseInt(jTextField3.getText().trim());
-            String email = jTextField4.getText().trim();
-
-            controlador.agregarCliente(ci, nombre, edad, email);
-            JOptionPane.showMessageDialog(this, "Cliente agregado exitosamente");
-        } catch (NumberFormatException e) {
-            // Error al convertir CI o edad a número
-            JOptionPane.showMessageDialog(this, "Error al ingresar número de CI o edad. Verifique que sean números válidos.");
-        } catch (Exception e) {
-            // Otro error general
-            JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
+    private static boolean isValidExtension(String extension) {
+        String[] validExtensions = {"com", "org", "net", "int", "edu", "gov", "mil"};
+        for (String validExtension : validExtensions) {
+            if (extension.equalsIgnoreCase(validExtension)) {
+                return true;
+            }
         }
-        // Cierra esta ventana y abre el menú de gestión de clientes
+        return false;
+    }
+
+    /**
+     * Verifica si el dominio es válido.
+     *
+     * @param domain El nombre del dominio.
+     * @return true si el dominio es válido, false en caso contrario.
+     */
+    private static boolean isValidDomain(String domain) {
+        // Verificar si el dominio es nulo, está vacío o no contiene un punto
+        if (domain == null || domain.isEmpty() || !domain.contains(".")) {
+            return false;
+        }
+
+        // Verificar que el dominio tenga solo un punto separador entre el nombre del dominio y la extensión
+        int firstDotIndex = domain.indexOf(".");
+        int lastDotIndex = domain.lastIndexOf(".");
+        // Si hay más de un punto, se considera inválido
+        if (firstDotIndex != lastDotIndex) {
+            return false;
+        }
+        String extension = domain.substring(lastDotIndex + 1);
+        // Expresión regular para verificar que el dominio solo contenga un punto
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+        Matcher matcher = pattern.matcher(domain);
+
+        return matcher.matches() && isValidExtension(extension);
+    }
+
+    /**
+     * Verifica si el correo electrónico es válido.
+     *
+     * @param email La dirección de correo electrónico a verificar.
+     * @return true si el correo electrónico es válido, false en caso contrario.
+     */
+    public static boolean isValidEmail(String email) {
+    if (email == null || email.isEmpty()) {
+        return false;
+    }
+
+    // Verificar que contenga exactamente un símbolo '@'
+    int atIndex = email.indexOf('@');
+    if (atIndex == -1 || atIndex != email.lastIndexOf('@')) {
+        return false;
+    }
+
+    // Verificar estructura general del email con regex simple
+    Pattern pattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+$");
+    Matcher matcher = pattern.matcher(email);
+    if (!matcher.matches()) {
+        return false;
+    }
+
+    // Extraer y validar dominio
+    String domain = email.substring(atIndex + 1);
+    return isValidDomain(domain);
+}
+    
+    
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       try {
+        int ci = Integer.parseInt(jTextField1.getText().trim());
+        if(controlador.buscarCliente(ci)!=null){
+            JOptionPane.showMessageDialog(this, "CI del cliente no valido, ya se encuentra agendado otro con ese CI.");
+            return; 
+        }
+        String nombre = jTextField2.getText().trim();
+        int edad = Integer.parseInt(jTextField3.getText().trim());
+        String email = jTextField4.getText().trim();
+// Salimos del método, no continuamos si el email es inválido
+        if (!isValidEmail(email)) {
+        JOptionPane.showMessageDialog(this, "Email del cliente no válido, no cumple la tipología esperada.");
+        return; 
+        }
+
+        controlador.agregarCliente(ci, nombre, edad, email);
+        JOptionPane.showMessageDialog(this, "Cliente agregado exitosamente");
+
+// Cerramos esta ventana y abrimos el menú de gestión de clientes
         dispose();
         new MenuGestionClientes().setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
+            } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error al ingresar número de CI o edad. Verifique que sean números válidos.");
+}
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -376,37 +454,7 @@ public class AgregarCliente extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AgregarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -415,7 +463,7 @@ public class AgregarCliente extends javax.swing.JFrame {
             }
         });
     }
-
+//tumba la casa mami
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton2;

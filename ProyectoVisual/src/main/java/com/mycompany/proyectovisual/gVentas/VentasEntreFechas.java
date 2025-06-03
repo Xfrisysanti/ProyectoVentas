@@ -197,7 +197,7 @@ public class VentasEntreFechas extends javax.swing.JFrame {
         new MenuGestionVentas().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
-
+     
     /**
      * @param args the command line arguments
      */

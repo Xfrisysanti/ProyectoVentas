@@ -20,6 +20,7 @@ public class ClienteBuscado extends javax.swing.JFrame {
         this.id=id;
         initComponents();
         setLocationRelativeTo(null);
+        cargarDatos();
     }
     public ClienteBuscado() {
     initComponents();

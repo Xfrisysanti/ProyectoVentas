@@ -146,7 +146,7 @@ public class VentanaIdProductos extends javax.swing.JFrame {
             dispose();
         }
         else{
-            new ClienteBuscado(id).setVisible(true); // pasa el ID al constructor de buscador
+            new ProductoBuscado(id).setVisible(true); // pasa el ID al constructor de buscador
             dispose();
         }
     } catch (NumberFormatException e) {

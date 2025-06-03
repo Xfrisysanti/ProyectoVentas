@@ -330,7 +330,7 @@ public class EditarProducto extends javax.swing.JFrame {
             
         } else if (jRadioButton2.isSelected()) { // Por unidad false
             controlador.editarProducto(id, nombre, precio,stock,false);
-            JOptionPane.showMessageDialog(this, "Producto por unidad editado exitosamente con id");
+            JOptionPane.showMessageDialog(this, "Producto por unidad editado exitosamente");
             
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione el tipo de producto.");

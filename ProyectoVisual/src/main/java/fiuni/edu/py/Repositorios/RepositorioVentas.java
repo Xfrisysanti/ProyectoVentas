@@ -31,6 +31,9 @@ public class RepositorioVentas {
     /**
      * ID actual para asignar automáticamente a nuevas ventas
      */
+    public RepositorioVentas(){
+        cargarDatos();
+    }
     private int idActual = 1;
     private void guardarDatos() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ARCHIVO))) {

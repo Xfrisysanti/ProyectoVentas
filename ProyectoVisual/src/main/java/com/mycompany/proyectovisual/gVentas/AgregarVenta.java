@@ -24,7 +24,6 @@ public class AgregarVenta extends javax.swing.JFrame {
     private LocalDate fecha;
     private int cantidadInt;
     private double cantidadDouble;
-    private ItemVenta itemVenta;
     List<ItemVenta> listaDeVentas = new ArrayList<>();
     ControladorProducto controladorProductos = new ControladorProducto();
     ControladorVentas controladorVentas= new ControladorVentas();
@@ -85,74 +84,73 @@ public class AgregarVenta extends javax.swing.JFrame {
   
     
     
-   public void cargarDatos2() {
-    nombre = jTextField4.getText().trim();
+  public ItemVenta cargarDatos2() {
+    String nombre = jTextField4.getText().trim();
 
-    // Validar campo nombre
     if (nombre.isEmpty()) {
         JOptionPane.showMessageDialog(null, "El nombre del producto no puede estar vacío.");
         resetearPanelProductos();
-        return;
+        return null;
     }
 
-    // Verificar si el producto existe
     if (!controladorProductos.existeProductosConEsteNombre(nombre)) {
         JOptionPane.showMessageDialog(null, "Producto no encontrado. Verifique el nombre.");
         resetearPanelProductos();
-        return;
-    }
-
-    try {
-        cantidadInt = Integer.parseInt(jTextField5.getText().trim());
-        cantidadDouble = Double.parseDouble(jTextField5.getText().trim());
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "Cantidad inválida. Ingrese un número válido.");
-        resetearPanelProductos();
-        return;
+        return null;
     }
 
     int idProducto = controladorProductos.buscarProductoPorNombre(nombre);
 
-    // Producto por peso
-    if (controladorProductos.getPeso(idProducto) != -1) {
-        double stockDisponible = controladorProductos.getPeso(idProducto);
+    try {
+        int cantidadInt = Integer.parseInt(jTextField5.getText().trim());
+        double cantidadDouble = Double.parseDouble(jTextField5.getText().trim());
 
-        if (cantidadDouble <= 0) {
-            JOptionPane.showMessageDialog(null, "La cantidad debe ser mayor que cero.");
-            resetearPanelProductos();
-            return;
+        // Producto por peso
+        if (controladorProductos.getPeso(idProducto) != -1) {
+            double stockDisponible = controladorProductos.getPeso(idProducto);
+
+            if (cantidadDouble <= 0) {
+                JOptionPane.showMessageDialog(null, "La cantidad debe ser mayor que cero.");
+                resetearPanelProductos();
+                return null;
+            }
+
+            if (stockDisponible >= cantidadDouble) {
+                controladorProductos.setPeso(idProducto, stockDisponible - cantidadDouble);
+                return new ItemVenta(idProducto, cantidadDouble);
+            } else {
+                JOptionPane.showMessageDialog(null, "Stock insuficiente. Disponible: " + stockDisponible + " kg.");
+                resetearPanelProductos();
+                return null;
+            }
         }
 
-        if (stockDisponible >= cantidadDouble) {
-            itemVenta = new ItemVenta(idProducto, cantidadDouble);
-            controladorProductos.setPeso(controladorProductos.buscarProductoPorNombre(nombre), stockDisponible-cantidadDouble);
-        } else {
-            JOptionPane.showMessageDialog(null, "Stock insuficiente. Disponible: " + stockDisponible + " kg.");
-            resetearPanelProductos();
-            return;
-        }
-    }
-    // Producto por unidad
-    else {
-        int stockDisponible = controladorProductos.getUnidades(idProducto);
+        // Producto por unidad
+        else {
+            int stockDisponible = controladorProductos.getUnidades(idProducto);
 
-        if (cantidadInt <= 0) {
-            JOptionPane.showMessageDialog(null, "La cantidad debe ser mayor que cero.");
-            resetearPanelProductos();
-            return;
+            if (cantidadInt <= 0) {
+                JOptionPane.showMessageDialog(null, "La cantidad debe ser mayor que cero.");
+                resetearPanelProductos();
+                return null;
+            }
+
+            if (stockDisponible >= cantidadInt) {
+                controladorProductos.setUnidades(idProducto, stockDisponible - cantidadInt);
+                return new ItemVenta(idProducto, cantidadInt);
+            } else {
+                JOptionPane.showMessageDialog(null, "Stock insuficiente. Disponible: " + stockDisponible + " unidades.");
+                resetearPanelProductos();
+                return null;
+            }
         }
 
-        if (stockDisponible >= cantidadInt) {
-            itemVenta = new ItemVenta(idProducto, cantidadInt);
-            controladorProductos.setUnidades(controladorProductos.buscarProductoPorNombre(nombre), stockDisponible-cantidadInt);
-        } else {
-            JOptionPane.showMessageDialog(null, "Stock insuficiente. Disponible: " + stockDisponible + " unidades.");
-            resetearPanelProductos();
-            return;
-        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Cantidad inválida. Ingrese un número válido.");
+        resetearPanelProductos();
+        return null;
     }
 }
-
         
         
     
@@ -607,20 +605,32 @@ public class AgregarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-                  
-        cargarDatos2();
-        listaDeVentas.add(itemVenta); 
-        resetearPanelProductos(); 
+        ItemVenta nuevoItem = cargarDatos2();
+        if (nuevoItem != null) {
+        listaDeVentas.add(nuevoItem);
+        resetearPanelProductos();
+    } 
   
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        listaDeVentas.add(itemVenta);
-        Ventas nuevaVenta=new Ventas(ci,listaDeVentas,fecha);
-        controladorVentas.registrarVenta(nuevaVenta);
-        new MenuGestionVentas().setVisible(true);
-        JOptionPane.showMessageDialog(this, "Venta agregada exitosamente con id:"+nuevaVenta.getIdVenta());
-        dispose();
+        ItemVenta nuevoItem = cargarDatos2(); // Intenta cargar el último producto
+    if (nuevoItem != null) {
+        listaDeVentas.add(nuevoItem);
+    }
+
+    if (listaDeVentas.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Debe agregar al menos un producto antes de registrar la venta.");
+        return;
+    }
+
+    Ventas nuevaVenta = new Ventas(ci, listaDeVentas, fecha);
+    controladorVentas.registrarVenta(nuevaVenta);
+
+    JOptionPane.showMessageDialog(this, "Venta agregada exitosamente con ID: " + nuevaVenta.getIdVenta());
+
+    new MenuGestionVentas().setVisible(true);
+    dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed

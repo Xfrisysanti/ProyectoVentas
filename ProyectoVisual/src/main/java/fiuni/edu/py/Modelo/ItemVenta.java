@@ -4,13 +4,15 @@
  */
 package fiuni.edu.py.Modelo;
 
+import java.io.Serializable;
+
 /**
  * Representa un item dentro de la venta, se asocia a un producto y a una
  * cantidad determinada de este
  * 
  * @author luisf
  */
-public class ItemVenta {
+public class ItemVenta implements Serializable {
 
     /** Identificador del producto asociado a este ítem de venta */
     private final int idProducto;

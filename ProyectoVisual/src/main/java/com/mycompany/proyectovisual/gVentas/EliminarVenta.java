@@ -171,7 +171,7 @@ public class EliminarVenta extends javax.swing.JFrame {
         controlador.eliminarVenta(id);
 
         JOptionPane.showMessageDialog(this, "Venta eliminada con éxito. Stock restaurado.");
-        new MenuGestionProductos().setVisible(true);
+        new MenuGestionVentas().setVisible(true);
         dispose();
 
     } catch (NumberFormatException e) {

@@ -21,6 +21,7 @@ public class GananciaTotal extends javax.swing.JFrame {
     public GananciaTotal() {
         initComponents();
         setLocationRelativeTo(null);
+        mostrarGananciaTotal();
     }
     public void mostrarGananciaTotal(){
         

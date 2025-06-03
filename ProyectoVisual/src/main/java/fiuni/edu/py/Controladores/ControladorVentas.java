@@ -30,7 +30,7 @@ public class ControladorVentas {
     private final RepositorioVentas ventaRepo= new RepositorioVentas();
     private final RepositorioClientes clienteRepo= new RepositorioClientes();
     private final RepositorioProducto productoRepo=new RepositorioProducto();
-
+    private final ControladorProducto controladorProducto=new ControladorProducto();
     
     
     
@@ -112,9 +112,9 @@ public class ControladorVentas {
     List<ItemVenta> items = venta.getItems();
 
     for (ItemVenta item : items) {
-        Producto producto = productoRepo.buscarPorId(item.getProductoId());
+        Producto producto = controladorProducto.buscarProducto(item.getProductoId());
 
-        if (producto != null) {
+        
             if (producto.getPeso() == -1) {
                 // Producto vendido por unidad
                 total += item.getCantidadUnidad() * producto.getPrecio();
@@ -122,7 +122,7 @@ public class ControladorVentas {
                 // Producto vendido por peso
                 total += item.getCantidadPeso() * producto.getPrecio();
             }
-        }
+        
     }
 
     return total;

@@ -48,7 +48,7 @@ public class ControladorClientes {
             cliente.setNombre(nuevoNombre);
             cliente.setEdad(nuevaEdad);
             cliente.setEmail(nuevoEmail);
-        
+            repo.editar(cliente);
        
     }
 

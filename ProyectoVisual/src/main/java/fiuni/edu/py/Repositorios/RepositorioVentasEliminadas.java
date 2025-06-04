@@ -26,10 +26,13 @@ import java.util.Map;
  * @author santi
  */
 public class RepositorioVentasEliminadas {
-
+    public RepositorioVentasEliminadas() {
+    cargarDatos(); 
+}
     /**
      * Nombre del archivo donde se almacenan las ventas eliminadas.
      */
+    
     private static final String ARCHIVO = "ventasEliminadas.dat";
     /**
      * Mapa que almacena las ventas eliminadas, usando como clave un ID

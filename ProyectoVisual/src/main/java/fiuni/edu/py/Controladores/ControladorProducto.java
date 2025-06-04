@@ -176,8 +176,10 @@ public class ControladorProducto {
      * @param unidades Nuevas unidades a asignar.
      */
     public void setUnidades(int id, int unidades) {
-        repo.buscarPorId(id).setUnidades(unidades);
-    }
+    Producto producto = repo.buscarPorId(id);
+    producto.setUnidades(unidades);
+    repo.editar(producto);
+}
 
     /**
      * Establece un nuevo valor de peso para un producto.
@@ -186,7 +188,9 @@ public class ControladorProducto {
      * @param peso Nuevo peso a asignar.
      */
     public void setPeso(int id, double peso) {
-        repo.buscarPorId(id).setPeso(peso);
-    }
+    Producto producto = repo.buscarPorId(id);
+    producto.setPeso(peso);
+    repo.editar(producto);
+}
 
 }
